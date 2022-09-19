@@ -12,6 +12,7 @@ import { App } from "../../script/ui/hall/data/App";
 // import { Social } from "./native-extend";
 // // const Connector = require("../NetWork/Connector");
 import Connector from "../NetWork/Connector"
+import InvitationCardPop from "../../script/qj/hall/InvitationCardPop";
 let _social = Native.Social;
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -30,6 +31,7 @@ export default class SceneHall extends cc.Component {
     lblNotice = null
     @property(cc.Node)
     nodeMenu = null
+
     speed = {
         default: 100,
         tips: '广播的速度'
