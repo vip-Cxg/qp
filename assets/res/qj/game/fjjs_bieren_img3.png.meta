@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "809bf179-d7ca-4f6d-81b3-f198a5c56205",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 283,
+  "height": 430,
+  "platformSettings": {},
+  "subMetas": {
+    "fjjs_bieren_img3": {
+      "ver": "1.0.4",
+      "uuid": "41280c05-147c-4d31-a271-db6c0d954aa1",
+      "rawTextureUuid": "809bf179-d7ca-4f6d-81b3-f198a5c56205",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 1,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 283,
+      "height": 428,
+      "rawWidth": 283,
+      "rawHeight": 430,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

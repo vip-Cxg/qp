@@ -1,0 +1,118 @@
+
+checked.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xing
+  rotate: false
+  xy: 1, 304
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+指针/00000
+  rotate: false
+  xy: 1, 203
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00002
+  rotate: false
+  xy: 130, 332
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00004
+  rotate: false
+  xy: 1, 102
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00006
+  rotate: false
+  xy: 231, 332
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00008
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00010
+  rotate: false
+  xy: 332, 332
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00012
+  rotate: false
+  xy: 102, 203
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00014
+  rotate: false
+  xy: 102, 102
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00016
+  rotate: false
+  xy: 102, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00018
+  rotate: false
+  xy: 203, 231
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00020
+  rotate: false
+  xy: 203, 130
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00022
+  rotate: false
+  xy: 304, 231
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00024
+  rotate: false
+  xy: 203, 29
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00026
+  rotate: false
+  xy: 304, 130
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+指针/00028
+  rotate: false
+  xy: 304, 29
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

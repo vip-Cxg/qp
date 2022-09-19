@@ -1,0 +1,9 @@
+{
+  "servers": [
+    "http://120.24.49.199:62443/"
+  ],
+  "update": [
+    "http://ldqp-release.oss-cn-shenzhen.aliyuncs.com/update/",
+    "http://update.xyhldqp.com/update/"
+  ]
+}

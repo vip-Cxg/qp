@@ -1,0 +1,118 @@
+
+dice.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shaizi1
+  rotate: false
+  xy: 1, 190
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi2
+  rotate: false
+  xy: 192, 331
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi3
+  rotate: false
+  xy: 383, 472
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi4
+  rotate: false
+  xy: 574, 613
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi5
+  rotate: false
+  xy: 765, 754
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi6
+  rotate: false
+  xy: 1, 117
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+shaizi_anmi1
+  rotate: false
+  xy: 1, 686
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi11
+  rotate: false
+  xy: 574, 686
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi2
+  rotate: false
+  xy: 1, 545
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi3
+  rotate: false
+  xy: 192, 686
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi4
+  rotate: false
+  xy: 1, 404
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi5
+  rotate: false
+  xy: 192, 545
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi6
+  rotate: false
+  xy: 383, 686
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi7
+  rotate: false
+  xy: 1, 263
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi8
+  rotate: false
+  xy: 192, 404
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1
+shaizi_anmi9
+  rotate: false
+  xy: 383, 545
+  size: 190, 140
+  orig: 190, 140
+  offset: 0, 0
+  index: -1

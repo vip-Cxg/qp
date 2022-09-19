@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "2fce4545-0778-4e07-9c14-b31d2f1d1350",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 181,
+  "height": 122,
+  "platformSettings": {},
+  "subMetas": {
+    "fjjs_hupaicishudi_img1": {
+      "ver": "1.0.4",
+      "uuid": "4d5173fb-0533-4e14-9679-cd370befcad4",
+      "rawTextureUuid": "2fce4545-0778-4e07-9c14-b31d2f1d1350",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 181,
+      "height": 122,
+      "rawWidth": 181,
+      "rawHeight": 122,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

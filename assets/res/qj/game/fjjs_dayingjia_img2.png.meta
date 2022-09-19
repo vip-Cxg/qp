@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "7f37e6b9-6364-4c31-83ef-32086b35b8a5",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 145,
+  "height": 155,
+  "platformSettings": {},
+  "subMetas": {
+    "fjjs_dayingjia_img2": {
+      "ver": "1.0.4",
+      "uuid": "3e54de1b-28e8-47ed-931d-79cf60b69723",
+      "rawTextureUuid": "7f37e6b9-6364-4c31-83ef-32086b35b8a5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 145,
+      "height": 155,
+      "rawWidth": 145,
+      "rawHeight": 155,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

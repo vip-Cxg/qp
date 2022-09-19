@@ -1,0 +1,55 @@
+
+light_l.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+001
+  rotate: false
+  xy: 1, 3241
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+002
+  rotate: false
+  xy: 1, 2640
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+004
+  rotate: false
+  xy: 1922, 3241
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+005
+  rotate: false
+  xy: 1, 2039
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+007
+  rotate: false
+  xy: 1922, 2640
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+008
+  rotate: false
+  xy: 1, 1438
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1
+009
+  rotate: false
+  xy: 1922, 2039
+  size: 1920, 600
+  orig: 1920, 600
+  offset: 0, 0
+  index: -1

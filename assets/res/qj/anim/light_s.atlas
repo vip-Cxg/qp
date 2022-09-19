@@ -1,0 +1,62 @@
+
+light_s.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+000
+  rotate: false
+  xy: 1, 603
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+001
+  rotate: false
+  xy: 1, 302
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+002
+  rotate: false
+  xy: 302, 603
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+003
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+004
+  rotate: false
+  xy: 302, 302
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+005
+  rotate: false
+  xy: 603, 603
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+006
+  rotate: false
+  xy: 302, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+007
+  rotate: false
+  xy: 603, 302
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1

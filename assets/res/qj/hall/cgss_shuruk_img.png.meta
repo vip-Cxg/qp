@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "f4462a97-1135-43a2-96b4-388673666585",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 539,
+  "height": 49,
+  "platformSettings": {},
+  "subMetas": {
+    "cgss_shuruk_img": {
+      "ver": "1.0.4",
+      "uuid": "3cd658f1-11c1-470c-8720-a8d62be81a25",
+      "rawTextureUuid": "f4462a97-1135-43a2-96b4-388673666585",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 539,
+      "height": 49,
+      "rawWidth": 539,
+      "rawHeight": 49,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 73,
+      "borderRight": 98,
+      "subMetas": {}
+    }
+  }
+}
