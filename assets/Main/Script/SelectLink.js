@@ -76,7 +76,7 @@ export class SelectLink {
         console.log("选择url---1-",this._apiSelected)
         this._apiSelected = true;
         clearTimeout(this.serverFailed);
-        url = 'http://121.40.34.183:8000/';//'http://192.168.100.27:8000/';//  杰老爷本地//'http://192.168.1.100:8000/';//120.24.49.199s  'http://120.24.49.199:62443/'
+        url ='http://121.40.34.183:8000/';// 'http://192.168.10.10:8000/';// 'http://121.40.34.183:8000/';//'http://192.168.100.27:8000/';//  杰老爷本地//'http://192.168.1.100:8000/';//120.24.49.199s  'http://120.24.49.199:62443/'
         Connector.logicUrl = url;//url;//xyhldqp.com   "http://resource.qyhnmj.com/hnupdate/"//xyhldqp.com
         Http.API_URL = url;
 

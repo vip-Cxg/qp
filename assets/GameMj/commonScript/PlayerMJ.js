@@ -154,7 +154,7 @@ export default class ClubProxyItem extends cc.Component {
             let endTime = GameUtils.getTimeStamp(data.clock);
             let newTime = GameUtils.getTimeStamp();
             this.totalTime = (endTime - newTime);
-            this.lblDownTime.string = Math.max(Math.floor(this.totalTime / 1000), 0);
+            this.lblDownTime.string = ''+Math.max(Math.floor(this.totalTime / 1000), 0);
 
 
         } else {

@@ -2083,7 +2083,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 58
@@ -2102,7 +2102,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 70,
       "height": 40
     },
     "_anchorPoint": {
@@ -2153,8 +2153,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "",
-    "_N$string": "",
+    "_string": "1123",
+    "_N$string": "1123",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,

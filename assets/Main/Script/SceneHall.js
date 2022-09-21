@@ -216,17 +216,17 @@ export default class SceneHall extends cc.Component {
 
     onClickShare() {
         //播放
-        cc.loader.loadRes('QJHH1.json', (err, object) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log("player Data",App.Player)
-            console.log("回放数据--", object.json)
-            // App.pop(GameConfig.pop.RecordGame16, { replayData: object.json })
-            // App.pop(GameConfig.pop.RecordGame07,{replayData: object.json})
-        });
-        return;
+        // cc.loader.loadRes('QJHH1.json', (err, object) => {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     }
+        //     console.log("player Data",App.Player)
+        //     console.log("回放数据--", object.json)
+        //     // App.pop(GameConfig.pop.RecordGame16, { replayData: object.json })
+        //     // App.pop(GameConfig.pop.RecordGame07,{replayData: object.json})
+        // });
+        // return;
 
         App.pop(GameConfig.pop.SharePop);
     }
