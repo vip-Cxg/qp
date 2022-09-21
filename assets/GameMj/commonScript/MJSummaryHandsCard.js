@@ -15,8 +15,12 @@ export default class MJSummaryHandsCard extends cc.Component {
     _handsCard = [];
     realIdx = 0;
     renderUI(data) {
+        data.cards.sort((a, b) => a - b);
+        console.log("手牌---", data)
         this._handsCard = data.cards.concat();
         this.realIdx = data.realIdx;
+
+
         data.cards.forEach((card, i) => {
             if (i >= 13) return;
             this.handsCard.children[i].active = true;
@@ -47,17 +51,40 @@ export default class MJSummaryHandsCard extends cc.Component {
 
     /**回放抓牌 */
     getCard(card, realIdx) {
-        this._handsCard.push(card);
-        this.huCard.active = true
-        this.huCard.getChildByName('card').getComponent('ModuleGroundCardsMJ').init(card, realIdx)
+        this.huCard.active = true;
+
+        //红中麻将 同时抓多个牌
+        if (typeof card == 'object') {
+            //提取最后一张牌
+            let  getCard=card.pop();
+
+            //其余牌放入手牌 并刷新手牌显示
+            this._handsCard=this._handsCard.concat(card);
+            let handsData = {
+                cards: this._handsCard,
+                realIdx: realIdx,
+                hu: -1
+            };
+            this.renderUI(handsData)
+
+            //将最后一张牌作为抓牌显示
+            this._handsCard.push(getCard);
+            this.huCard.getChildByName('card').getComponent('ModuleGroundCardsMJ').init(getCard, realIdx)
+
+        } else {
+            this._handsCard.push(card);
+            this.huCard.getChildByName('card').getComponent('ModuleGroundCardsMJ').init(card, realIdx)
+        }
+
     }
 
     removeCard(card, count = 1) {
         console.log('移除手牌', card, count, this._handsCard);
         let num = 0;
+
         for (let y = 0; y < this._handsCard.length; y++) {
             if (num >= count)
-                return;
+                continue;
             if (card == this._handsCard[y]) {
                 this._handsCard.splice(y, 1);
                 console.log('移除手牌1', y);

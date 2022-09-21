@@ -204,7 +204,7 @@ cc.Class({
             });
             if (cardList.card != maxCard) {
                 btnPlay.interactable = false;
-                cache.alertTip("下家已报单,出单牌必须出1手中最大的");
+                cache.alertTip("下家已报单,出单牌必须出手中最大的");
             }
         }
     },

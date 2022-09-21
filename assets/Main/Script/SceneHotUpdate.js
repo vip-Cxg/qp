@@ -62,7 +62,7 @@ cc.Class({
         }, 1);
 
         this.loadInfoTimes = 0;
-        cc.gameConfig.ConfigUrl = 'http://jiushentest.oss-cn-hangzhou.aliyuncs.com/';//'http://update.xyhldqp.com/';// data.resourceURL;
+        // cc.gameConfig.ConfigUrl = 'http://jiushentest.oss-cn-hangzhou.aliyuncs.com/';//'http://update.xyhldqp.com/';// data.resourceURL;
         // if (cc.sys.isNative) {
         //     this.mainAudioVersion();
         // }
@@ -673,7 +673,8 @@ cc.Class({
         Connector.request(GameConfig.ServerEventName.GetGameInfo, {}, (data) => {
 
             if (data.data) {
-                GameConfig.ConfigUrl = 'http://update.xyhldqp.com/'//data.data.resourceUrl;
+                cc.gameConfig.ConfigUrl=data.data.resourceUrl;
+                GameConfig.ConfigUrl = data.data.resourceUrl;//'http://update.xyhldqp.com/'//
                 GameConfig.NoticeUrl = data.data.noticeUrl;
                 GameConfig.RecordUrl = data.data.recordUrl;
                 GameConfig.HeadUrl = data.data.headUrl;

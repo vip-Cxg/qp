@@ -14,13 +14,14 @@ export default class RecordItem extends cc.Component {
     layerItem = null
 
     init(data) {
-        let { data: { details, players }, fileID, strDate } = data;
+        let { data: { details, players }, fileID, strDate,gameType } = data;
         players.forEach((p, i) => {
             this.recordHead[i].init(p);
         })
         this.layerItem.removeAllChildren();
         details.forEach(d => {
             d.fileID = fileID;
+            d.gameType = gameType;
             d.strDate = strDate;
             GameUtils.instancePrefab(this.recordDetailItem, d, this.layerItem)
         })

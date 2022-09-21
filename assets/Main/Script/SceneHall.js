@@ -13,6 +13,7 @@ import { App } from "../../script/ui/hall/data/App";
 // // const Connector = require("../NetWork/Connector");
 import Connector from "../NetWork/Connector"
 import InvitationCardPop from "../../script/qj/hall/InvitationCardPop";
+import Cache from "./Cache";
 let _social = Native.Social;
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -214,19 +215,19 @@ export default class SceneHall extends cc.Component {
     }
 
     onClickShare() {
+        //播放
+        cc.loader.loadRes('QJHH1.json', (err, object) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log("player Data",App.Player)
+            console.log("回放数据--", object.json)
+            // App.pop(GameConfig.pop.RecordGame16, { replayData: object.json })
+            // App.pop(GameConfig.pop.RecordGame07,{replayData: object.json})
+        });
+        return;
 
-        // cc.loader.loadRes('QJHH.json', (err, object)=> {
-        //     if (err) {
-        //         console.log(err);
-        //         return; 
-        //     }
-        //     console.log("回放数据--",object.json)
-        //     App.pop(GameConfig.pop.RecordGame16,{replayData: object.json})
-        //     // App.pop(GameConfig.pop.RecordGame07,{replayData: object.json})
-        // });
-
-
-        // return;
         App.pop(GameConfig.pop.SharePop);
     }
 

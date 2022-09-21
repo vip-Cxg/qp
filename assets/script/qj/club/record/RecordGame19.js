@@ -1,20 +1,14 @@
 import { GameConfig } from "../../../../GameBase/GameConfig";
 import AudioCtrl from "../../../../Main/Script/audio-ctrl";
 import Cache from "../../../../Main/Script/Cache";
-import { Social } from "../../../../Main/Script/native-extend";
-import DataBase from "../../../../Main/Script/DataBase";
-import PACK from "../../../../Main/Script/PACK";
 import ROUTE from "../../../../Main/Script/ROUTE";
 import TableInfo from "../../../../Main/Script/TableInfo";
 import GameUtils from "../../../common/GameUtils";
 import { App } from "../../../ui/hall/data/App";
-import WSKTeamHands from "../../../../GamePoker/Game10/Script/WSKTeamHands";
 import ModuleOtherHandsMJ from "../../../../GameMj/commonScript/ModuleOtherHandsMJ";
 import ModuleGroundMJ from "../../../../GameMj/commonScript/ModuleGroundMJ";
 import ModuleHandGroundMJ from "../../../../GameMj/commonScript/ModuleHandGroundMJ";
 import ModuleFlowerMJ from "../../../../GameMj/commonScript/ModuleFlowerMJ";
-import ModuleSelfCardsMJ from "../../../../GameMj/commonScript/ModuleSelfCardsMJ";
-import MJShowSpecial from "../../../../GameMj/commonScript/MJShowSpecial";
 import MJDeck from "../../../../GameMj/commonScript/MJDeck";
 import MJSummaryHandsCard from "../../../../GameMj/commonScript/MJSummaryHandsCard";
 import MJStartAnim from "../../../../GameMj/commonScript/MJStartAnim";
@@ -23,7 +17,7 @@ import config from "../../../../GameMj/Game16/Script/MJGameConfig";
 
 const { ccclass, property } = cc._decorator
 @ccclass
-export default class RecordGame16 extends cc.Component {
+export default class RecordGame19 extends cc.Component {
 
 
 
@@ -42,8 +36,8 @@ export default class RecordGame16 extends cc.Component {
     directionBg = null;
     @property([cc.SpriteFrame])
     directionImg = [];
-    @property([cc.SpriteFrame])
-    gameTypeSf = [];
+    // @property([cc.SpriteFrame])
+    // gameTypeSf = [];
 
 
     @property(cc.Prefab)
@@ -99,16 +93,6 @@ export default class RecordGame16 extends cc.Component {
     huSpine = null;
     @property(cc.Node)
     summaryInfo = null;
-    @property(cc.Node)
-    btnLai = null;
-    @property(cc.Node)
-    laiContent = null;
-    @property(ModuleSelfCardsMJ)
-    laiCard = null;
-    @property(ModuleSelfCardsMJ)
-    chaoCard = null;
-    @property(MJShowSpecial)
-    animSpecial = null;
     @property(MJDeck)
     nodeDeck = null;
     @property([MJSummaryHandsCard])
@@ -194,10 +178,6 @@ export default class RecordGame16 extends cc.Component {
     }
     addEvents() {
 
-
-        this.btnLai.on(cc.Node.EventType.TOUCH_START, this.showLaiNode, this);
-        this.btnLai.on(cc.Node.EventType.TOUCH_CANCEL, this.hideLaiNode, this);
-        this.btnLai.on(cc.Node.EventType.TOUCH_END, this.hideLaiNode, this);
 
 
         this.ruleBtn.on(cc.Node.EventType.TOUCH_START, this.showRuleNode, this);
@@ -298,7 +278,7 @@ export default class RecordGame16 extends cc.Component {
             if (player.prop.pid == App.Player.id)
                 playerIdx = player.idx;
         })
-        data.idx = Math.max(playerIdx,0);
+        data.idx = Math.max(playerIdx, 0);
         TableInfo.idx = data.idx;
         TableInfo.options = data.options;
         TableInfo.config = data.options;
@@ -375,34 +355,17 @@ export default class RecordGame16 extends cc.Component {
     }
     /**初始化房间信息显示 */
     initTableMsg(data) {
-        TableInfo.ruleDesc = GameUtils.getChineseRuleQJHH(data.options.rules);
+        TableInfo.ruleDesc = GameUtils.getChineseRuleHZMJ(data.options.rules);
         this.lblRule.string = TableInfo.ruleDesc[0] + '\n' + TableInfo.ruleDesc[1].join(' || ')
-        let { person, hard } = data.options.rules;
-        this.bgNode.getChildByName("gameType").getComponent(cc.Sprite).spriteFrame = this.gameTypeSf[(person - 2) * 2 + Number(hard)]
+
         this.bgNode.getChildByName("line").children.forEach((e) => {
-
-            if (e.name.indexOf('xi') != -1)
-                return;
-
-            if (e.name == 'sdh') {
-                e.active = true;
-                return;
+            if (e.name == 'xi') {
+                e.active = data.options.rules[e.name] > 0
+            } else {
+                e.active = data.options.rules[e.name];
             }
-            e.active = data.options.rules[e.name]
 
         })
-        if (data.options.rules.xi == 10) {
-            this.bgNode.getChildByName("line").getChildByName('xi10').active = true;
-        } else {
-            this.bgNode.getChildByName("line").getChildByName('xi').active = true;
-        }
-
-        if (data.options.rules.an == 2) {
-            this.bgNode.getChildByName('an2').active = true;
-        } else {
-            this.bgNode.getChildByName('an4').active = true;
-        }
-
 
         this.lblBase.string = "" + data.options.rules.base;
         TableInfo.round = data.round;
@@ -432,13 +395,10 @@ export default class RecordGame16 extends cc.Component {
         TableInfo.status = GameConfig.GameStatus.START;
         TableInfo.currentPlayer = null;
 
-        TableInfo.special = data.special;
-        TableInfo.round = data.round;
+        TableInfo.special = {};// data.special;
+
         this.lblTurn.string = data.round == 0 ? "" : data.round + '/' + TableInfo.options.rules.turn + ' 局';
-        this.laiCard.node.active = true;
-        this.chaoCard.node.active = true;
-        this.laiCard.init(data.special.lai);
-        this.chaoCard.init(data.special.chao);
+
 
 
         //清除桌面弃牌
@@ -502,12 +462,6 @@ export default class RecordGame16 extends cc.Component {
                     }
                 })
             }), cc.delayTime(1.5), cc.callFunc(() => {
-                let idx = TableInfo.realIdx[data.banker]
-                self.ground[idx].outCard(data.special.chao, idx, true);
-                self.nodeDeck.normalRemoveCard();
-                //TODO 显示癞 动画
-                self.animSpecial.showSpecial(data.special.lai);
-                // self.diceSpine.node.active = false;
                 this._delayTime = 10;
             })))
 
@@ -600,19 +554,21 @@ export default class RecordGame16 extends cc.Component {
         if (data.pos === 'first') {
             this.nodeDeck.normalRemoveCard();
         } else {
-            this.nodeDeck.specialRemoveCard();
+            //牌尾抓牌 一次性抓多张
+            data.cards.forEach((e) => {
+                this.nodeDeck.specialRemoveCard();
+            })
         }
+
         this._delayTime = 3;
         let idx = TableInfo.realIdx[data.idx];
         //更新牌垛显示
         this.lblDeck.string = data.decks + '';
 
         //TODO
-        this.summaryHandsCard[idx].getCard(data.card, idx)
-        // if (data.idx != TableInfo.idx && idx != 0) {
-        //     this.layoutHands[idx].getCard(data.hands);
-        //     return;
-        // }
+        let { card } = data;
+        this.summaryHandsCard[idx].getCard(card ? data.card : data.cards, idx)
+
 
     }
     //出牌
@@ -727,18 +683,18 @@ export default class RecordGame16 extends cc.Component {
         let imgIdx = -1;
         if (idx == 0) {
             this.hands._hands.forEach(node => node.getCard = false);
-
             // this.summaryHandsCard[idx].
-
-
             let hands = data.hands;
             switch (data.event) {
                 case GameConfig.GameAction.LAI: //癞
                     audioType = '_dianxiao';
-                    this.animSpecial.showLai();
                     // this._delayTime = 0;
-                    this.selfHandFlower.addFlower(data, 0)
-                    this.summaryHandsCard[idx].removeCard(data.card)
+                    data.cards.forEach(card => {
+
+                        this.selfHandFlower.addFlower({ card }, 0);
+                        this.summaryHandsCard[idx].removeCard(card)
+
+                    })
                     break;
                 case GameConfig.GameAction.PONG: //碰
                     audioType = '_peng';
@@ -749,21 +705,21 @@ export default class RecordGame16 extends cc.Component {
 
                     break;
                 case GameConfig.GameAction.ZHI: //明杠1
-                    audioType = data.type == 1 ? '_chaotian' : '_dianxiao';
-                    imgIdx = data.type == 1 ? 10 : 13;
+                    audioType = '_dianxiao';
+                    imgIdx = 13;
                     this.selfHandGround.addGround(data, 0);
                     this.summaryHandsCard[idx].removeCard(data.card, 3);
                     break;
                 case GameConfig.GameAction.SHOW: // 补杠2
-                    audioType = data.type == 1 ? '_chaotian' : '_huitouxiao';
-                    imgIdx = data.type == 1 ? 10 : 11;
+                    audioType = '_huitouxiao';
+                    imgIdx = 11;
                     this.selfHandGround.addGround(data, 0);
                     this.summaryHandsCard[idx].removeCard(data.card, 1);
                     break;
                 case GameConfig.GameAction.KONG: //暗杠
-                    imgIdx = data.type == 1 ? 10 : 8;
+                    imgIdx = 8;
                     // audioType = 'c1_angang';
-                    audioType = data.type == 1 ? '_chaotian' : '_anxiao';//暗笑
+                    audioType = '_anxiao';//暗笑
                     this.selfHandGround.addGround(data, 0);
                     this.summaryHandsCard[idx].removeCard(data.card, 4);
                     break;
@@ -796,26 +752,14 @@ export default class RecordGame16 extends cc.Component {
                         /** 热铳 */
                         audioType = '_rechong';
                         imgIdx = 7;
-                    } else if (data.chaoHu) {
-                        /** 双大胡 */
-                        audioType = '_shuangdahu';
-                        imgIdx = 9;
-                    } else if (data.qing) {
-                        /** 清一色 */
-                        imgIdx = 12;
                     } else if (data.from != data.idx) {
                         /** 放炮 屁胡 */
-                        imgIdx = 5;
                         audioType = '_pihu';
-
-                    } else if (data.black) {
-                        /** 黑摸 (赖晃) */
-                        imgIdx = 3;
-                        audioType = '_heimo';
+                        imgIdx = 5;
                     } else {
-                        /** 软摸 (赖晃) */
-                        imgIdx = 4;
-                        audioType = '_ruanmo';
+                        /** 自摸 */
+                        imgIdx = 6;
+                        audioType = '_zimo';
                     }
                     this.huSpine.defaultSkin = 'default';
                     this.huSpine.node.stopAllActions();
@@ -846,32 +790,15 @@ export default class RecordGame16 extends cc.Component {
                         /** 热铳 */
                         audioType = '_rechong';
                         imgIdx = 7;
-                    } else if (data.chaoHu) {
-                        /** 双大胡 */
-                        imgIdx = 9;
-                        audioType = '_shuangdahu';
-
-                    } else if (data.qing) {
-                        /** 清一色 */
-                        imgIdx = 12;
                     } else if (data.from != data.idx) {
                         /** 放炮 屁胡 */
                         audioType = '_pihu';
                         imgIdx = 5;
-                    } else if (data.black) {
-                        /** 黑摸 */
-                        imgIdx = 3;
-                        audioType = '_heimo';
                     } else {
-                        /** 软摸 */
-                        imgIdx = 4;
-                        audioType = '_ruanmo';
+                        /** 自摸 */
+                        imgIdx = 6;
+                        audioType = '_zimo';
                     }
-                    /**自摸 */
-                    // imgIdx = 6;
-                    // audioType ='_zimo' ;
-
-                    // imgIdx = data.from == data.idx ? 4 : 2;
                     break;
                 case GameConfig.GameAction.FLOWER_MULTI: //补花
                     // this._delayTime = 5;
@@ -895,30 +822,31 @@ export default class RecordGame16 extends cc.Component {
                     break;
                 case GameConfig.GameAction.LAI: //癞
                     audioType = '_dianxiao';
-                    this.animSpecial.showLai();
-                    this.layoutHands[idx].actionLai(data, idx);
-                    this.summaryHandsCard[idx].removeCard(data.card)
+
+                    data.cards.forEach(card => {
+                        this.layoutHands[idx].actionLai({ card }, idx);
+                        this.summaryHandsCard[idx].removeCard(card)
+                    })
+
 
                     break;
                 case GameConfig.GameAction.SHOW: // 补杠
-                    audioType = data.type == 1 ? '_chaotian' : '_huitouxiao';
-                    imgIdx = data.type == 1 ? 10 : 11;
+                    audioType = '_huitouxiao';
+                    imgIdx = 11;
                     this.layoutHands[idx].action(data, idx);
                     this.summaryHandsCard[idx].removeCard(data.card)
 
                     break;
                 case GameConfig.GameAction.KONG: // 暗杠
-                    audioType = data.type == 1 ? '_chaotian' : '_anxiao';//暗笑
-                    // audioType = 'c1_angang';
-                    imgIdx = data.type == 1 ? 10 : 8;
+                    audioType = '_anxiao';//暗笑
+                    imgIdx = 8;
                     this.layoutHands[idx].action(data, idx);
                     this.summaryHandsCard[idx].removeCard(data.card, 4)
 
                     break;
                 case GameConfig.GameAction.ZHI: // 杠
-                    audioType = data.type == 1 ? '_chaotian' : '_dianxiao';
-                    // audioType = 'c1_minggang';
-                    imgIdx = data.type == 1 ? 10 : 13;
+                    audioType = '_dianxiao';
+                    imgIdx = 13;
                     this.layoutHands[idx].action(data, idx);
                     this.summaryHandsCard[idx].removeCard(data.card, 3)
 
@@ -1053,9 +981,6 @@ export default class RecordGame16 extends cc.Component {
     }
     /**重制各种区域数据 */
     roundReset() {
-        this.animSpecial.hideSpecial();
-        this.laiCard.node.active = false;
-        this.chaoCard.node.active = false;
         this.hands.reset();
         this.selfHandGround.resetGround();
         this.selfHandFlower.resetFlower();
@@ -1182,13 +1107,6 @@ export default class RecordGame16 extends cc.Component {
     }
 
 
-    hideLaiNode() {
-        this.laiContent.active = false;
-    }
-
-    showLaiNode() {
-        this.laiContent.active = true;
-    }
 
     hideRuleNode() {
         this.ruleContent.active = false;
@@ -1204,7 +1122,7 @@ export default class RecordGame16 extends cc.Component {
         if (!cc.sys.isNative) {
             return;
         }
-        let url = jsb.fileUtils.getWritablePath() + "remote-asset/Audio/Game16/" + msg;
+        let url = jsb.fileUtils.getWritablePath() + "remote-asset/Audio/Game19/" + msg;
 
         cc.loader.load(url, (err, data) => {
             if (!err) {

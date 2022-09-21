@@ -1,3 +1,4 @@
+import TableInfo from "../../../Main/Script/TableInfo";
 import GameUtils from "../../../script/common/GameUtils";
 import PokerSelfCard from "../../commonScript/PokerSelfCard";
 
@@ -132,6 +133,8 @@ export default class WSKTeamHands extends cc.Component {
 
     sortType = 0;
     sortCard() {
+
+        console.log("点击排序")
         if (this._handsCard.length == 0 || !TableInfo.options.rules.teammateHandsVisible) return;
         this.sortType = (this.sortType + 1) % 3;
         this.renderHandCards();

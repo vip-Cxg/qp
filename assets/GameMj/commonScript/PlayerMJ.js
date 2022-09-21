@@ -23,6 +23,8 @@ export default class ClubProxyItem extends cc.Component {
     imgReady = null;
     @property(cc.ProgressBar)
     progressBar = null;
+    @property(cc.Label)
+    lblDownTime = null;
     @property(cc.Node)
     imgActive = null;
     @property(cc.SpriteFrame)
@@ -92,7 +94,7 @@ export default class ClubProxyItem extends cc.Component {
         this.node.position = playPos[this.realIdx];
         this.winSummaryScore.node.position = scorePos[this.realIdx];
         this.loseSummaryScore.node.position = scorePos[this.realIdx];
-        
+
         this.node.on('touchend', () => {
             if (TableInfo.idx != data.idx) {
                 this.showInfo(data);
@@ -126,6 +128,7 @@ export default class ClubProxyItem extends cc.Component {
         this.imgReady.active = false;
         this.imgActive.active = false;
         this.progressBar.node.active = false;
+        this.lblDownTime.node.active = false;
         this.imgOffline.active = false;
         this.niaoNode.active = false;
 
@@ -143,17 +146,26 @@ export default class ClubProxyItem extends cc.Component {
         if (this.idx == data.idx) {
 
             this.progressBar.node.active = true;
+            this.lblDownTime.node.active = true;
+
             this.clockTime = data.clock;
 
             this.progressBar.progress = 1;
             let endTime = GameUtils.getTimeStamp(data.clock);
             let newTime = GameUtils.getTimeStamp();
             this.totalTime = (endTime - newTime);
+            this.lblDownTime.string = Math.max(Math.floor(this.totalTime / 1000), 0);
+
 
         } else {
             this.progressBar.node.active = false;
+            this.lblDownTime.node.active = false;
+
+
             this.totalTime = 0;
             this.clockTime = 0;
+
+
         }
         return;
         let node = this.imgActive;
@@ -299,6 +311,8 @@ export default class ClubProxyItem extends cc.Component {
         let endTime = GameUtils.getTimeStamp(this.clockTime);
         let newTime = GameUtils.getTimeStamp();
         let time = (endTime - newTime);
+        this.lblDownTime.string = Math.max(Math.floor(time / 1000), 0);
+        
         if (time <= 0) {
             this.progressBar.progress = 1;
             return;

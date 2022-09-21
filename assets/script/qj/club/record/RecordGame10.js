@@ -107,7 +107,7 @@ export default class RecordGame10 extends cc.Component {
     _queueGameMsg = [];
     speed = 1;
     msgCount = 0;
-    init(data) {
+    init(data,gameType) {
         //添加监听事件
         this.addEvents();
         TableInfo.idx = -1;
@@ -116,6 +116,7 @@ export default class RecordGame10 extends cc.Component {
         this.btnOperate[1].active = false;
         this.schedule(this.gameMsgSchedule.bind(this), 0.2);
         cc.director.getScheduler().setTimeScale(this.speed);
+     
     }
     playSpeed(event, data) {
         let num = parseInt(data);
@@ -227,6 +228,7 @@ export default class RecordGame10 extends cc.Component {
         data.idx = 0;
         TableInfo.idx = data.idx;
         // data.options.rules['showRemainingCards'] = true;
+        TableInfo.options = data.options;
         TableInfo.person = data.players.length;
         TableInfo.config = data.rule;
         TableInfo.current = data.currentCard;

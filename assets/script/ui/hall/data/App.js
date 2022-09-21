@@ -113,7 +113,6 @@ class Application {
         // let nodeName = popName.replace(/[/]/g, "")
         let nodeName = name || popName.match(/.*\/(.*)/)[1];
         let node = cc.find('Canvas').getChildByName(nodeName);
-        console.log("1111",node);
         if (node) {
             if (data instanceof Array) {
                 node.getComponent(node._name).init(...data);
@@ -122,13 +121,10 @@ class Application {
             }
             return;
         }
-        console.log("2222");
 
         cc.loader.loadRes(popName, (err, prefab) => {
-        console.log("3333");
 
             if (!err) {
-        console.log("4444");
 
                 let popNode = cc.instantiate(prefab);
                 cc.find('Canvas').addChild(popNode, 0, nodeName)
@@ -138,8 +134,6 @@ class Application {
                     popNode.getComponent(popNode._name).init(data);
                 }
             } else {
-        console.log("5555");
-
                 cc.log(err)
             }
         });

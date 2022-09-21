@@ -12,10 +12,13 @@ cc.Class({
         //弃牌
         if (card == 0) //红中 
             card = 35;
-        if (this.node.getChildByName('count'))
+        if (this.node.getChildByName('count')) {
+            if (card == 35)
+                console.log("pai--", cc.gameConfig.MJCard.getSpriteFrame(realIdx + "_" + card))
             this.node.getChildByName('count').getComponent(cc.Sprite).spriteFrame = cc.gameConfig.MJCard.getSpriteFrame(realIdx + "_" + card);
-        
-        if (this.node.getChildByName("lai")&& !utils.isNullOrEmpty(TableInfo.special)) {
+        }
+
+        if (this.node.getChildByName("lai") && !utils.isNullOrEmpty(TableInfo.special)) {
             this.node.color = TableInfo.special?.lai == card ? new cc.color('#F6E33B') : new cc.color('#ffffff');
             this.node.getChildByName("lai").active = TableInfo.special?.lai == card;
             // this.node.getChildByName("blue").active = true;

@@ -9,10 +9,10 @@ const { ccclass, property } = cc._decorator
 export default class ModuleOtherHandsMJ extends cc.Component {
 
     @property(ModuleHandGroundMJ)
-    layoutGround=null;
+    layoutGround = null;
     @property(ModuleFlowerMJ)
-    layoutFlower=null;
-    realIdx=0;
+    layoutFlower = null;
+    realIdx = 0;
 
     onLoad() {
         this.layoutHands = this.node.getChildByName('layoutHands');
@@ -96,27 +96,25 @@ export default class ModuleOtherHandsMJ extends cc.Component {
     }
 
     removeHands() {
-        //cc.log('removeHands');
         if (this.layoutGetCard.active == true) {
             this.layoutGetCard.active = false;
-            //cc.log(111);
             return;
         }
-        console.log('位置', this.layoutHands.x)
         let hands = this.layoutHands.children;
 
         if (this.realIdx == 3) {
-            let idx = hands.findIndex(node => node.active == true);
+            let idx = this.layoutHands.children.findIndex(node => node.active == true);
             //cc.log(idx);
             if (idx >= 0) {
-                hands[idx].active = false;
+
+                this.layoutHands.children[idx].active = false;
             }
             return;
         }
 
-        for (let i = hands.length - 1; i >= 0; i--) {
-            if (hands[i].active) {
-                hands[i].active = false;
+        for (let i = this.layoutHands.children.length - 1; i >= 0; i--) {
+            if (this.layoutHands.children[i].active) {
+                this.layoutHands.children[i].active = false;
                 return;
             }
         }

@@ -8,7 +8,7 @@ cc.Class({
 
     tipsInit(str, pos) {
         this.node.removeComponent(cc.Layout);
-        str = str.slice(0, 15);
+        // str = str.slice(0, 15);
         this.word.string = str;
         let node = this.node;
         node.parent = cc.find("Canvas");
