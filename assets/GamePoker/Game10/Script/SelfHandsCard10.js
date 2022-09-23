@@ -271,9 +271,16 @@ export default class SelfHandsCard10 extends cc.Component {
         btnPlay.interactable = this.logic.compare(TableInfo.current, cardList);
         TableInfo.select = cardList;
         let idxNext = (TableInfo.currentPlayer + 1) % TableInfo.options.rules.person;
+        console.log('TableInfo.currentPlayer',TableInfo.currentPlayer)
+        console.log('TableInfo.idx',TableInfo.idx)
+        console.log('TableInfo.baodan[idxNext',TableInfo.baodan[idxNext],TableInfo.baodan)
+        console.log('TableInfo.currentPlayer',TableInfo.currentPlayer)
+        console.log('TableInfo.currentPlayer',TableInfo.currentPlayer)
+        console.log('TableInfo.currentPlayer',TableInfo.currentPlayer)
         if (
             TableInfo.currentPlayer == TableInfo.idx && 
             TableInfo.baodan[idxNext] &&
+            
             TableInfo.options.gameType == GameConfig.GameType.WSKBD &&
             cardList.type == 'DAN' &&
             this.handsCard.slice().sort((a, b) => b % 100 - a % 100)[0] % 100 != cardList.card % 100

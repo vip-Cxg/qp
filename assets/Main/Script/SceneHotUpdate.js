@@ -34,7 +34,8 @@ cc.Class({
         // utils.saveValue(GameConfig.StorageKey.UserToken, this.getQueryVariable('token'));
         // http://xy.shukecoffee.com/web/index.html?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
         // http://localhost:7456/build/?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
-        GameConfig.enableLog = cc.sys.isBrowser;
+
+        // GameConfig.enableLog = false//cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
         cc.Button.prototype._onTouchEnded = function (t) {

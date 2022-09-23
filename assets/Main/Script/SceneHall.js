@@ -194,7 +194,9 @@ export default class SceneHall extends cc.Component {
 
     /** 创建房间 */
     onClicCreate() {
+        
         App.pop(GameConfig.pop.CreatePop);
+
     }
 
     onClickCloseMenu() {

@@ -2,6 +2,8 @@
 const { ccclass, property } = cc._decorator;
 import { GameConfig } from "../../../GameBase/GameConfig";
 import Connector from "../../../Main/NetWork/Connector";
+import Cache from "../../../Main/Script/Cache";
+import { Social } from "../../../Main/Script/native-extend";
 import GameUtils from "../../common/GameUtils";
 import { App } from "../../ui/hall/data/App";
 @ccclass
@@ -50,11 +52,47 @@ export default class GameRecordPop extends cc.Component {
     }
 
     onClickCheckReplay() {
-        cc.log(this.editBoxRelayCode.string);
+
+        let  stringArr=this.editBoxRelayCode.string.split('|');
+        let gameType=stringArr[0];
+        let recoreUrl=stringArr[1];
+
+        Connector.get(GameConfig.RecordUrl +recoreUrl, "getJson", (resData) => {
+            Cache.replayData = resData;
+            console.log('回放数据: ', resData)
+            if (resData == null) {
+                Cache.alertTip("暂无回放");
+                return;
+            }
+            switch (gameType) {
+                case GameConfig.GameType.QJHH:
+                    App.pop(GameConfig.pop.RecordGame16, { replayData: resData,gameType:gameType })
+
+                    break;
+                case GameConfig.GameType.QJHZMJ:
+                    App.pop(GameConfig.pop.RecordGame19,  { replayData: resData,gameType:gameType })
+
+                    break;
+                case GameConfig.GameType.WSK:
+                    App.pop(GameConfig.pop.RecordGame10, { replayData: resData,gameType:gameType })
+
+                    break;
+                case GameConfig.GameType.WSKBD:
+                    App.pop(GameConfig.pop.RecordGame10,  { replayData: resData,gameType:gameType })
+
+                    break;
+                case GameConfig.GameType.PDK:
+                    App.pop(GameConfig.pop.RecordGame07,  { replayData: resData,gameType:gameType })
+                    break;
+            }
+        })
+
     }
 
     onClickPaste() {
+        //粘贴
         cc.log('paste');
+        this.editBoxRelayCode.string=Social.getCopy();
     }
 
     onClickReplayCode() {

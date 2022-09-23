@@ -58,6 +58,9 @@ export default class Wsk extends cc.Component {
     @property(cc.Toggle)
     toggleBanObserver = null
 
+    @property([cc.Node])
+    nodeTips = [];
+
     colorLabel = [[64, 64, 64], [190, 31, 31]];
     
     defaultRules = {

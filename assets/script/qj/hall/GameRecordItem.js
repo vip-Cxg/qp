@@ -27,6 +27,7 @@ export default class GameRecordItem extends cc.Component {
     data = null
 
     init(data) {
+        console.log("回放",data)
         this.data = data;
         let { createdAt, data: { details, players }, gameType, tableID, person } = data;
         this.lblDate.string = new Date(createdAt).format('yyyy/MM/dd hh:mm:ss');
@@ -36,6 +37,7 @@ export default class GameRecordItem extends cc.Component {
         let tmpPlayer = players.slice().sort((a, b) => b.total - a.total);
         let winnerTotal = tmpPlayer[0].total;
         let loserTotal = tmpPlayer[tmpPlayer.length - 1].total;
+
         players.forEach((p, i) => {
             p.maxScore = winnerTotal;
             this.initPlayer(p, i, winnerTotal, loserTotal);
@@ -45,6 +47,7 @@ export default class GameRecordItem extends cc.Component {
     initPlayer(data, idx, winnerTotal, loserTotal) {
         let color = ['#DC584C', '#039E1F'];
         let node = this.nodePlayers[idx];
+        node.active=true;
         let { prop: { name, head }, total } = data;
         let avatar = node.getChildByName('Avatar').getComponent('Avatar');
         let lblName = node.getChildByName('lblName').getComponent(cc.Label);

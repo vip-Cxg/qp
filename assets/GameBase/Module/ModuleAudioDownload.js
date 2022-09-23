@@ -39,6 +39,7 @@ cc.Class({
     // },
 
     onLoad() {
+        console.log("开始检查音乐版本")
         if (cc.sys.isNative)
             this.checkDownLoad();
         // DataBase.setString(DataBase.STORAGE_KEY.AUDIO[DataBase.gameType],null);

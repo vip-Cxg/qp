@@ -161,6 +161,12 @@ export default class ClubListItem extends cc.Component {
     onClickShare() {
         cc.log('onClickShare');
     }
+
+    onClickDisband(){
+        cc.log('onClickDisband');
+
+    }
+        
 }
 
 

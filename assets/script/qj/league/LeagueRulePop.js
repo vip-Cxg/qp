@@ -43,6 +43,7 @@ export default class LeagueRulePop extends cc.Component {
     init() {
         let isLeague = App.Club.isLeague;
         let rooms = App.Club.rooms;
+        console.log("房间信息All",rooms)
         rooms = rooms.filter(r => r.isLeague == isLeague);
         this.content._children.filter(node => node._name != 'btnAdd').forEach(node => node.removeFromParent());
         rooms.forEach((r, i) => {

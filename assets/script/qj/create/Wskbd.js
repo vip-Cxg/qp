@@ -51,6 +51,10 @@ export default class Wskbd extends cc.Component {
     @property(cc.Label)
     lblTurnLbl = [];
 
+
+    @property([cc.Node])
+    nodeTips = [];
+
     //加减操作框 add or reduce
     colorLabel = [[64, 64, 64], [190, 31, 31]];
     

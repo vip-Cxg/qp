@@ -1,6 +1,7 @@
 import { GameConfig } from "../../../../GameBase/GameConfig"
 import Connector from "../../../../Main/NetWork/Connector";
 import Cache from "../../../../Main/Script/Cache";
+import { Social } from "../../../../Main/Script/native-extend";
 import GameUtils from "../../../common/GameUtils"
 import { App } from "../../../ui/hall/data/App";
 const { ccclass, property } = cc._decorator
@@ -38,7 +39,8 @@ export default class RecordDetailItem extends cc.Component {
     }
 
     onClickCopy() {
-        cc.log('onClickCopy', this.data)
+        Social.setCopy(this.data.gameType +"|"+this.data.strDate + '/' + this.data.fileID + this.data.round + '.json');
+        Cache.alertTip("回放码复制成功");
     }
 
     onClickPlay() {

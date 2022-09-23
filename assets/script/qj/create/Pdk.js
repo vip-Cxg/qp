@@ -74,6 +74,9 @@ export default class Pdk extends cc.Component {
     @property(cc.Label)
     lblTurnLbl = [];
 
+    @property([cc.Node])
+    nodeTips = [];
+
     gameType = 'PDK'
 
     defaultRules = {
@@ -225,6 +228,16 @@ export default class Pdk extends cc.Component {
             this.lblTurnLbl[16].string = `16局 (${GameConfig.getRoomFee(this.gameType, '16', this._rules.person)}个元宝)`;
         }
     }
+    showTips(event, index) {
+        if (index == -1) {
+            this.nodeTips.forEach(node => node.active = false);
+            event.target.active = false;
+            return;
+        }
+        this.nodeTips[index].parent.active = true;
+        this.nodeTips[index].active = true;
+    }
+
 
     create() {
         cc.log(this._rules);

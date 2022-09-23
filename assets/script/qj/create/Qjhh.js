@@ -168,12 +168,13 @@ export default class Qjhh extends cc.Component {
     }
 
     showTips(event, index) {
-        // cc.log(event);
+        cc.log(event,index);
         if (index == -1) {
             this.nodeTips.forEach(node => node.active = false);
             event.target.active = false;
             return;
         }
+        
         this.nodeTips[index].parent.active = true;
         this.nodeTips[index].active = true;
     }

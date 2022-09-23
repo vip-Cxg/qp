@@ -37,6 +37,7 @@ export default class LeagueRuleItem extends cc.Component {
 
     init(data) {
         this._room = data;
+        console.log('房间---',data)
         let { rules: { base, person, turn }, fee: { limit, isAA, aaFee, win: { free } }, index, gameType } = data;
         this.lblBase.string = `底分:${base}`;
         this.lblPerson.string = `人数:${person}`;

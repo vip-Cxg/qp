@@ -23,10 +23,11 @@ export default class QuickCreateItem extends cc.Component {
         this._roomID = data.roomID;
         this.node.active = true;
         let payMode = '馆主支付';
+        console.log("房间信息--",data)
         let { rules, base, fee, gameType } = data;
-        if (Object.keys(fee) > 0) {
-            if (isAA) payMode = `AA支付(${fee.aaFee})`;
-            if (!isAA) payMode = '大赢家分档支付';
+        if (Object.keys(fee).length > 0) {
+            if (fee.isAA) payMode = `AA支付(${fee.aaFee})`;
+            if (!fee.isAA) payMode = '大赢家分档支付';
         }
         let { turn, person } = rules;
         this.lblGameType.string = GameConfig.GameName[gameType];

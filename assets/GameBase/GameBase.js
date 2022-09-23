@@ -17,6 +17,7 @@ cc.Class({
 
     playManageAudio  (msg) {
 
+        console.log("播放音效--",msg);
         let game = DataBase.gameType < 10 ? ("Game0" + DataBase.gameType) : ("Game" + DataBase.gameType);
         if (!cc.sys.isNative) {
             return;

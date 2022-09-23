@@ -757,6 +757,8 @@ export default class SceneTable10 extends BaseGame {
             this.otherGroup.string = data.groupScore[(idx + 1) % 2];
         }
 
+        //已经出完  取消报单
+        TableInfo.baodan[data.idx] = false;
 
         data.players.forEach((score, idx) => {
             this.players[TableInfo.realIdx[idx]].setZhuaScore(score);
