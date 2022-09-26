@@ -42,6 +42,11 @@ export default class Wsk extends cc.Component {
     @property(cc.Toggle)
     toggleTeammateHandsVisible = null;
 
+    /** 有总炸分 复选 */
+    @property(cc.Toggle)
+    toggleFirstRound = null;
+    
+
     /** 超时托管加减操作框 */
     @property(cc.Node)
     autoAr = null;
@@ -82,6 +87,8 @@ export default class Wsk extends cc.Component {
         remove34: false,
         /** 观看队友手牌 */
         teammateHandsVisible: true,
+        /** 总炸分 */
+        firstRound:true,
         /** 超时托管 */
         auto: -1,
         /** 托管一局自动解散 */
@@ -107,6 +114,8 @@ export default class Wsk extends cc.Component {
         this.toggleAutoDisband.checkEvents.push(GameUtils.eventHandle(this.node, 'onClickToggle', 'autoDisband'));
         this.toggleCheat.checkEvents.push(GameUtils.eventHandle(this.node, 'onClickToggle', 'cheat'));
         this.toggleBanObserver.checkEvents.push(GameUtils.eventHandle(this.node, 'onClickToggle', 'banObserver'));
+        this.toggleFirstRound.checkEvents.push(GameUtils.eventHandle(this.node, 'onClickToggle', 'firstRound'));
+
     }
 
     init(data = {}, fee = {}, mode) {
@@ -145,6 +154,9 @@ export default class Wsk extends cc.Component {
 
         this.toggleTail.isChecked = this.rules.tail;
         this.onClickToggle(this.toggleTail, 'tail');
+
+        this.toggleFirstRound.isChecked = this.rules.firstRound;
+        this.onClickToggle(this.toggleFirstRound, 'firstRound');
 
         this.toggleRemove34.isChecked = this.rules.remove34;
         this.onClickToggle(this.toggleRemove34, 'remove34');

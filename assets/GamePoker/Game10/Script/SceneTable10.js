@@ -686,7 +686,9 @@ export default class SceneTable10 extends BaseGame {
     }
     /**炸弹加分 */
     scoreFly(data) {
-
+       
+        data.players.sort((a, b) => a.idx - b.idx);
+       
         //出牌区归零
         this.dropCards.forEach((ground, i) => {
             ground.removeAllChildren(true);
@@ -709,13 +711,14 @@ export default class SceneTable10 extends BaseGame {
             cc.v2(-cc.winSize.width / 2 + 139 / 2 + GameConfig.FitScreen, 35 + 30)
         ]
         //结束点位置
-        let endPos = playPos[TableInfo.realIdx[data.to[0].idx]];
+        let endPos = playPos[TableInfo.realIdx[data.to[0]]];
+
         //分数显示
-        this.players[TableInfo.realIdx[data.to[0].idx]].showBombScores(TableInfo.realIdx[data.to[0].idx], data.to[0].wallet, data.to[0].score, () => {
+        this.players[TableInfo.realIdx[data.to[0]]].showBombScores(TableInfo.realIdx[data.to[0]], data.players[data.to[0]].total,  data.players[data.to[0]].score, () => {
             for (let i = 0; i < 20; i++) {
                 let nodeCoin = cc.instantiate(this.preCoin);
                 nodeCoin.parent = this.node;
-                nodeCoin.setPosition(playPos[TableInfo.realIdx[data.from[i % person].idx]]);
+                nodeCoin.setPosition(playPos[TableInfo.realIdx[data.from[i % person]]]);
                 let pos = cc.v2(Math.random() * 100 - 50, Math.random() * 100 - 50);
                 spawn.push(cc.targetedAction(nodeCoin,
                     cc.sequence(
@@ -735,7 +738,7 @@ export default class SceneTable10 extends BaseGame {
             this.node.runAction(cc.spawn(spawn));
         });
         data.from.forEach((f, i) => {
-            this.players[TableInfo.realIdx[f.idx]].showBombScores(TableInfo.realIdx[f.idx], f.wallet, f.score);
+            this.players[TableInfo.realIdx[f]].showBombScores(TableInfo.realIdx[f], data.players[f].total, data.players[f].score);
         });
 
     }

@@ -324,6 +324,7 @@ export class GameConfig {
         SelfScoreLog: 'game/selfScoreLog',
         ScoreLog: 'game/scoreLog',
         DiamondLog: 'game/diamondLog',
+        DiamondStatistic:'game/diamondStatistic',
         GameLogsLeague: 'game/leagueLogs',
         /** 茶馆日志 */
         ClubLogs: 'game/clubLogs',
@@ -1405,6 +1406,8 @@ export class GameConfig {
         LogsClientFail: "LogsClientFail",
 
 
+        /**用户未读邀请函 */
+        UnReadInvite: "UnReadInvite",
 
 
         /** 上次进入公会ID */

@@ -65,7 +65,7 @@ export class PushManager {
                         //     App.Club.ClubScore = jsonData.score;
                         // }
                         break;
-                    case 'SCORE':   
+                    case 'SCORE':
                         Cache.alertTipPop('公会ID:' + jsonData.clubID + '\n' + GameUtils.formatGold(jsonData.delta) + '体力')
                         if (jsonData.clubID == App.Club.CurrentClubID) {
                             console.log('赋值体力')
@@ -87,11 +87,16 @@ export class PushManager {
                         break;
                     /** 有人申请加入俱乐部 */
                     // case 'CLUB_APPLY':
-                        // App.Club.applyMembers = data.applyMembers;
-                        // App.EventManager.dispatchEventWith(GameConfig.GameEventNames.CLUB_APPLY, data);
-                        // break;
+                    // App.Club.applyMembers = data.applyMembers;
+                    // App.EventManager.dispatchEventWith(GameConfig.GameEventNames.CLUB_APPLY, data);
+                    // break;
                     case 'UPDATE_INVITATION_CARD':
+                        let unReadInvite = GameUtils.getValue(GameConfig.StorageKey.UnReadInvite, 0);
+                        unReadInvite++;
+                        GameUtils.saveValue(GameConfig.StorageKey.UnReadInvite, unReadInvite);
                         App.EventManager.dispatchEventWith(GameConfig.GameEventNames.UPDATE_INVITATION_CARD);
+
+                        break;
                     default:
                         console.log("未知信息---" + pack + "   " + JSON.stringify(data))
                         break;

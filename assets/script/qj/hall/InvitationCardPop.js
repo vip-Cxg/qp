@@ -1,5 +1,6 @@
 import { App } from "../../ui/hall/data/App";
 import { GameConfig } from "../../../GameBase/GameConfig";
+import GameUtils from "../../common/GameUtils";
 const { ccclass, property } = cc._decorator
 let Connector = require("../../../Main/NetWork/Connector");
 @ccclass
@@ -16,11 +17,14 @@ export default class InvitationCardPop extends cc.Component {
     first = true;
 
     onLoad() {
+        GameUtils.saveValue(GameConfig.StorageKey.UnReadInvite, 0);
+        
         App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_INVITATION_CARD, this.init, this);
         // this.init();
     }
 
     init() {
+        GameUtils.saveValue(GameConfig.StorageKey.UnReadInvite, 0);
         this.content.removeAllChildren();
         Connector.request("game/invitationCard", {}, ({ invitationCards }) => {
             this.first = false;

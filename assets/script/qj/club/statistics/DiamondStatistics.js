@@ -4,36 +4,36 @@ import Connector from "../../../../Main/NetWork/Connector";
 import { GameConfig } from "../../../../GameBase/GameConfig";
 import GameUtils from "../../../common/GameUtils";
 import moment from "../../other/moment"
+import Cache from "../../../../Main/Script/Cache";
 @ccclass
 export default class DiamondStatistics extends cc.Component {
-    @property(cc.Node)
-    nodeDateOption = null
 
     @property(cc.Node)
-    btnDate = null
-
-    @property(cc.Node)
-    membersRankItem = null
+    item = null
 
     @property(cc.Node)
     content = null
 
+
+
     @property(cc.Label)
-    lblDate = null
+    lblStartDate = null
+
+    @property(cc.Label)
+    lblEndDate = null
+
 
     parameter = { date: 0, desc: ['turn', 'desc'] };
 
     onLoad() {
-        // let btnOptions = this.nodeDateOption.getChildByName('option');
-        // btnOptions._children.forEach((btn, i) => {
-        //     btn.on('touchend', this.onClickDateOption.bind(this))
-        //     if (i == 0) {
-        //         this.onClickDateOption(btn);
-        //     }
-        // });
+    
     }
 
     init() {
+
+
+        this.lblStartDate.string = moment().hour(0).minute(0).second(0).format('YYYY-MM-DD HH:mm');
+        this.lblEndDate.string =  moment().format('YYYY-MM-DD HH:mm');
         // this.content.removeAllChildren();
         // Connector.request(GameConfig.ServerEventName.MembersRank, { ...this.parameter, clubID: App.Club.id }, ({ ranks = [] }) => {
         //     ranks.forEach((r, i) => {
@@ -42,9 +42,13 @@ export default class DiamondStatistics extends cc.Component {
         // })
     }
 
-    onClickDate() {
-        this.nodeDateOption.active = !this.nodeDateOption.active;
+    onClickDate(e,idx) {
+        let lbl = idx == 0 ? this.lblStartDate : this.lblEndDate;
+        App.pop(GameConfig.pop.DayHourMinutePop, [lbl.string, (date) => {
+            lbl.string = date;
+        }]);
     }
+
 
     onClickDesc(event) {
         cc.log('onClickDesc');
@@ -54,28 +58,37 @@ export default class DiamondStatistics extends cc.Component {
         this.init();
     }
 
-    onClickDateOption(node) {
-        let date = node.target._name;
-        this.parameter.date = Number(date);
-        switch (date) {
-            /** 昨天 */
-            case '0':
-                this.lblDate.string = '昨天';
-                break;
-            /** 最近7天 */
-            case '7':
-                this.lblDate.string = '最近7天';
-                break;
-            /** 最近30天 */
-            case '30':
-                this.lblDate.string = '最近30天';
-                break;
+    onClickDay(e, day) {
+        if (day == 1) {
+            this.lblStartDate.string = moment().add(-1, 'days').format('YYYY-MM-DD 00:00');
+            this.lblEndDate.string = moment().add(-1, 'days').format('YYYY-MM-DD 23:59');
         }
-        this.onClickDate();
+        if (day == 3) {
+            this.lblStartDate.string = moment().add(-3, 'days').format('YYYY-MM-DD HH:mm');
+            this.lblEndDate.string = moment().format('YYYY-MM-DD HH:mm');
+        }
+        if (day == 7) {
+            this.lblStartDate.string = moment().add(-7, 'days').format('YYYY-MM-DD HH:mm');
+            this.lblEndDate.string = moment().format('YYYY-MM-DD HH:mm');
+        }
     }
 
     onClickSearch() {
-        this.init();
+        let  req={
+            date:[this.lblStartDate.string, this.lblEndDate.string],
+            clubID:App.Club.id,
+        }
+        this.content.removeAllChildren();
+        Connector.request(GameConfig.ServerEventName.DiamondStatistic, req, ({ logs }) => {
+            if(logs.rows.length==0){
+                Cache.alertTip('暂无数据')
+                return;
+            } 
+            // for( let i=0)
+            logs.rows.forEach(l => {
+                App.instancePrefab(this.item, l, this.content);
+            })
+        })
     }
 
 

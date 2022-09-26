@@ -32,6 +32,8 @@ export default class SceneHall extends cc.Component {
     lblNotice = null
     @property(cc.Node)
     nodeMenu = null
+    @property(cc.Node)
+    inviteRedPoint = null
 
     speed = {
         default: 100,
@@ -68,6 +70,7 @@ export default class SceneHall extends cc.Component {
 
 
     addEvents() {
+        App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_INVITATION_CARD, this.updateInviteRed, this);
         // App.EventManager.addEventListener(GameConfig.GameEventNames.CLUB_CHANGE, this.changeClubInfo, this);
         // App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_HALL_CLUB, this.updateClubInfo, this);
         // App.EventManager.addEventListener(GameConfig.GameEventNames.GOEASY_UPDATE_SERVICE, this.handleService, this);
@@ -87,6 +90,8 @@ export default class SceneHall extends cc.Component {
 
     }
     removeEvents() {
+        App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_INVITATION_CARD, this.updateInviteRed, this);
+
         // App.EventManager.removeEventListener(GameConfig.GameEventNames.CLUB_CHANGE, this.changeClubInfo, this);
 
         // App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_HALL_CLUB, this.updateClubInfo, this);
@@ -194,7 +199,7 @@ export default class SceneHall extends cc.Component {
 
     /** 创建房间 */
     onClicCreate() {
-        
+
         App.pop(GameConfig.pop.CreatePop);
 
     }
@@ -259,6 +264,12 @@ export default class SceneHall extends cc.Component {
         // 
         Cache.alertTip("id复制成功");
         _social.setCopy("" + App.Player.id);
+    }
+
+    /**更新邀请函提示红点 */
+    updateInviteRed() {
+        let unReadInvite = GameUtils.getValue(GameConfig.StorageKey.UnReadInvite, 0);
+        this.inviteRedPoint.active = unReadInvite > 0;
     }
 
     onDestroy() {
