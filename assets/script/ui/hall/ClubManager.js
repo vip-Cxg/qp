@@ -17,7 +17,7 @@ export class ClubManager {
         return this._instance;
     }
     constructor() {
-      this.reset();
+        this.reset();
     }
 
     reset() {
@@ -30,7 +30,7 @@ export class ClubManager {
             id: '',
             name: '',
             head: '',
-           
+
         };
         this._data = {
             online: 0,
@@ -52,6 +52,14 @@ export class ClubManager {
         this._tableMessage = [];
         this._applyMembers = 0;
         this._lastRequestTable = 0;
+
+        this._leagueMembers = 0;
+
+        this._leagueOnlineMembers = 0;
+
+        this._tableCount = 0;
+
+        this._reward = 0;
     }
 
     get leagueConfig() {
@@ -82,13 +90,25 @@ export class ClubManager {
             online,
             peoples: 0
         };
+        console.log('初始化club--',data);
+        this._reward = data.oglClubScore || 0;
         this._config = config;
         this._notice = notice;
         this._role = role;
         this._rooms = rooms;
         this._applyMembers = club.applyMembers || 0;
+
+
+        this._leagueMembers = data.leagueMembers || 0;
+
+        this._leagueOnlineMembers = data.leagueOnlineMembers || 0;
+
+        this._tableCount = data.tableCount || 0;
     }
 
+    get reward() {
+        return this._reward;
+    }
     get oglID() {
         return this._oglID;
     }
@@ -109,7 +129,7 @@ export class ClubManager {
         this._isLeague = value;
     }
 
-    get id () {
+    get id() {
         return this._id;
     }
 
@@ -117,10 +137,23 @@ export class ClubManager {
         this._id = value
     }
 
+    get applyMembers() {
+        return this._applyMembers;
+    }
+    get leagueMembers() {
+        return this._leagueMembers;
+    }
+    get leagueOnlineMembers() {
+        return this._leagueOnlineMembers;
+    }
+    get tableCount() {
+        return this._tableCount;
+    }
+
     // set payMode(value) {
     //     this._payMode = value;
     // }
-    
+
     get payMode() {
         return this.leagueConfig.payMode;
     }
@@ -181,7 +214,7 @@ export class ClubManager {
 
     set config(value) {
         this._config = value || {};
-    }  
+    }
 
     get clubInfo() {
         return {

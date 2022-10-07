@@ -36,22 +36,32 @@ export default class MyProxyItem extends cc.Component {
     @property(cc.Label)
     lblLevel = null
 
+    @property(cc.Label)
+    lblClubName = null
+    @property(cc.Label)
+    lblClubID = null
+
     user = null
 
     init(data) {
-        cc.log(data);
+        cc.log('proxyItem',data);
         this.user = data;
-        let { user : { name, head, id: userID }, league: { score, role }, index, memberCount = 0, sumScore = 0, club: { level = 0 } } = data;
-        this.sprBg.spriteFrame = this.sprFrameBg[index % 2];
+        let { user : { name, head, id: userID }, league: { score, role }, index, membersCount = 0, sumScore = 0, club: { level = 0 } } = data;
+        // this.sprBg.spriteFrame = this.sprFrameBg[index % 2];
         this.lblName.string = name;
+
         this.lblScore.string = App.transformScore(score);
         this.lblID.string = `ID:${userID}`;
         this.avatar.avatarUrl = head;
+
+        this.lblClubID.string='茶馆ID: '+data.club.id;
+        this.lblClubName.string='茶馆: '+data.club.name;
+
         this.sprOffice.forEach((node, i) => {
             if (node)
                 node.active = i == role;
         })
-        this.lblMemberCount.string = memberCount;
+        this.lblMemberCount.string = Math.max(membersCount-1,0);//去除自己
         this.lblSumScore.string = App.transformScore(sumScore);
         this.lblLevel.string = `${level}%`
         App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
@@ -104,6 +114,6 @@ export default class MyProxyItem extends cc.Component {
     }
 
     onClickOperate() {
-        App.pop(GameConfig.pop.UpgradeProxyPop, { ...this.user, node: this.node } );
+        App.pop(GameConfig.pop.UpgradeProxyPop, { ...this.user, node: this.node,type:'PROXY' } );
     }
 }

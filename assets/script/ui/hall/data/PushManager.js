@@ -103,6 +103,8 @@ export class PushManager {
                 }
             };
             this._socket.onerror = (event) => {
+                console.log('onerror--',JSON.stringify(event));
+
                 this._status = GameConfig.ConnectState.CLOSED;
             };
             this._socket.onclose = (event) => {

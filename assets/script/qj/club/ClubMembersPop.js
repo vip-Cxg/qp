@@ -12,6 +12,7 @@ export default class ClubMembersPop extends cc.Component {
     lblAllMembers = null
     @property(cc.Label)
     lblOnlineMembers = null
+
     @property(cc.Prefab)
     prefabs = []
     @property(cc.EditBox)
@@ -38,9 +39,15 @@ export default class ClubMembersPop extends cc.Component {
     @property(cc.Node)
     sprPoint = null
 
+    @property(cc.Toggle)
+    allMembers = null
+    @property(cc.Toggle)
+    myMembers = null
+
     init() {
         let isLeague = App.Club.isLeague;
-        let show =  isLeague ? [0, 2, 6, 7] : [0, 1, 2, 4, 5];
+        let show = isLeague ? [2, 6, 7] : [0, 1, 2, 4, 5];
+        this._pageIndex = isLeague ? '6' : '0';
         this.toggleLeft._children.forEach(node => {
             node.active = show.includes(Number(node._name));
         })
@@ -48,11 +55,11 @@ export default class ClubMembersPop extends cc.Component {
         this.nodeBtn.active = isLeague;
         if (!GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) && !isLeague) {
             this.toggleLeft._children.forEach(node => {
-                node.active = [0,1,2,5].includes(Number(node._name))
+                node.active = [0, 1, 2, 5].includes(Number(node._name))
             })
         }
         this.sprPoint.active = App.Club.applyMembers > 0;
-        this.onClickLeftToggle(this.lblAllMembers.node.parent.getComponent(cc.Toggle));
+        this.onClickLeftToggle(isLeague?this.myMembers:this.allMembers);
         App.EventManager.addEventListener(GameConfig.GameEventNames.INIT_MEMBERS_LIST, this.render, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.CLUB_APPLY, this.updateApply, this);
     }
@@ -72,6 +79,8 @@ export default class ClubMembersPop extends cc.Component {
     onClickAddClub() {
         App.pop(GameConfig.pop.InputPop, [(clubID) => {
             Connector.request(GameConfig.ServerEventName.ClubBaseInfo, { clubID }, (data) => {
+                data.user=data.club.user;
+                data.type='INVITE'
                 App.pop(GameConfig.pop.UpgradeProxyPop, data);
             });
         }, '添加茶馆']);
@@ -98,18 +107,19 @@ export default class ClubMembersPop extends cc.Component {
     render() {
         let isLeague = App.Club.isLeague;
         let oglClubID = App.Club.oglID;
-        switch(this._pageIndex) {
+        console.log('按钮数列--', this._pageIndex);
+        switch (this._pageIndex) {
             case '0':
-                Connector.request(GameConfig.ServerEventName.UserList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, isLeague, oglClubID  }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.UserList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '2':
                 this.onClickSearch();
                 break;
             case '1':
-                Connector.request(GameConfig.ServerEventName.OnlineList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, oglClubID  }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.OnlineList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '3':
-                Connector.request(GameConfig.ServerEventName.ApplyList, { clubID: App.Club.clubInfo.id, oglClubID  }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.ApplyList, { clubID: App.Club.clubInfo.id, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '4':
                 Connector.request(GameConfig.ServerEventName.UserList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, ban: true, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
@@ -130,6 +140,8 @@ export default class ClubMembersPop extends cc.Component {
         let scroll = this.scrollViews[this._pageIndex];
         scroll.content.removeAllChildren()
         let isLeague = App.Club.isLeague;
+        console.log("渲染item", data)
+
         let { userList, online, total, memberCount, proxyCount } = data;
         let { rows } = userList;
         if (GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) || isLeague) {
@@ -141,9 +153,11 @@ export default class ClubMembersPop extends cc.Component {
         if (memberCount) {
             this.lblMyMembers.string = `我的成员(${memberCount})`;
         }
-        if (proxyCount) {
-            this.lblMyProxy.string = `合伙人(${proxyCount})`;
-        }
+        // if (proxyCount) {
+            if(this._pageIndex=='7')
+            this.lblMyProxy.string = `合伙茶馆(${userList.length})`;
+            // this.lblMyProxy.string = `合伙茶馆(${proxyCount})`;
+        // }
         let prefab = this.prefabs[this._pageIndex];
         if ((this._pageIndex == 0 || this._pageIndex == 2) && App.Club.isLeague) {
             prefab = this.prefabs[6];
@@ -159,7 +173,7 @@ export default class ClubMembersPop extends cc.Component {
                 App.instancePrefab(prefab, { ...r, index: i, pageIndex: this._pageIndex }, scroll.content);
             })
         }
-        
+
     }
 
     onClickSearch() {
@@ -167,7 +181,7 @@ export default class ClubMembersPop extends cc.Component {
             // App.alertTips('请输入查找内容');
             return;
         }
-        Connector.request(GameConfig.ServerEventName.UserList, { clubID: App.Club.clubInfo.id, condition: this.editBoxSearch.string, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID  }, this.renderAllItems.bind(this), true);
+        Connector.request(GameConfig.ServerEventName.UserList, { clubID: App.Club.clubInfo.id, condition: this.editBoxSearch.string, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, this.renderAllItems.bind(this), true);
     }
 
     onClickClose() {

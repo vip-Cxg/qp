@@ -32,14 +32,14 @@ export default class ClubStatisticPop extends cc.Component {
     @property(cc.Toggle)
     toggleLeft = []
 
-   
+
     onLoad() {
         this._groups = [
-            this.gameRecord, 
-            this.MyRecord, 
-            this.Limit, 
+            this.gameRecord,
+            this.MyRecord,
+            this.Limit,
             this.Log,
-            this.GameRecordLeague, 
+            this.GameRecordLeague,
             this.DiamondRecord,
             this.ScoreLog,
             this.SelfLog
@@ -47,8 +47,12 @@ export default class ClubStatisticPop extends cc.Component {
     }
 
     init() {
+
         this.toggleLeft[0].isChecked = true;
+
+
         let isLeague = App.Club.isLeague;
+        console.log("isLeague", isLeague);
         if (!GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) && !isLeague) {
             /** 普通成员 合伙人 只显示我的战绩 */
             this.toggleLeft.forEach((toggle, i) => {
@@ -60,11 +64,16 @@ export default class ClubStatisticPop extends cc.Component {
             return;
         }
         if (isLeague) {
-            let show = [4, 1, 2, 5, 6, 7];
+            let show = App.Club.role == GameConfig.ROLE.USER ? [1, 2, 5, 7] : [4, 1, 2, 5, 6, 7];
             this.toggleLeft.forEach((toggle, i) => {
                 toggle.node.active = show.includes(Number(i));
             })
-            this.toggleLeft[4].check();
+            if (App.Club.role == GameConfig.ROLE.USER) {
+                this.toggleLeft[1].check();
+            } else {
+                this.toggleLeft[4].check();
+            }
+
             return;
         }
     }
@@ -85,5 +94,5 @@ export default class ClubStatisticPop extends cc.Component {
             this.node.destroy();
         }
     }
-  
+
 }

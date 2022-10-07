@@ -81,10 +81,10 @@ export default class ClubProxyItem extends cc.Component {
 
 
         let playPos = [
-            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + GameConfig.FitScreen, -cc.winSize.height / 2 + this.node.height / 2),
-            cc.v2(cc.winSize.width / 2 - this.node.width / 2 - GameConfig.FitScreen, 120),
+            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2+44),
+            cc.v2(cc.winSize.width / 2 - this.node.width / 2 - 44, 120),
             cc.v2(450, cc.winSize.height / 2 - 128 / 2),
-            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + GameConfig.FitScreen, 120)
+            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + 44, 120)
 
         ];
 

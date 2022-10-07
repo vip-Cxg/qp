@@ -35,6 +35,9 @@ export default class LeagueRuleItem extends cc.Component {
     @property(cc.Label)
     lblWin = null
 
+
+    clickTime=0;
+
     init(data) {
         this._room = data;
         console.log('房间---',data)
@@ -69,6 +72,12 @@ export default class LeagueRuleItem extends cc.Component {
     }
 
     onclickBan() {
+        
+        let nowTime=new Date().getTime();
+        if(nowTime-this.clickTime<=2000){
+            return;
+        }
+        this.clickTime=nowTime;
         let { roomID, isLeague, clubID } = this._room;
         Connector.request(
             GameConfig.ServerEventName.GameRoom, 

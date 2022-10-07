@@ -1862,7 +1862,7 @@
         "__id__": 48
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 51
@@ -1948,20 +1948,20 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 140,
+      "width": 168,
       "height": 35.28
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 0.5,
       "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -68.107,
-        0.927,
+        0,
+        0,
         0,
         0,
         0,
@@ -1999,8 +1999,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "提升合伙人",
-    "_N$string": "提升合伙人",
+    "_string": "提升合伙茶馆",
+    "_N$string": "提升合伙茶馆",
     "_fontSize": 28,
     "_lineHeight": 28,
     "_enableWrapText": true,
@@ -2206,7 +2206,7 @@
       "ctor": "Float64Array",
       "array": [
         125.5,
-        -124.05000000000001,
+        -38.35,
         0,
         0,
         0,

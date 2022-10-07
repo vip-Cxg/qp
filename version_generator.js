@@ -1,7 +1,7 @@
 let fs = require('fs');
 let path = require('path');
 let crypto = require('crypto');
-const BASE_URL = "http://update.xyhldqp.com/xxupdate/";
+const BASE_URL = "https://jiushentest.oss-cn-hangzhou.aliyuncs.com/xxupdate/";
 let manifest = {
     packageUrl: '',
     remoteManifestUrl: '',

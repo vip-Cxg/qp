@@ -14,6 +14,7 @@ import HostStatistics from "./HostStatistics";
 import LeagueMemberStatistics from "./LeagueMemberStatistics";
 import WasteStatistics from "./WasteStatistics"
 import DiamondStatistics from "./DiamondStatistics";
+import RewardStatistics from "./RewardStatistics";
 
 @ccclass
 export default class ClubStatisticPop extends cc.Component {
@@ -40,32 +41,36 @@ export default class ClubStatisticPop extends cc.Component {
     WasteStatistics = null
     @property(DiamondStatistics)
     DiamondStatistics = null
-   
+    @property(RewardStatistics)
+    rewardStatistics = null
+
     onLoad() {
         this._groups = [
-            this.MembersRank, 
-            this.DailyOverView, 
-            this.MemberStatistics, 
-            this.TurnStatistics, 
-            this.TurnStatistics, 
+            this.MembersRank,
+            this.DailyOverView,
+            this.MemberStatistics,
+            this.TurnStatistics,
+            this.TurnStatistics,
             this.GameRecordStatistic,
             this.HostStatistics,
             this.LeagueMemberStatistics,
             this.WasteStatistics,
-            this.DiamondStatistics
+            this.DiamondStatistics,
+            this.rewardStatistics
         ];
     }
 
     init() {
         let show = [];
-        if (!App.Club.isLeague ) {
-           if (GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role)) {
+        if (!App.Club.isLeague) {
+            if (GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role)) {
                 show = [0, 1, 2, 3, 4];
-           } else {
-            show = [5];
-           }
+            } else {
+                show = [5];
+            }
         } else {
-            show = [6, 7, 8, 9]; 
+            show = [6, 7, 9, 10];
+
         }
         this.toggleLeft.toggleItems.forEach(toggle => {
             toggle.node.active = show.includes(Number(toggle.node._name));

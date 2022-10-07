@@ -141,8 +141,8 @@ export class GameConfig {
         CHOOSE_CLUB: 'CHOOSE_CLUB',
         /**公会房间修改 */
         CLUB_ROOM_CHANGE: 'CLUB_ROOM_CHANGE',
-         /**公会房间销毁 */
-         CLUB_ROOM_DESTROY: 'CLUB_ROOM_DESTROY',
+        /**公会房间销毁 */
+        CLUB_ROOM_DESTROY: 'CLUB_ROOM_DESTROY',
         /**公会数据修改 */
         CLUB_DATA_CHANGE: 'CLUB_DATA_CHANGE',
         /**查看下属合伙人 */
@@ -155,11 +155,11 @@ export class GameConfig {
         ADD_USER: 'ADD_USER',
 
         /**创建房型 选择游戏 */
-        CREATE_ROOM_CHOOSE_GAME:'CREATE_ROOM_CHOOSE_GAME',
+        CREATE_ROOM_CHOOSE_GAME: 'CREATE_ROOM_CHOOSE_GAME',
         /**创建房型 选择人数 */
-        CREATE_ROOM_CHOOSE_PERSON:'CREATE_ROOM_CHOOSE_PERSON',
+        CREATE_ROOM_CHOOSE_PERSON: 'CREATE_ROOM_CHOOSE_PERSON',
         /**创建房型 选择规则 */
-        CREATE_ROOM_CHOOSE_RULE:'CREATE_ROOM_CHOOSE_RULE',
+        CREATE_ROOM_CHOOSE_RULE: 'CREATE_ROOM_CHOOSE_RULE',
 
         /**玩家数据更新 */
         PLAYER_DATA_UPDATE: "PLAYER_DATA_UPDATE",
@@ -324,7 +324,10 @@ export class GameConfig {
         SelfScoreLog: 'game/selfScoreLog',
         ScoreLog: 'game/scoreLog',
         DiamondLog: 'game/diamondLog',
-        DiamondStatistic:'game/diamondStatistic',
+        DiamondStatistic: 'game/diamondStatistic',
+        LogClubScore: 'game/logClubScore',
+        
+
         GameLogsLeague: 'game/leagueLogs',
         /** 茶馆日志 */
         ClubLogs: 'game/clubLogs',
@@ -763,7 +766,7 @@ export class GameConfig {
         SendCode: 'global/sms/login',
         /**提取体力 */
         DrawReward: 'game/drawReward',
-        
+
         /**体力明细表 */
         RewardDetail: 'game/rewardDetail',
         /**修改用户权限 */
@@ -841,7 +844,9 @@ export class GameConfig {
         /** 限制同座列表 */
         LimitList: 'game/limitList',
         /** 更新桌子信息 */
-        Table: 'game/Table'
+        Table: 'game/Table',
+        /**获取每日收益*/
+        WithDrawInClubScore: 'game/withDrawInClubScore',
     }
 
     static ErrorCode = {
@@ -850,12 +855,12 @@ export class GameConfig {
     }
     /**游戏配置信息 */
     static GameInfo = {}
-     /**桌子类型 */
-     static TableType = {
-        CUSTOM:'普通桌',
-        MATCH:'匹配桌',
-        PRIVATE:'私密桌'
-     }
+    /**桌子类型 */
+    static TableType = {
+        CUSTOM: '普通桌',
+        MATCH: '匹配桌',
+        PRIVATE: '私密桌'
+    }
 
     /**游戏状态 */
     static GameStatus = {
@@ -897,7 +902,7 @@ export class GameConfig {
                 '4': 8,
                 '3': 6,
                 '2': 4
-            } 
+            }
         },
         QJHZMJ: {
             '8': {
@@ -915,7 +920,7 @@ export class GameConfig {
             '3': {
                 '4': 4
             },
-            '6':{
+            '6': {
                 '4': 8
             },
             '9': {
@@ -926,7 +931,7 @@ export class GameConfig {
             '3': {
                 '2': 2,
                 '3': 3,
-                '4': 4  
+                '4': 4
             },
             '6': {
                 '2': 4,
@@ -955,7 +960,7 @@ export class GameConfig {
             '16': {
                 '2': 4,
                 '3': 6
-            } 
+            }
         }
     };
 
@@ -1060,9 +1065,9 @@ export class GameConfig {
         /**修改备注 */
         ChangeRemarkPop: 'qj/prefab/ChangeRemarkPop',
         /** 大厅设置 */
-        SettingPop:  "qj/prefab/SettingPop",
+        SettingPop: "qj/prefab/SettingPop",
         /**游戏设置 */
-        GameSettingPop:  "qj/prefab/GameSettingPop",
+        GameSettingPop: "qj/prefab/GameSettingPop",
         /** 茶馆成员 */
         ClubMembersPop: "qj/prefab/ClubMembersPop",
         /** 茶馆主页 */
@@ -1123,7 +1128,7 @@ export class GameConfig {
         InfoPop: "Main/Prefab/InfoPop",
         /**分享 */
         // SharePop: "Main/Prefab/SharePop",
-        
+
         /**房间大厅 */
         // ClubPop: "Main/Prefab/ClubPop",
         /**改变手机密码 */
@@ -1269,7 +1274,7 @@ export class GameConfig {
         ProxyLevelPop: "prefab/ProxyLevelPop",
         /**每日排行榜*/
         ClubRankPop: "prefab/ClubRankPop",
-       
+
     };
 
     static Item = {
@@ -1468,9 +1473,9 @@ export class GameConfig {
     }
 
     /**键盘类型 */
-    static NumberType={
-        INT:'INT',
-        FLOAT:'FLOAT'
+    static NumberType = {
+        INT: 'INT',
+        FLOAT: 'FLOAT'
     }
 
     /**游戏连接状态 */
@@ -1501,7 +1506,7 @@ export class GameConfig {
     /**角色说明 */
     static ROLE = {
         /** 馆主 */
-        OWNER: 3, 
+        OWNER: 3,
         /** 普通成员 */
         USER: 0,
         /** 合伙人 */
@@ -1510,25 +1515,25 @@ export class GameConfig {
         MANAGER: 2,
         /** 申请者 */
         APPLYER: 4
-    }; 
+    };
 
     static CAN_OPERATE_ROLE = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER]
 
     /**角色说明 */
     static ROLE_DESC = {
-        3 : "馆主",
-        0 : "成员",
-        1 : "合伙人",
-        2 : "副馆主",
-        4 : '申请者'
+        3: "馆主",
+        0: "成员",
+        1: "合伙人",
+        2: "副馆主",
+        4: '申请者'
     };
 
     static ROLE_LEAGUE_DESC = {
-        3 : "盟主",
-        0 : "成员",
-        1 : "合伙人",
-        2 : "副馆主",
-        4 : '申请者'
+        3: "盟主",
+        0: "成员",
+        1: "合伙人",
+        2: "副馆主",
+        4: '申请者'
     };
     /**牌桌背景图 */
     static tableBgSprite = [];
@@ -1563,7 +1568,7 @@ export class GameConfig {
     /**下载地址 */
     static DownloadUrl = '';
     /**房型数据 */
-    static RoomConfig=[];
+    static RoomConfig = [];
 
 
 
@@ -1623,7 +1628,7 @@ export class GameConfig {
 
     /**活动是否提示 */
     static isShowLottery = true;
-   
+
 
 
     /**默认版本号 */
@@ -1720,7 +1725,7 @@ export class GameConfig {
 
     static USER_STATUS = {
         /** 正常 */
-        NORMAL: 'normal', 
+        NORMAL: 'normal',
         /** 禁止入座 */
         BAN: 'ban',
         /** 等待审核 */

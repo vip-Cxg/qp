@@ -51,6 +51,7 @@ export default class QuickCreateItem extends cc.Component {
             tableID,
             gameType
         }
+        console.log("123123",questData)
         Connector.request(GameConfig.ServerEventName.JoinClubGame, questData, () => {
             App.unlockScene();
         }, 1, () => {

@@ -5,6 +5,7 @@ import { Proxy } from "./Proxy";
 import { PushManager } from "./PushManager";
 import { GameConfig } from "../../../../GameBase/GameConfig";
 import GameUtils from "../../../common/GameUtils";
+import { PlayerManager } from "./PlayerManager";
 
 class Application {
     static Instance = new Application();
@@ -16,6 +17,10 @@ class Application {
     /** 代理 */
     get Proxy() {
         return Proxy.getInstance();
+    }
+    /** 玩家信息 */
+    get Player() {
+        return PlayerManager.getInstance();
     }
     /** 公会 */
     get Club() {
@@ -35,7 +40,7 @@ class Application {
     }
 
 
-    Player = {}
+    // Player = {}
 
     fitScreen() {
         var DesignWidth = 1280;

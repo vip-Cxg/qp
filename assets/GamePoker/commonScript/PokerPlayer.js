@@ -75,11 +75,17 @@ export default class PokerPlayer extends cc.Component {
         this.playerData = data;
         let windowNode = cc.find("Canvas")
 
+        // let playPos = [
+        //     cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, -cc.winSize.height / 2 + this.node.height / 2+44),
+        //     cc.v2(cc.winSize.width / 2 - this.node.width / 2 - GameConfig.FitScreen, 70),
+        //     cc.v2(-350, cc.winSize.height / 2 - this.node.height / 2),
+        //     cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, 70)
+        // ]
         let playPos = [
-            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, -cc.winSize.height / 2 + this.node.height / 2),
-            cc.v2(cc.winSize.width / 2 - this.node.width / 2 - GameConfig.FitScreen, 70),
+            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2+44),
+            cc.v2(cc.winSize.width / 2 - this.node.width / 2 - 44, 70),
             cc.v2(-350, cc.winSize.height / 2 - this.node.height / 2),
-            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, 70)
+            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + 44, 70)
         ]
         this.node.position = playPos[TableInfo.realIdx[data.idx]];
         let cardPos = [
@@ -266,6 +272,7 @@ export default class PokerPlayer extends cc.Component {
     }
     showClock(value) {
         // let a = new cc.Label();
+        console.log('显示倒计时',value);
 
         let labelNode = this.clock.getChildByName("time").getComponent(cc.Label)
         labelNode.string = GameUtils.isNullOrEmpty(value) ? "15" : "" + parseInt(value);
@@ -281,6 +288,7 @@ export default class PokerPlayer extends cc.Component {
         }, 1);
     }
     hideClock() {
+        console.log('隐藏倒计时');
         this.clock.getChildByName("time").getComponent(cc.Label).unscheduleAllCallbacks();
         this.clock.active = false;
     }

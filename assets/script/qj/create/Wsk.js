@@ -119,7 +119,11 @@ export default class Wsk extends cc.Component {
     }
 
     init(data = {}, fee = {}, mode) {
+        console.log("asdadsd",this.node.children)
         if (mode == 'LEAGUE') {
+        console.log("1111",fee);
+        console.log("222",this.Fee);
+
             this.Fee.init(fee)
             this.Fee.node.active = true;
         }

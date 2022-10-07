@@ -38,9 +38,10 @@ export default class ClubOperateMemberPop extends cc.Component {
         if (score > 0) {
             this.btnDelMember.active = false;
         }
-        this.btnUpgradeProxy.active = role == GameConfig.ROLE.USER;
+        // this.btnUpgradeProxy.active = role == GameConfig.ROLE.USER;
         this.lblGroup.string = `当前分组:${App.Player.name}(ID:${App.Player.id})`;
-        if (pageIndex == 0) this.btnCheckGroup.active = false;
+        // if (pageIndex == 0)
+         this.btnCheckGroup.active = false;
         if (pageIndex == 0) this.btnUpgradeProxy.active = false;
 
         App.EventManager.addEventListener(GameConfig.GameEventNames.INIT_MEMBERS_LIST, this.onClickClose, this);

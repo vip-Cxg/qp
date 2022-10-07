@@ -54,6 +54,8 @@ export default class Fee extends cc.Component {
     }
 
     init(data) {
+        this.lblFixed.string = '123';
+
         this.lblHostFee = [this.lblFixed, this.lblPercentage];
         if (Object.keys(data).length > 0) {
             this.fee = {...this.fee, ...data };

@@ -164,7 +164,8 @@ export default class SceneHall extends cc.Component {
             // Cache.hideMask();
             if (ts) GameConfig.ServerTimeDiff = ts - new Date().getTime();
             GameUtils.saveValue(GameConfig.StorageKey.UserLoginTime, parseInt(new Date().getTime() / 1000));
-            App.Player = player;
+            App.Player.init(player);
+            console.log('大厅玩家信息--',App.Player)
             this.initPlayer();
             App.unlockScene();
         }, true, (data) => {

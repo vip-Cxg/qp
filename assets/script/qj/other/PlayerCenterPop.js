@@ -3,7 +3,7 @@ const { ccclass, property } = cc._decorator
 import Avatar from "../../ui/common/Avatar";
 import { App } from '../../ui/hall/data/App';
 @ccclass
-export default class PlayerInfo extends cc.Component {
+export default class PlayerCenterPop extends cc.Component {
 
     @property(cc.Label)
     lbName = null;
@@ -21,6 +21,11 @@ export default class PlayerInfo extends cc.Component {
     avatar = null
 
     onLoad() {
+     
+    }
+
+    init() {
+        console.log("玩家信息",JSON.stringify(App.Player))
         let { createdAt, id, name, sex, ip = '暂无', adress = '暂无', head  } = App.Player;
         this.lbId.string = id;
         this.lbName.string = name,
@@ -30,10 +35,6 @@ export default class PlayerInfo extends cc.Component {
         this.nodeGender[1].active = sex != 'male';
         this.lbIp.string = ip;
         this.avatar.avatarUrl = head;
-    }
-
-    init() {
-
     }
 
     doExit() {

@@ -388,6 +388,10 @@ export default class SceneTable10 extends BaseGame {
         this.imgPass[realIdx].active = false;
         this._delayTime = 5;
         this.changeBtn(false);
+
+        this.players[realIdx].playCardLight(false);
+        this.players[realIdx].hideClock();
+
         this.sprDisnable.active = data.idx == TableInfo.idx && TableInfo.options.gameType != GameConfig.GameType.WSK;
         // let voice = this.bgTable.getComponent("BgTableAudioCtr07");
         // voice.PassVoice(TableInfo.players[data.idx].prop.sex);
@@ -501,6 +505,7 @@ export default class SceneTable10 extends BaseGame {
 
         //要不起按钮显示
         this.btnPass.active = data.options.gameType == GameConfig.GameType.WSK;
+        //初始化逻辑规则
         this.calc = new Calc(data.options.rules, data.options.gameType);
         this.layerHandCards.logic = this.calc;
 

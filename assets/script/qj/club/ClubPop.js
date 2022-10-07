@@ -7,6 +7,7 @@ import { App  } from "../../ui/hall/data/App";
 import Avatar from "../../ui/common/Avatar";
 import GameHelper from "../GameHelper";
 import Tables from "./Tables";
+import Cache from "../../../Main/Script/Cache";
 
 @ccclass
 export default class ClubListItem extends cc.Component {
@@ -20,6 +21,10 @@ export default class ClubListItem extends cc.Component {
     @property(cc.Label)
     lblScore = null
 
+
+    @property(cc.Label)
+    lblChangeBtn = null
+
     @property(cc.Node)
     btnPopRule = null
 
@@ -28,6 +33,10 @@ export default class ClubListItem extends cc.Component {
 
     @property(cc.Node)
     btnPopMembers = null
+    @property(cc.Node)
+    btnPopRecord = null
+    @property(cc.Node)
+    btnPopStatistics = null
 
     @property(cc.Node)
     nodeSetting = null
@@ -39,6 +48,21 @@ export default class ClubListItem extends cc.Component {
 
     @property(cc.Node)
     sprTableInfo = null
+    @property(cc.Label)
+    lblTableInfo = null
+
+    @property(cc.Node)
+    sprOnlineCount = null
+    @property(cc.Label)
+    lblOnlineCount = null
+
+
+
+
+    @property(cc.Node)
+    sprReward = null
+    @property(cc.Label)
+    lblReward = null
 
     @property(cc.Node)
     btnEnterLeague = null
@@ -51,6 +75,7 @@ export default class ClubListItem extends cc.Component {
     sprPoint = null
 
     onLoad() {
+
     }
 
     init(data = { update: false, clubID: 0, oglClubID: 0 }) {
@@ -60,15 +85,34 @@ export default class ClubListItem extends cc.Component {
             return;
         }
         let { id, name , role, isLeague, score, owner: { head } } = App.Club;
+        console.log("123123123",App.Club);
         this.lblName.string = isLeague > 0 ? App.Player.name : name;
         this.lblId.string = isLeague > 0 ? `ID:${App.Player.id}`:`ID:${id}`;
         this.avatar.avatarUrl = isLeague > 0 ? App.Player.head : head;
         this.lblScore.string = App.transformScore(score);
-        this.sprTableInfo.active = GameConfig.CAN_OPERATE_ROLE.includes(role);
+        // this.sprTableInfo.active = GameConfig.CAN_OPERATE_ROLE.includes(role);
+
+
+
         this.sprScore.active = Boolean(isLeague > 0);
-        this.btnPopRule.active = GameConfig.CAN_OPERATE_ROLE.includes(role);
+
+
+
+        this.changeBtnRender()
+        this.updateCountRender();
+
+
         this.btnPopHome.active = !Boolean(isLeague > 0);
-        this.btnPopMembers.active = !Boolean(isLeague > 0) || [...GameConfig.CAN_OPERATE_ROLE, GameConfig.ROLE.PROXY].includes(role);
+        this.btnPopRule.active = role!=GameConfig.ROLE.USER&&role!=GameConfig.ROLE.APPLYER;// GameConfig.CAN_OPERATE_ROLE.includes(role);
+        this.btnPopMembers.active =  !Boolean(isLeague > 0) || [...GameConfig.CAN_OPERATE_ROLE, GameConfig.ROLE.PROXY].includes(role);
+        // this.btnPopRecord 记录  
+        console.log(' ClubPop自身角色',role);
+        this.btnPopStatistics.active=role!=GameConfig.ROLE.USER&&role!=GameConfig.ROLE.APPLYER
+      
+
+
+
+
         this.btnEnterLeague.active = !Boolean(isLeague > 0);
         this.tables.init();
         this.sprPoint.active = App.Club.applyMembers > 0;
@@ -83,8 +127,9 @@ export default class ClubListItem extends cc.Component {
     }
 
     updateClub(data) {
-        if (data.clubID != App.Club.id || data.oglClubID != App.Club.oglID) return;
-        Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.id, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, (data) => {
+        // if (data.clubID != App.Club.id || data.oglClubID != App.Club.oglID) return;   
+        Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: data.oglClubID, isLeague: App.Club.isLeague }, (data) => {
+        // Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.id, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, (data) => {
             App.Club.init(data);
             this.init();
         });
@@ -171,8 +216,65 @@ export default class ClubListItem extends cc.Component {
         Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.id, isLeague: 1 }, (data) => {
             App.Club.init(data);
             App.Club.isLeague = 1;
+
             this.init();
         });
+    }
+    onClickChangeLeague(){
+        let isLeague=App.Club.isLeague==1?0:1;
+        Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.id, isLeague }, (data) => {
+
+            App.Club.init(data);
+            App.Club.isLeague = isLeague;
+            this.init();
+        });
+    }
+
+    changeBtnRender(){
+        this.lblChangeBtn.string=App.Club.isLeague==1?'切换到茶馆':'切换到比赛场';
+    }
+
+    /**获取每日收益 */
+    getEarnWallet(){
+        if(App.Club.reward<=0){
+            Cache.alertTip('奖励不足,无法领取')
+
+            return;
+
+        }
+        Connector.request(GameConfig.ServerEventName.WithDrawInClubScore, { clubID: App.Club.id,oglClubID:App.Club.oglID }, (data) => {
+            Cache.alertTip('领取成功')
+            // App.Club.init(data);
+            let req={
+                clubID:App.Club.id,
+                oglClubID:App.Club.oglID
+            }
+            this.updateClub(req)
+            // this.init();
+        });
+    }
+
+    updateCountRender(){
+        
+        if(App.Club.isLeague==0){
+            console.log('123123',App.Club);
+            this.sprOnlineCount.active=false;
+            this.sprTableInfo.active=false;
+            this.sprReward.active=false;
+
+        }else{
+
+            console.log('2222',App.Club);
+            this.sprReward.active=App.Club.role==GameConfig.ROLE.OWNER||App.Club.role==GameConfig.ROLE.PROXY;
+            this.sprOnlineCount.active=true;
+            this.sprTableInfo.active=true;
+            
+            this.lblOnlineCount.string='全盟共'+(App.Club.leagueMembers||0)+'人 '+(App.Club.leagueOnlineMembers||0)+'人在线';
+            this.lblTableInfo.string=(App.Club.tableCount||0)+'桌激战中';
+            this.lblReward.string= App.transformScore(App.Club.reward);
+
+        }
+
     }
 
     onClickClose() {

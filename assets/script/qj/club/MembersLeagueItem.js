@@ -42,6 +42,7 @@ export default class MembersLeagueItem extends cc.Component {
         this._office = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER, GameConfig.ROLE.PROXY, GameConfig.ROLE.USER]
         this.user = data;
         let { user : { name, head }, score, role, remark, lastDate, userID, index, parent, pageIndex } = data;
+
         this.sprBg.spriteFrame = this.sprFrameBg[index % 2];
         this.lblName.string = name;
         if (remark && remark.length > 0) {
@@ -56,10 +57,10 @@ export default class MembersLeagueItem extends cc.Component {
             this.btnRemark.active = false;
             this.lblName.string = name;
         }
-        if ((pageIndex == 6 || pageIndex == 2) && (!App.Club.power[1] || userID == App.Player.id) && !GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role)) {
-            this.btnAdd.getComponent(cc.Button).interactable = false;
-            this.btnSub.getComponent(cc.Button).interactable = false;
-        }
+        // if ((pageIndex == 6 || pageIndex == 2) && (!App.Club.power[1] || userID == App.Player.id) && !GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role)) {
+        //     this.btnAdd.getComponent(cc.Button).interactable = false;
+        //     this.btnSub.getComponent(cc.Button).interactable = false;
+        // }
         if (userID == App.Player.id || this._pageIndex == 2) {
              this.btnRemark.active = false;
              this.btnOperate.active = false;
@@ -97,6 +98,7 @@ export default class MembersLeagueItem extends cc.Component {
     updateScoreCallback(score) {
         const { id: clubID } = App.Club;
         const { userID, oglClubID } = this.user;
+        console.log("1231312",oglClubID,this.user)
         Connector.request(GameConfig.ServerEventName.UpdateScore, { score, clubID, userID, oglClubID }, (data) => {
             const { selfScore, targetScore } = data;
             App.EventManager.dispatchEventWith(GameConfig.GameEventNames.UPDATE_MEMBERS, { userID: this.user.userID, score: targetScore })
@@ -117,6 +119,7 @@ export default class MembersLeagueItem extends cc.Component {
         if (this.user.pageIndex == 0 || this.user.role != GameConfig.ROLE.PROXY) {
             App.pop(GameConfig.pop.ClubOperateMemberPop, { ...this.user, node: this.node } );
         } else {
+            
             App.pop(GameConfig.pop.UpgradeProxyPop, { ...this.user, node: this.node } );
         }
         

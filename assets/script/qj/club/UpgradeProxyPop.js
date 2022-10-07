@@ -33,23 +33,27 @@ export default class UpgradeProxyPop extends cc.Component {
 
     type = ''
 
-    init(data, type = 'INVITE') {
-        this.type = type;
+    init(data, type ) {
+
+        this.type = type||data.type;
         this.data = data;
-        let { user: { head, name }, userID, remark = '', power = '0,0,0', level = 0, role, name: clubName, id: clubID } = data.club;
-        if (type = 'INVITE') {
+        console.log('初始化-1-', data,type)
+        console.log('初始化-3-', this.type)
+        console.log('初始化-2-', App.Club)
+        let { userID, remark = '', power = '0,0,0', level = 0, role, name: clubName, id: clubID } = data.club || data;
+        if (this.type == 'INVITE') {
             level = 0;
         }
         this.btnDownGrade.active = role == GameConfig.ROLE.PROXY;
-        this.avatar.avatarUrl = head;
-        this.lblID.string = `馆主ID:${userID}`;
-        this.lblName.string = `馆主: ${name}`;
-        this.lblClubName.string = `茶馆: ${clubName}`;
-        this.lblClubID.string = `茶馆ID: ${clubID}`;
+        this.avatar.avatarUrl =data.user.head;
+        this.lblID.string = `馆主ID:${userID ? userID : data.user.id}`;
+        this.lblName.string = `馆主: ${data.user.name}`;
+        this.lblClubName.string = `茶馆: ${clubName || App.Club.name}`;
+        this.lblClubID.string = `茶馆ID: ${clubID || App.Club.oglID}`;
         if (remark.length > 0) {
-            this.lblName.string = `${name}(${remark})`;
+            this.lblName.string = `${data.user.name}(${remark})`;
         }
-      
+
         this.lblLevel.string = `${level}%`;
         power = power.split(',').map(m => Number(m));
         // let selfPower = App.Club.power;
@@ -79,7 +83,7 @@ export default class UpgradeProxyPop extends cc.Component {
                 App.EventManager.dispatchEventWith(GameConfig.GameEventNames.INIT_MEMBERS_LIST);
                 this.onClickClose();
             })
-        } )
+        })
     }
 
     onClickToggle(target) {
@@ -96,14 +100,15 @@ export default class UpgradeProxyPop extends cc.Component {
         let post = {
             power,
             level,
-            userID: this.data.userID,
-            clubID: App.Club.id
+            userID: this.data.userID||this.data.user.id,
+            clubID: this.data.club?.id||App.Club.id
         }
         let path = GameConfig.ServerEventName.UpgradeProxy;
+
         if (this.type == 'INVITE') {
             post = {
                 oglClubID: App.Club.oglID,
-                targetClubID: this.data.club.id,
+                targetClubID: this.data.club.id || App.Club.id,// this.data.id,
                 data: {
                     power,
                     level
@@ -111,7 +116,7 @@ export default class UpgradeProxyPop extends cc.Component {
             }
             path = GameConfig.ServerEventName.InviteClub
         }
-         
+
         Connector.request(path, post, (data) => {
             App.alertTips(data.message);
             App.EventManager.dispatchEventWith(GameConfig.GameEventNames.INIT_MEMBERS_LIST);
@@ -125,5 +130,5 @@ export default class UpgradeProxyPop extends cc.Component {
             this.node.destroy();
         }
     }
-  
+
 }

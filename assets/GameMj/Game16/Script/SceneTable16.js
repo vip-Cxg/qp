@@ -407,7 +407,6 @@ cc.Class({
     },
     /**初始化玩家状态显示 */
     initPlayer(data) {
-        console.log("initPlayer----", this.players)
         data.players.forEach(player => {
             if (player != null) {
                 let idx = TableInfo.realIdx[player.idx];

@@ -313,11 +313,11 @@ cc.Class({
         this.lblMsg.string = "正在检测版本更新";
 
         // Hot update is only available in Native build
-        // if (cc.sys.isBrowser) {
+        if (cc.sys.isBrowser) {
             console.log("设备id: ", GameConfig.DeviceID)
             this.getGameInfo();
             return;
-        // }
+        }
 
         //获取设备id
         //TODO

@@ -47,7 +47,7 @@ export default class SubMembersItem extends cc.Component {
         this.lblID.string = `ID:${userID}`;
         this.avatar.avatarUrl = head;
         this.sprOffice.spriteFrame = this.sprFrameOffice[this._office.indexOf(role)];
-        this.btnOperate.active = role == GameConfig.ROLE.USER;
+        // this.btnOperate.active = role == GameConfig.ROLE.USER;
         this.nodeSubMembers.active = role == GameConfig.ROLE.PROXY;
         this.lblMembers.string = memberCount;
         this.lblStatus.string = lastDate;

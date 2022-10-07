@@ -246,6 +246,11 @@ export default class SelfHandsCard10 extends cc.Component {
     }
 
     get hasGrater() {
+
+        console.log("TableInfo.current",TableInfo.current);
+        console.log("this.handsCard",this.handsCard);
+        console.log("this.handsCard.slice()",this.handsCard.slice());
+        console.log("this.logic.findGrater(TableInfo.current, this.handsCard.slice())",this.logic.findGrater(TableInfo.current, this.handsCard.slice()));
         return this.logic.findGrater(TableInfo.current, this.handsCard.slice()).length > 0;
     }
 
