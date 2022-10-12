@@ -26,12 +26,14 @@ export default class ClubMembersPop extends cc.Component {
 
     @property(cc.Label)
     lblMyMembers = null
+    @property(cc.Label)
+    lblMyMembersCheck = null
 
     @property(cc.Label)
     lblMyProxy = null
+    @property(cc.Label)
+    lblMyProxyCheck = null
 
-    @property(cc.Node)
-    view = null
 
     @property(cc.Node)
     nodeBtn = null
@@ -46,20 +48,22 @@ export default class ClubMembersPop extends cc.Component {
 
     init() {
         let isLeague = App.Club.isLeague;
-        let show = isLeague ? [2, 6, 7] : [0, 1, 2, 4, 5];
+
+
+
+        let show = isLeague ? (App.Club.role == GameConfig.ROLE.LEAGUE_MANAGER ? [2, 6] : [2, 6, 7]) : [0, 1, 2, 4, 5];
         this._pageIndex = isLeague ? '6' : '0';
         this.toggleLeft._children.forEach(node => {
             node.active = show.includes(Number(node._name));
         })
-        this.view.height = isLeague ? 320 : 540;
-        this.nodeBtn.active = isLeague;
+        this.nodeBtn.active = isLeague && (App.Club.role == GameConfig.ROLE.OWNER||App.Club.role == GameConfig.ROLE.LEAGUE_OWNER);
         if (!GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) && !isLeague) {
             this.toggleLeft._children.forEach(node => {
                 node.active = [0, 1, 2, 5].includes(Number(node._name))
             })
         }
         this.sprPoint.active = App.Club.applyMembers > 0;
-        this.onClickLeftToggle(isLeague?this.myMembers:this.allMembers);
+        this.onClickLeftToggle(isLeague ? this.myMembers : this.allMembers);
         App.EventManager.addEventListener(GameConfig.GameEventNames.INIT_MEMBERS_LIST, this.render, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.CLUB_APPLY, this.updateApply, this);
     }
@@ -79,8 +83,8 @@ export default class ClubMembersPop extends cc.Component {
     onClickAddClub() {
         App.pop(GameConfig.pop.InputPop, [(clubID) => {
             Connector.request(GameConfig.ServerEventName.ClubBaseInfo, { clubID }, (data) => {
-                data.user=data.club.user;
-                data.type='INVITE'
+                data.user = data.club.user;
+                data.type = 'INVITE'
                 App.pop(GameConfig.pop.UpgradeProxyPop, data);
             });
         }, '添加茶馆']);
@@ -152,11 +156,14 @@ export default class ClubMembersPop extends cc.Component {
         }
         if (memberCount) {
             this.lblMyMembers.string = `我的成员(${memberCount})`;
+            // this.lblMyMembersCheck.string = `我的成员(${memberCount})`;
         }
         // if (proxyCount) {
-            if(this._pageIndex=='7')
+        if (this._pageIndex == '7')
             this.lblMyProxy.string = `合伙茶馆(${userList.length})`;
-            // this.lblMyProxy.string = `合伙茶馆(${proxyCount})`;
+        console.log('----', userList.length)
+        // this.lblMyProxyCheck.string = `合伙茶馆(${userList.length})`;
+        // this.lblMyProxy.string = `合伙茶馆(${proxyCount})`;
         // }
         let prefab = this.prefabs[this._pageIndex];
         if ((this._pageIndex == 0 || this._pageIndex == 2) && App.Club.isLeague) {

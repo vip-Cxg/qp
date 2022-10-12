@@ -60,7 +60,7 @@ export default class SelfLog extends cc.Component {
         let lblCount = node.getChildByName('lblCount').getComponent(cc.Label);
         let lblRemain = node.getChildByName('lblRemain').getComponent(cc.Label);
         lblDate.string = moment(createdAt).format('YYYY-MM-DD HH:mm:ss');
-        lblEvent.string = reason;
+        lblEvent.string = reason||'';
         lblCount.string = (score > 0 ? '+' : '') + App.transformScore(score);
         lblCount.node.color = new cc.Color().fromHEX(score >= 0 ? this._color[1] : this._color[0]);
         lblRemain.string = App.transformScore(remainScore);

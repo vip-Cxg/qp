@@ -176,19 +176,25 @@ export default class CreatePop extends cc.Component {
     /** 顶部玩法选择 */
     initTopSelection() {
         const rooms = App.Club.rooms;
+        console.log("玩法--",GameConfig.CreateRules)
         this._toggleTopRules._children.forEach((node, i) => {
-            let background = node.getChildByName('background').getComponent(cc.Sprite);
-            let checkmark = node.getChildByName('checkmark').getComponent(cc.Sprite);
+            let background = node.getChildByName('background');
+            let checkmark = node.getChildByName('checkmark');
             let room = rooms.find(r => r.index == i);
             cc.log(room, 'room');
             if (room && room.isEnabled) {
                 /**  玩法: 开 */ 
-                background.spriteFrame = GameConfig.CreateRules[i * 4 + 2];
-                checkmark.spriteFrame = GameConfig.CreateRules[i * 4 + 3];
+                background.getChildByName('name').getComponent(cc.Label).string='玩法'+(i+1)+' (开)'
+                checkmark.getChildByName('name').getComponent(cc.Label).string='玩法'+(i+1)+' (开)'
+                // background.spriteFrame = GameConfig.CreateRules[i * 4 + 2];
+                // checkmark.spriteFrame = GameConfig.CreateRules[i * 4 + 3];
+
             } else {
                 /**  玩法: 关 */
-                background.spriteFrame = GameConfig.CreateRules[i * 4 + 0];
-                checkmark.spriteFrame = GameConfig.CreateRules[i * 4 + 1];
+                background.getChildByName('name').getComponent(cc.Label).string='玩法'+(i+1)+' (关)'
+                checkmark.getChildByName('name').getComponent(cc.Label).string='玩法'+(i+1)+' (关)'
+                // background.spriteFrame = GameConfig.CreateRules[i * 4 + 0]; 
+                // checkmark.spriteFrame = GameConfig.CreateRules[i * 4 + 1];
             }
         })
     }

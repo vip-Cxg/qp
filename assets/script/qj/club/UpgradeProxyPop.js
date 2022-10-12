@@ -44,7 +44,7 @@ export default class UpgradeProxyPop extends cc.Component {
         if (this.type == 'INVITE') {
             level = 0;
         }
-        this.btnDownGrade.active = role == GameConfig.ROLE.PROXY;
+        // this.btnDownGrade.active = role == GameConfig.ROLE.PROXY;
         this.avatar.avatarUrl =data.user.head;
         this.lblID.string = `馆主ID:${userID ? userID : data.user.id}`;
         this.lblName.string = `馆主: ${data.user.name}`;

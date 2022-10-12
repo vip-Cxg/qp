@@ -51,7 +51,7 @@ export default class ClubListItem extends cc.Component {
         '20': '显示20桌'
     };
     _tableDisplayValue
-    _colorLabel = [[64, 64, 64, 200], [190, 31, 31, 200]]
+    _colorLabel = [[116, 151, 139, 200], [210, 90, 13, 200]]
     data = null;
 
     init() {
@@ -60,14 +60,14 @@ export default class ClubListItem extends cc.Component {
         let { id, name, head } = App.Club.owner;
         this.avatar.avatarUrl = App.Player.head;
         let role = App.Club.role;
-        this.lblMyOffice.string = `我的职位：${ GameConfig.ROLE_DESC[role]}`;
+        this.lblMyOffice.string = `${GameConfig.ROLE_DESC[role]}`;
         // this.data = data;
         this.lblName.string = name;
         this.lblId.string = `ID:${App.Player.id}`;
         this.lblHostName.string = `茶馆馆主：${name}`;
         this.lblHostID.string = `馆主ID：${id}`;
         if (!GameUtils.isNullOrEmpty(contact)) this.editBoxContact.string = contact;
-        if (!GameUtils.isNullOrEmpty(notice))  this.editBoxNotice.string = notice;
+        if (!GameUtils.isNullOrEmpty(notice)) this.editBoxNotice.string = notice;
         this.toggleRoomPermission.isChecked = roomPermission ? true : false;
         this.onClickToggle(this.toggleRoomPermission);
         this.toggleDisbandPermission.isChecked = disbandPermission ? true : false;
@@ -79,7 +79,7 @@ export default class ClubListItem extends cc.Component {
         this.nodeTableDisplayItem._children.forEach(node => {
             node.on(cc.Node.EventType.TOUCH_END, this.onClickTableDisPlay, this);
         })
-        
+
         if (!GameHelper.hasClubPermission(role)) {
             this.btnCommit.active = false;
             this.editBoxContact.enabled = false;
@@ -103,13 +103,13 @@ export default class ClubListItem extends cc.Component {
     onClickModeToggle() {
         this.toggleMode.forEach((toggle, i) => {
             let isChecked = toggle.isChecked;
-            toggle.node.getChildByName('label').color = new cc.color(...this._colorLabel[isChecked? 1 : 0]);
+            toggle.node.getChildByName('label').color = new cc.color(...this._colorLabel[isChecked ? 1 : 0]);
         })
     }
 
     onClickToggle(toggle) {
         let isChecked = toggle.isChecked;
-        toggle.node.getChildByName('label').color = new cc.color(...this._colorLabel[isChecked? 1 : 0]);
+        toggle.node.getChildByName('label').color = new cc.color(...this._colorLabel[isChecked ? 1 : 0]);
     }
 
     onClickCommit() {
@@ -162,11 +162,11 @@ export default class ClubListItem extends cc.Component {
         cc.log('onClickShare');
     }
 
-    onClickDisband(){
+    onClickDisband() {
         cc.log('onClickDisband');
 
     }
-        
+
 }
 
 

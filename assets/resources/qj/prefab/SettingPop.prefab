@@ -399,8 +399,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -1.547,
-        258.035,
+        0,
+        243,
         0,
         0,
         0,
@@ -713,8 +713,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 62,
-      "height": 69
+      "width": 72,
+      "height": 202
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -725,8 +725,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        312.346,
-        226.47,
+        376.777,
+        172.52,
         0,
         0,
         0,

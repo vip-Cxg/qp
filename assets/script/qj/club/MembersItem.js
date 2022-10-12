@@ -4,6 +4,7 @@ import GameUtils from "../../common/GameUtils";
 const { ccclass, property } = cc._decorator
 import Avatar from "../../ui/common/Avatar";
 import { App  } from "../../ui/hall/data/App";
+import Cache from "../../../Main/Script/Cache";
 @ccclass
 export default class MembersItem extends cc.Component {
 
@@ -31,6 +32,7 @@ export default class MembersItem extends cc.Component {
     _office = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER, GameConfig.ROLE.PROXY, GameConfig.ROLE.USER]
 
     init(data) {
+        console.log("成员信息---",data)
         this._data = data;
         let { role, lastDate, status, user: {  name, head }, userID, remark = '', inBlack = false  } = data;
         this.Avatar.avatarUrl = head;
@@ -154,7 +156,9 @@ export default class MembersItem extends cc.Component {
             { 
                 message: `确定将【${this._data.user.name}】设为副馆主吗?`,
                 callback1: () => {
-                    Connector.request(GameConfig.ServerEventName.SettingOffice, { clubID: App.Club.id, userID: this._data.userID, office }, this.successCallback.bind(this), true)
+                    console.log("office",office);
+                    // return;
+                    Connector.request(GameConfig.ServerEventName.SettingOffice, { clubID: App.Club.id, userID: this._data.userID, office:GameConfig.ROLE[office] }, this.successCallback.bind(this), true)
                 }
             }
         );
@@ -162,7 +166,7 @@ export default class MembersItem extends cc.Component {
 
     /** 转让馆主 */
     onClickTransfer() {
-
+        Cache.alertTip('暂未开放')
     }
 
     pop(node) {

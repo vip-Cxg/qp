@@ -2,7 +2,7 @@ let DataBase = require("../Script/DataBase")//require("DataBase");
 let ROUTE = require("../Script/ROUTE")//require("ROUTE");
 let PACK = require("../Script/PACK")//require("PACK");
 let cache = require("../Script/Cache");//require("Cache");
- var { GameConfig } = require("../../GameBase/GameConfig");
+var { GameConfig } = require("../../GameBase/GameConfig");
 const utils = require("../Script/utils");
 const RETRY_INTERVAL = [0, 1, 3, 4, 5, 7, 7];
 const AudioCtrl = require("../Script/audio-ctrl");
@@ -55,12 +55,16 @@ module.exports = {
         let reqType = data == "getJson" ? "GET" : "POST";
         reqType = "POST";
         let url = data == "getJson" ? method : this.logicUrl + method;
+
+
         if (cc.sys.isBrowser) {
             console.log("data:   ", data)
         } else {
             console.log("data:   ", JSON.stringify(data))
         }
-        
+
+
+
 
         data = JSON.parse(JSON.stringify(data));
         if (mask)
@@ -92,11 +96,14 @@ module.exports = {
                     let resData;
                     try {
                         resData = JSON.parse(response);
+                        // if(method!=GameConfig.ServerEventName.Tables){
                         if (cc.sys.isBrowser) {
                             cc.log(method + ": ", resData);
                         } else {
                             cc.log(method + ": ", response);
                         }
+                        // }
+
                         // if (!utils.isNullOrEmpty(resData.token)) {
                         //     console.log('ssss1sss',JSON.stringify(GameConfig.Encrtyptor));
                         //     console.log('ssss2sss',resData.token);
@@ -153,7 +160,7 @@ module.exports = {
                         if (failCallback) {
                             failCallback(resData)
                         } else {
-                             App.confirmPop(resData.message, () => {
+                            App.confirmPop(resData.message, () => {
                                 if (resData.restart) {
                                     AudioCtrl.getInstance().stopAll();
                                     cc.game.restart();
@@ -172,7 +179,7 @@ module.exports = {
                 if (failCallback) {
                     failCallback({ message: "网络连接失败", type: GameConfig.ErrorType.Questerror })
                 } else {
-                     App.confirmPop('网络连接失败', () => {
+                    App.confirmPop('网络连接失败', () => {
                         if (cc.director.getScene().name == DataBase.getTableScene()) {
                             cc.director.loadScene('Login');
                         }
@@ -225,7 +232,7 @@ module.exports = {
                         if (resData && callback)
                             callback(resData);
                         else {
-                             App.confirmPop(resData.message, () => {
+                            App.confirmPop(resData.message, () => {
                                 if (resData.restart) {
                                     AudioCtrl.getInstance().stopAll();
                                     cc.game.restart();
@@ -236,7 +243,7 @@ module.exports = {
                         if (failCallback) {
                             failCallback({ message: ex.message })
                         } else {
-                             App.confirmPop(ex.message);
+                            App.confirmPop(ex.message);
 
                         }
                         //错误弹窗
@@ -251,7 +258,7 @@ module.exports = {
                 if (failCallback) {
                     failCallback({ message: "网络连接失败" })
                 } else {
-                     App.confirmPop('网络连接失败', () => {
+                    App.confirmPop('网络连接失败', () => {
                         if (cc.director.getScene().name == DataBase.getTableScene()) {
                             cc.director.loadScene('Login');
                         }
@@ -277,7 +284,7 @@ module.exports = {
             if (failCallback) {
                 failCallback({ message: ex.message })
             } else {
-                 App.confirmPop(ex.message);
+                App.confirmPop(ex.message);
 
             }
         }
@@ -342,7 +349,7 @@ module.exports = {
         }
 
         if (!this._socket) {
-             App.confirmPop("连接异常，请重新登录", () => {
+            App.confirmPop("连接异常，请重新登录", () => {
                 cc.director.loadScene("Login");
             })
             return;
@@ -405,7 +412,7 @@ module.exports = {
             else
                 jsonData = data;
             if (data && data.route == ROUTE.SC_RECONNECT && data.data.isDone) {
-                 App.confirmPop('房间已被解散', () => {
+                App.confirmPop('房间已被解散', () => {
                     cc.director.loadScene('Lobby');
                 });
             }
@@ -452,7 +459,7 @@ module.exports = {
 
             // }
             // App.confirmPop(jsonData.msg, () => {
-                
+
             // })
         };
 
@@ -520,13 +527,8 @@ module.exports = {
     disconnect(jumpScene = true, errorMsg = '') {
         console.log("--checkOnline-------手动断开连接,disconnect")
         if (jumpScene) {
-            cc.director.loadScene("Lobby", () => {
-                if (App.Club.id && App.Club.isLeague >= 0) {
-                    cc.log("Lobby");
-                    App.pop(GameConfig.pop.ClubPop, { update: true, clubID: App.Club.id, oglClubID: App.Club.oglID });
-                    if (errorMsg.length > 0) App.alertTips(errorMsg);
-                }
-            })
+            GameConfig.ShowTablePop = true;
+            cc.director.loadScene("Lobby")
         } else {
             if (errorMsg.length > 0) App.alertTips(errorMsg);
             /** 发送消息 刷新桌子 */
@@ -660,7 +662,7 @@ module.exports = {
         });
     },
 
-    gameReconnect(){
+    gameReconnect() {
         this._reconnect();
     },
 

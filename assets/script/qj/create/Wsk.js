@@ -218,6 +218,9 @@ export default class Wsk extends cc.Component {
             event.target.active = false;
             return;
         }
+
+        let loc = this.nodeTips[index].parent.convertToNodeSpaceAR(event.getLocation());
+        this.nodeTips[index].position=loc;
         this.nodeTips[index].parent.active = true;
         this.nodeTips[index].active = true;
     }

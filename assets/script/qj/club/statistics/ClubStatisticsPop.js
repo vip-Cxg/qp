@@ -17,10 +17,10 @@ import DiamondStatistics from "./DiamondStatistics";
 import RewardStatistics from "./RewardStatistics";
 
 @ccclass
-export default class ClubStatisticPop extends cc.Component {
+export default class ClubStatisticsPop extends cc.Component {
 
-    @property(cc.ToggleContainer)
-    toggleLeft = null
+    @property([cc.Toggle])
+    toggleLeft = []
     @property(MembersRank)
     MembersRank = null
     @property(DailyOverView)
@@ -61,6 +61,14 @@ export default class ClubStatisticPop extends cc.Component {
     }
 
     init() {
+        console.log("click default")
+        // setTimeout(() => {
+        //     // console.log("setTimeOut click default")
+        //     // this.toggleLeft[0].check();
+
+        // }, 3000)
+
+
         let show = [];
         if (!App.Club.isLeague) {
             if (GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role)) {
@@ -72,13 +80,20 @@ export default class ClubStatisticPop extends cc.Component {
             show = [6, 7, 9, 10];
 
         }
-        this.toggleLeft.toggleItems.forEach(toggle => {
-            toggle.node.active = show.includes(Number(toggle.node._name));
+  
+
+        this.toggleLeft.forEach((toggle, i) => {
+            toggle.node.active = show.includes(Number(i));
         })
-        this.toggleLeft.toggleItems.find(toggle => toggle.node.active)?.check();
+        // setTimeout(() => {
+            // console.log("setTimeOut click default",show[0])
+            this.toggleLeft[show[0]].check();
+        // }, 3000)
+        // this.toggleLeft.toggleItems.find(toggle => toggle.node.active)?.check();
     }
 
     onClickLeftToggle(toggle) {
+        console.log("click--", toggle)
         let index = toggle.node._name;
         this._groups.forEach((g, i) => {
             g.node.active = i == index;

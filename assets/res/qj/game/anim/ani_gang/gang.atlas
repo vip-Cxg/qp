@@ -1,0 +1,111 @@
+
+gang.png
+size: 1765,948
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a1
+  rotate: false
+  xy: 273, 29
+  size: 254, 258
+  orig: 254, 258
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 2, 12
+  size: 269, 275
+  orig: 269, 275
+  offset: 0, 0
+  index: -1
+a4
+  rotate: true
+  xy: 2, 289
+  size: 657, 363
+  orig: 657, 363
+  offset: 0, 0
+  index: -1
+a41
+  rotate: false
+  xy: 367, 486
+  size: 984, 460
+  orig: 984, 460
+  offset: 0, 0
+  index: -1
+b1
+  rotate: true
+  xy: 1212, 410
+  size: 74, 86
+  orig: 74, 86
+  offset: 0, 0
+  index: -1
+b2
+  rotate: false
+  xy: 1696, 534
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+b3
+  rotate: true
+  xy: 1696, 459
+  size: 73, 65
+  orig: 73, 65
+  offset: 0, 0
+  index: -1
+s
+  rotate: true
+  xy: 1212, 32
+  size: 226, 211
+  orig: 226, 211
+  offset: 0, 0
+  index: -1
+sg_00
+  rotate: true
+  xy: 1425, 47
+  size: 211, 323
+  orig: 211, 323
+  offset: 0, 0
+  index: -1
+sg_01
+  rotate: false
+  xy: 1353, 260
+  size: 341, 341
+  orig: 341, 341
+  offset: 0, 0
+  index: -1
+sg_02
+  rotate: true
+  xy: 855, 35
+  size: 449, 355
+  orig: 449, 355
+  offset: 0, 0
+  index: -1
+sg_03
+  rotate: false
+  xy: 1353, 603
+  size: 409, 343
+  orig: 409, 343
+  offset: 0, 0
+  index: -1
+sg_04
+  rotate: false
+  xy: 529, 2
+  size: 302, 304
+  orig: 302, 304
+  offset: 0, 0
+  index: -1
+x2
+  rotate: false
+  xy: 367, 308
+  size: 242, 176
+  orig: 242, 176
+  offset: 0, 0
+  index: -1
+x3
+  rotate: false
+  xy: 611, 308
+  size: 242, 176
+  orig: 242, 176
+  offset: 0, 0
+  index: -1

@@ -165,7 +165,7 @@ export default class SceneHall extends cc.Component {
             if (ts) GameConfig.ServerTimeDiff = ts - new Date().getTime();
             GameUtils.saveValue(GameConfig.StorageKey.UserLoginTime, parseInt(new Date().getTime() / 1000));
             App.Player.init(player);
-            console.log('大厅玩家信息--',App.Player)
+            console.log('大厅玩家信息--', App.Player)
             this.initPlayer();
             App.unlockScene();
         }, true, (data) => {
@@ -185,6 +185,7 @@ export default class SceneHall extends cc.Component {
 
     /**初始化玩家信息 */
     initPlayer() {
+        this.judgePopClub()
         this.lblName.string = GameUtils.getStringByLength(App.Player.name, 8);
         this.lblId.string = 'ID: ' + App.Player.id;
         this.sprHead.avatarUrl = App.Player.head;
@@ -222,6 +223,10 @@ export default class SceneHall extends cc.Component {
         App.pop(GameConfig.pop.GameRulesPop);
     }
 
+    onClickActivity(){
+        App.pop(GameConfig.pop.RechargeActivityPop);
+
+    }
     onClickShare() {
         //播放
         // cc.loader.loadRes('QJHH1.json', (err, object) => {
@@ -271,6 +276,18 @@ export default class SceneHall extends cc.Component {
     updateInviteRed() {
         let unReadInvite = GameUtils.getValue(GameConfig.StorageKey.UnReadInvite, 0);
         this.inviteRedPoint.active = unReadInvite > 0;
+    }
+
+    judgePopClub() {
+
+        if (!GameConfig.ShowTablePop) return;
+        GameConfig.ShowTablePop = true;
+        console.log("asdasd1",App.Club)
+        
+        console.log("asdasd1", App.Club.oglID)
+        if (App.Club.id&&App.Club.oglID && App.Club.isLeague >= 0) {
+            App.pop(GameConfig.pop.ClubPop, { update: true, clubID: App.Club.id, oglClubID: App.Club.oglID });
+        }
     }
 
     onDestroy() {

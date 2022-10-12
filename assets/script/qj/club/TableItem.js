@@ -28,23 +28,16 @@ export default class TableItem extends cc.Component {
     @property(cc.Label)
     lblCheat = null
 
+    @property(cc.Label)
+    lblDesc = null
+
+
     _tableID = null;
 
     _tableData=null;
 
     onLoad() {
-        this._sprTable = this.node.getChildByName('sprTable').getComponent(cc.Sprite);
-        this._lblTitle = this.node.getChildByName('lblTitle').getComponent(cc.Label);
-        this._lblBase = this.node.getChildByName('lblBase').getComponent(cc.Label);
-        this._lblRule = this.node.getChildByName('lblRule').getComponent(cc.Label);
-        this._lblTurn = this.node.getChildByName('lblTurn').getComponent(cc.Label);
-        this._lblPlay = this.node.getChildByName('lblPlay').getComponent(cc.Label);
-        this._heads = [];
-        let headsNode = this.node.getChildByName('heads');
-        headsNode._children.forEach(node => {
-            this._heads.push(node.getComponent('Avatar'));
-        })
-        this.node.on('touchend', this.onClickTable.bind(this));
+   
     }
 
     onClickTable() {
@@ -52,6 +45,9 @@ export default class TableItem extends cc.Component {
     }
 
     onClickTitle() {
+        if(this._tableData.tableID==0){
+            return;
+        }
         App.pop(GameConfig.pop.RuleDetailPop, this._tableData);
     }
 
@@ -66,10 +62,40 @@ export default class TableItem extends cc.Component {
      * @param {number} rule.base
      */
     init(data) {
+        console.log("桌子数据---",data)
+        this._sprTable = this.node.getChildByName('sprTable').getComponent(cc.Sprite);
+        this._lblTitle = this.node.getChildByName('lblTitle').getComponent(cc.Label);
+        this._lblBase = this.node.getChildByName('lblBase').getComponent(cc.Label);
+        this._lblRule = this.node.getChildByName('lblRule').getComponent(cc.Label);
+        this._lblTurn = this.node.getChildByName('lblTurn').getComponent(cc.Label);
+        this._lblPlay = this.node.getChildByName('lblPlay').getComponent(cc.Label);
+        this._heads = [];
+        let headsNode = this.node.getChildByName('heads');
+        headsNode._children.forEach(node => {
+            this._heads.push(node.getComponent('Avatar'));
+        })
+        // this.node.on('touchend', this.onClickTable.bind(this));
+
+     
         this._tableData=data;
         /** color 桌子颜色 0-蓝色 1-绿色 2-紫色 3-红色 */
+
         let { players, status, person, gameType, rules: { base, turn, title = '潜江晃晃', color = 0 }, tableID, round, createdAt } = data;
         this._sprTable.spriteFrame = this.spriteFrameTable[(person - 2) * 4 + color];
+
+        if(tableID==0){
+            this._lblBase.node.active = false;
+            this._lblTurn.node.active = false;
+            this._lblRule.node.active = false;
+            this._lblPlay.node.active = false;
+            this.lblDesc.node.active = true;
+            this._lblTitle.string = title;
+            this.lblDesc.string='房型选择';
+            return;
+        }
+
+
+
         this._tableID = tableID;
         this._lblTitle.string = title;
         this._lblBase.node.active = true;
@@ -80,11 +106,11 @@ export default class TableItem extends cc.Component {
         this._lblRule.string = title;
         let isLeague = App.Club.isLeague;
         /** 防作弊 */
-        if (App.Club.mode == 1 && isLeague) {
+        // if (App.Club.mode == 1 && isLeague) {
             this.spriteCheat.node.active = true;
             this.spriteCheat.spriteFrame = this.spriteFrameCheat[color];
-            this.lblCheat.string = `${status == 'WAIT' ? '匹配中' : '激战中'}   ${players.filter(p => p.prop).length}/${person}`
-        }
+            this.lblCheat.string = `${status == 'WAIT' ? '等待中' : '激战中'}   ${players.filter(p => p.pid).length}/${person}`
+        // }
         /** 激战中 */
         if (status != 'WAIT') {
             this._lblBase.node.active = false;
@@ -104,6 +130,13 @@ export default class TableItem extends cc.Component {
 
     /**点击桌子  */
     onClickTable() {
+        if(this._tableData.tableID==0){
+
+            GameUtils.pop(GameConfig.pop.QuickCreatePop, (node)=>{
+                node.getComponent(node._name).init(this._tableData);
+            }); 
+            return;
+        }
         //TODO 进入游戏 可能会根据不同角色 桌子状态有不同方法
         this.enterGame();
 
@@ -125,6 +158,7 @@ export default class TableItem extends cc.Component {
                 oglClubID: App.Club.oglID
             },
             tableID,
+            type:0,
             gameType
         }
         Connector.request(GameConfig.ServerEventName.JoinClubGame, questData, () => {

@@ -64,7 +64,7 @@ export default class ClubStatisticPop extends cc.Component {
             return;
         }
         if (isLeague) {
-            let show = App.Club.role == GameConfig.ROLE.USER ? [1, 2, 5, 7] : [4, 1, 2, 5, 6, 7];
+            let show = App.Club.role == GameConfig.ROLE.USER ? [1,  5, 7] : [4, 1,  5, 6, 7];
             this.toggleLeft.forEach((toggle, i) => {
                 toggle.node.active = show.includes(Number(i));
             })

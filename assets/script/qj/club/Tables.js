@@ -34,7 +34,7 @@ export default class Tables extends cc.Component {
     onClickToggle(toggle) {
         let name = toggle.node._name;
         let isChecked = toggle.isChecked;
-        switch(name) {
+        switch (name) {
             case 'toggleHideStarted':
                 this._config.hideStarted = isChecked;
                 break;
@@ -47,12 +47,12 @@ export default class Tables extends cc.Component {
             case 'toggleHideInvite':
                 this._config.hideInvite = isChecked;
                 break;
-        } 
+        }
         /** 记录配置 */
         cc.sys.localStorage.setItem('TABLES_CONFIG', JSON.stringify(this._config));
         this.requestTables();
     }
-    
+
     /** 
      * @param {object}    data
      * @param {object[]}  data.tables  -桌子列表
@@ -62,13 +62,69 @@ export default class Tables extends cc.Component {
         this._inRequest = false;
         let { tables, count, isLeague, timestamp } = data;
         if (isLeague != App.Club.isLeague) return;
+        // return;
+
         this.lblTableCount.string = `${count}桌激战中`;
         this.content.removeAllChildren();
+        let a = [
+            {
+                players: [],
+                status: 'OPENPOP',
+                person: 4,
+                gameType: 'QJHH',
+                rules: { base: 0, turn: 0, title: '潜江晃晃', color: 0 },
+                tableID: 0,
+                round: 0
+            },
+            {
+                players: [],
+                status: 'OPENPOP',
+                person: 4,
+                gameType: 'QJHZMJ',
+                rules: { base: 0, turn: 0, title: '潜江红中麻将', color: 1 },
+                tableID: 0,
+                round: 0
+            },
+            {
+                players: [],
+                status: 'OPENPOP',
+                person: 4,
+                gameType: 'WSK',
+                rules: { base: 0, turn: 0, title: '五十K', color: 2 },
+                tableID: 0,
+                round: 0
+            },
+            {
+                players: [],
+                status: 'OPENPOP',
+                person: 4,
+                gameType: 'WSKBD',
+                rules: { base: 0, turn: 0, title: '五十K必打', color: 3 },
+                tableID: 0,
+                round: 0
+            },
+            {
+                players: [],
+                status: 'OPENPOP',
+                person: 3,
+                gameType: 'PDK',
+                rules: { base: 0, turn: 0, title: '跑得快', color: 4 },
+                tableID: 0,
+                round: 0
+            },
+        ]
+        // tables.unshift(a);
+        tables=a.concat(tables)
         for (let table of tables) {
-            let node = App.instancePrefab(this.tableItem, table, this.content);
-            this._tables.push(node.getComponent(node._name));
+            let  item=cc.instantiate(this.tableItem);
+            item.getComponent('TableItem').init(table);
+            this.content.addChild(item);
+            // this._tables.push(item.getComponent(item._name));
+
+            // let node = App.instancePrefab(this.tableItem, table, this.content);
+            // this._tables.push(node.getComponent(node._name));
         }
-        this.content.width = Math.ceil(this.content._children.length / 2)  * 355;
+        // this.content.width = Math.ceil(this.content._children.length / 2) * 355;
         App.Club.updateTableMessage(timestamp);
     }
 
@@ -79,12 +135,12 @@ export default class Tables extends cc.Component {
         this._inRequest = true;
         /** 请求服务器 拉取桌子列表 */
         Connector.request(
-            GameConfig.ServerEventName.Tables, 
-            { 
-                clubID: App.Club.id, 
-                condition: this._config, 
-                isLeague: App.Club.isLeague 
-            }, 
+            GameConfig.ServerEventName.Tables,
+            {
+                clubID: App.Club.id,
+                condition: this._config,
+                isLeague: App.Club.isLeague
+            },
             this.successCallback.bind(this),
             0,
             () => {

@@ -55,7 +55,6 @@ cc.Class({
 
     onLoad() {
         utils.fitScreen();
-
         GameConfig.DeviceID =  "" + _social.getUUID();
         GameConfig.DeviceIDFA = "" + _social.getIDFA();
 
@@ -190,7 +189,7 @@ cc.Class({
     },
 
     ontestLogin(e, v) {
-        let encryptDevices = utils.encryptToken(v);
+        let encryptDevices = utils.encryptToken('test'+v);
         Connector.request(GameConfig.ServerEventName.UserLogin, { deviceID: encryptDevices, publicKey: GameConfig.Encrtyptor.getPublicKey() }, (data) => {
             if (data.success && data.token) {
 

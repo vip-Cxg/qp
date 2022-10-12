@@ -1,0 +1,83 @@
+
+peng.png
+size: 1552,717
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a1
+  rotate: true
+  xy: 1310, 18
+  size: 286, 240
+  orig: 286, 240
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 2, 35
+  size: 355, 315
+  orig: 355, 315
+  offset: 0, 0
+  index: -1
+a4
+  rotate: false
+  xy: 2, 352
+  size: 657, 363
+  orig: 657, 363
+  offset: 0, 0
+  index: -1
+b1
+  rotate: false
+  xy: 1457, 629
+  size: 74, 86
+  orig: 74, 86
+  offset: 0, 0
+  index: -1
+b2
+  rotate: false
+  xy: 1457, 560
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+b3
+  rotate: true
+  xy: 1457, 485
+  size: 73, 65
+  orig: 73, 65
+  offset: 0, 0
+  index: -1
+sg_00
+  rotate: false
+  xy: 359, 27
+  size: 211, 323
+  orig: 211, 323
+  offset: 0, 0
+  index: -1
+sg_01
+  rotate: false
+  xy: 661, 17
+  size: 341, 341
+  orig: 341, 341
+  offset: 0, 0
+  index: -1
+sg_02
+  rotate: false
+  xy: 661, 360
+  size: 449, 355
+  orig: 449, 355
+  offset: 0, 0
+  index: -1
+sg_03
+  rotate: true
+  xy: 1112, 306
+  size: 409, 343
+  orig: 409, 343
+  offset: 0, 0
+  index: -1
+sg_04
+  rotate: true
+  xy: 1004, 2
+  size: 302, 304
+  orig: 302, 304
+  offset: 0, 0
+  index: -1

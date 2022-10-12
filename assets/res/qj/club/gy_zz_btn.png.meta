@@ -7,8 +7,8 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-  "width": 173,
-  "height": 47,
+  "width": 137,
+  "height": 38,
   "platformSettings": {},
   "subMetas": {
     "gy_zz_btn": {
@@ -22,14 +22,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 173,
-      "height": 47,
-      "rawWidth": 173,
-      "rawHeight": 47,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "width": 137,
+      "height": 38,
+      "rawWidth": 137,
+      "rawHeight": 38,
+      "borderTop": 1,
+      "borderBottom": 4,
+      "borderLeft": 44,
+      "borderRight": 17,
       "subMetas": {}
     }
   }

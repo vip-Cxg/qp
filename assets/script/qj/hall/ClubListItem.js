@@ -40,9 +40,10 @@ export default class ClubListItem extends cc.Component {
     _club = null;
 
     init(data) {
-        let { club: { id, name, leagueID }, leagueUser, peoples = 0, role, owner: { name: hostName, id: hostID, head }, status  } = data;
+        let { club: { id, name, leagueID },role,leagueUser, peoples = 0,  owner: { name: hostName, id: hostID, head }, status  } = data;
         this.Avatar.avatarUrl = head;
         /** 申请加入 */
+    
         if (role == GameConfig.ROLE.APPLYER) {
             this.lblHost.node.y = 0;
             this.lblOffice.node.active = false;
@@ -50,11 +51,11 @@ export default class ClubListItem extends cc.Component {
             this.btnEnters.forEach(btn => btn.node.active = false);
             this.sprClubInfo.node.active = false;
         }
-        if (role == GameConfig.ROLE.USER) {
+        if (data.club.role == GameConfig.ROLE.USER) {
             this.sprClubInfo.node.active = false;
             this.lblHost.node.y = 0;
         }
-        this.lblOffice.string = `职位: ${GameConfig.ROLE_DESC[role]}`;
+        this.lblOffice.string = `职位: ${GameConfig.ROLE_DESC[data.club.role]||'无'}`;
         /** 未通过审核 */
         if (status == GameConfig.USER_STATUS.WAIT) {
             this.lblHost.node.y = 0;

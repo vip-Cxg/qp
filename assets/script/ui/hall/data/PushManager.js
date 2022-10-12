@@ -38,7 +38,7 @@ export class PushManager {
             if (cc.director.getScene().name == 'Lobby')
                 Cache.alertTipRightBottom("推送服务连接中");
 
-            this._socket = new WebSocket(GameConfig.NoticeUrl + "?token=" + encodeURIComponent(encryptToken));
+            this._socket = new WebSocket( cc.gameConfig.NoticeUrl + "?token=" + encodeURIComponent(encryptToken));
             this._status = GameConfig.ConnectState.CONNECTING;
             //事件监听
             //socket 连接成功
@@ -104,16 +104,15 @@ export class PushManager {
             };
             this._socket.onerror = (event) => {
                 console.log('onerror--',JSON.stringify(event));
-
                 this._status = GameConfig.ConnectState.CLOSED;
             };
             this._socket.onclose = (event) => {
                 this._status = GameConfig.ConnectState.CLOSED;
                 // this.reconnect()
-                console.log('onclose--');
+                console.log('onclose--',JSON.stringify(event));
             };
         } catch (error) {
-            console.log('--rrr--', error)
+            console.log('--rrr--', JSON.stringify(event))
         }
     }
 

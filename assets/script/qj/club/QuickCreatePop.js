@@ -45,7 +45,8 @@ export default class QuickCreatePop extends cc.Component {
     start() {
     }
 
-    init(rooms = App.Club.rooms) {
+    init(data) {
+        let rooms = App.Club.rooms
         let isLeague = App.Club.isLeague;
         if (isLeague > 0) {
             this.selectionPay.children.forEach(n => {
@@ -55,29 +56,65 @@ export default class QuickCreatePop extends cc.Component {
         }
         let games = ['QJHH', 'QJHZMJ', 'WSKBD', 'WSK', 'PDK'];
         let lastRoomID =  cc.sys.localStorage.getItem(`QUICK:CREATE`);
-        rooms = rooms.filter(r => r.isLeague == isLeague && r.isEnabled).
+        rooms = rooms.filter(r => r.isLeague == isLeague && r.isEnabled&&r.gameType==data.gameType).
         sort((a, b) => Number(b.roomID == lastRoomID) - Number(a.roomID == lastRoomID) || games.findIndex(g => a.gameType == g) - games.findIndex(g => b.gameType == g));
         
-        rooms = rooms.filter(r => {
-            let a = true;
-            let b = true;
-            let c = true;
-            if (this.condition.gameType != 'ALL') {
-                a = r.gameType == this.condition.gameType;
-            }
-            if (this.condition.person != 0) {
-                b = r.person == this.condition.person;
-            }
-            if (this.condition.pay == 2) {
-                c = r.fee.isAA;
-            } else if (this.condition.pay == 3) {
-                c = !r.fee.isAA;
-            }
-            return a && b && c;
-        });
+        // {
+        //     "roomID": 57,
+        //     "clubID": 670087,
+        //     "gameType": "QJHH",
+        //     "person": 2,
+        //     "base": 5,
+        //     "fee": {},
+        //     "auto": 1,
+        //     "isEnabled": 1,
+        //     "isLeague": 0,
+        //     "rules": {
+        //         "an": 4,
+        //         "mo": false,
+        //         "xi": 10,
+        //         "auto": -1,
+        //         "base": 5,
+        //         "hard": false,
+        //         "qing": false,
+        //         "turn": 8,
+        //         "cheat": false,
+        //         "chong": true,
+        //         "person": 2,
+        //         "autoDisband": false
+        //     },
+        //     "index": 0,
+        //     "name": "潜江晃晃",
+        //     "color": 0,
+        //     "createdAt": "2022-05-28T15:42:51.000Z",
+        //     "updatedAt": "2022-05-28T15:42:51.000Z",
+        //     "deletedAt": null
+        // }
+
+
+
+
+
+        // rooms = rooms.filter(r => {
+        //     let a = true;
+        //     let b = true;
+        //     let c = true;
+        //     if (this.condition.gameType != 'ALL') {
+        //         a = r.gameType == this.condition.gameType;
+        //     }
+        //     if (this.condition.person != 0) {
+        //         b = r.person == this.condition.person;
+        //     }
+        //     if (this.condition.pay == 2) {
+        //         c = r.fee.isAA;
+        //     } else if (this.condition.pay == 3) {
+        //         c = !r.fee.isAA;
+        //     }
+        //     return a && b && c;
+        // });
        
         this.content.removeAllChildren();
-        // console.log('rooms',rooms)
+        console.log('rooms',rooms)
         rooms.forEach(room => {
             GameUtils.instancePrefab(this._item, room, this.content);
         });

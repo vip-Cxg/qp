@@ -20,11 +20,14 @@ export default class ApplyClubPop extends cc.Component {
     avatar = null
     _club = null;
     init(data) {
+        console.log("申请俱乐部---",data)
+
         this._club = data;
         let { club: { name, id }, owner } = data;
         this.lblName.string = name;
         this.lblID.string = `茶馆ID: ${id}`;
         this.lblHost.string = `茶馆馆主:${owner.name}`;
+        this.avatar.avatarUrl=owner.head;
     }
 
     onClickApply() {

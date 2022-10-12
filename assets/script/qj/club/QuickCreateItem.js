@@ -49,6 +49,7 @@ export default class QuickCreateItem extends cc.Component {
                 oglClubID: App.Club.oglID
             },
             tableID,
+            type:0,
             gameType
         }
         console.log("123123",questData)
@@ -58,4 +59,29 @@ export default class QuickCreateItem extends cc.Component {
             App.unlockScene();
         })
     }
+
+    onClickCreate() {
+        // cc.log(this.data);
+        cc.sys.localStorage.setItem(`QUICK:CREATE`, this.data.roomID);
+        let { clubID, isLeague, roomID, tableID = 0, gameType } = this.data;
+        let questData = {
+            club: {
+                clubID,
+                isLeague,
+                roomID,
+                oglClubID: App.Club.oglID
+            },
+            tableID,
+            type:1,
+            gameType
+        }
+        console.log("123123",questData)
+        Connector.request(GameConfig.ServerEventName.JoinClubGame, questData, () => {
+            App.unlockScene();
+        }, 1, () => {
+            App.unlockScene();
+        })
+    }
+
+
 }

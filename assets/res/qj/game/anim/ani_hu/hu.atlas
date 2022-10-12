@@ -1,0 +1,83 @@
+
+hu.png
+size: 1516,723
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a1
+  rotate: false
+  xy: 1261, 80
+  size: 253, 298
+  orig: 253, 298
+  offset: 0, 0
+  index: -1
+a3
+  rotate: false
+  xy: 453, 25
+  size: 289, 332
+  orig: 289, 332
+  offset: 0, 0
+  index: -1
+a4
+  rotate: false
+  xy: 2, 359
+  size: 657, 362
+  orig: 657, 362
+  offset: 0, 0
+  index: -1
+b1
+  rotate: false
+  xy: 1415, 639
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+b2
+  rotate: false
+  xy: 1415, 502
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+b3
+  rotate: false
+  xy: 1415, 569
+  size: 69, 68
+  orig: 69, 68
+  offset: 0, 0
+  index: -1
+sg_00
+  rotate: false
+  xy: 1048, 53
+  size: 211, 323
+  orig: 211, 323
+  offset: 0, 0
+  index: -1
+sg_01
+  rotate: false
+  xy: 1072, 380
+  size: 341, 341
+  orig: 341, 341
+  offset: 0, 0
+  index: -1
+sg_02
+  rotate: false
+  xy: 2, 2
+  size: 449, 355
+  orig: 449, 355
+  offset: 0, 0
+  index: -1
+sg_03
+  rotate: false
+  xy: 661, 378
+  size: 409, 343
+  orig: 409, 343
+  offset: 0, 0
+  index: -1
+sg_04
+  rotate: false
+  xy: 744, 72
+  size: 302, 304
+  orig: 302, 304
+  offset: 0, 0
+  index: -1

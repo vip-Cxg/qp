@@ -2,6 +2,7 @@
 const { ccclass, property } = cc._decorator;
 import { GameConfig } from "../../../GameBase/GameConfig";
 import Connector, { connect } from "../../../Main/NetWork/Connector";
+import Cache from "../../../Main/Script/Cache";
 import GameUtils from "../../common/GameUtils";
 import Avatar from "../../ui/common/Avatar";
 import { App } from "../../ui/hall/data/App";
@@ -43,11 +44,11 @@ export default class LeagueRulePop extends cc.Component {
     init() {
         let isLeague = App.Club.isLeague;
         let rooms = App.Club.rooms;
-        console.log("房间信息All",rooms)
+        console.log("房间信息All", rooms)
         rooms = rooms.filter(r => r.isLeague == isLeague);
         this.content._children.filter(node => node._name != 'btnAdd').forEach(node => node.removeFromParent());
         rooms.forEach((r, i) => {
-            App.instancePrefab(this.item, { ...r, index: i },  this.content);
+            App.instancePrefab(this.item, { ...r, index: i }, this.content);
         });
         this.btnAdd.zIndex = 100;
         this.bgTop.active = isLeague;
@@ -57,19 +58,34 @@ export default class LeagueRulePop extends cc.Component {
         this.lblEndDay.string = leagueConfig.date[1];
         this.lblDate.string = leagueConfig.hour.join(' - ');
         let payMode = leagueConfig.payMode;
+
+
+        // this.togglePay.node.children.forEach((item) => {
+        //     item.getComponent(cc.Toggle).interactable = rooms.length == 0;
+        // })
+
         this.togglePay.toggleItems.find(t => t.node._name == payMode).check();
+
+
     }
 
     onClickToggleContainer() {
-        let color = ['#8D4704', '#EC5C4E'];
+
+     
+        let color = ['#73978B', '#D15A0A'];
         this.togglePay.toggleItems.forEach(toggle => {
             let isChecked = toggle.isChecked;
             let label = toggle.node.getChildByName('label');
             label.color = new cc.Color().fromHEX(color[Number(isChecked)]);
-        })  
+        })
     }
 
     onClickModify() {
+        if( App.Club.rooms.length>0){
+            Cache.alertTip('必须删除其他房型才可修改')
+            return;
+        }
+
         let payMode = this.togglePay.toggleItems.find(toggle => toggle.isChecked).node._name;
         payMode = Number(payMode);
         let startDay = this.lblStartDay.string;
@@ -91,7 +107,7 @@ export default class LeagueRulePop extends cc.Component {
             App.confirmPop('切换支付方式,重新保存模版才能生效', () => {
                 this.request(data);
             })
-            return; 
+            return;
         }
         this.request(data);
     }

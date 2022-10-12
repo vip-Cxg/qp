@@ -8,9 +8,6 @@ import { App } from "../../ui/hall/data/App";
 export default class GameRulesPop extends cc.Component {
     @property(cc.Node)
     content = null
-    @property(cc.Label)
-    desc = null
-
     @property(cc.Sprite)
     descImg = null
     @property(cc.Sprite)
@@ -198,7 +195,6 @@ export default class GameRulesPop extends cc.Component {
 
 
     init() {
-        // this.desc.string=this.Rules.pdk;
         this.descImg.spriteFrame = this.pdkImg;
         this.desc2Img.spriteFrame = null;
 
@@ -207,14 +203,16 @@ export default class GameRulesPop extends cc.Component {
     onClickToggle(toggle) {
 
         console.log('node._name', toggle.node._name)
-        // this.desc.string = this.Rules[toggle.node._name];
 
         if (toggle.node._name == 'qjhh') {
             this.descImg.spriteFrame = this.qjhh1Img;
             this.desc2Img.spriteFrame = this.qjhh2Img;
+            this.desc2Img.node.active=true;
         } else {
             this.descImg.spriteFrame = this[toggle.node._name + 'Img'];
             this.desc2Img.spriteFrame = null;
+            this.desc2Img.node.active=false;
+
         }
 
 

@@ -34,7 +34,9 @@ export default class Qjhh extends cc.Component {
     nodeTips = [];
     
     //加减操作框 add or reduce
-    colorLabel = [[64, 64, 64], [190, 31, 31]];
+    colorLabel = [[78, 99, 97],[161, 24, 59]];
+    // colorLabel = [[24, 95, 82],[161, 24, 59]];
+    // colorLabel = [[64, 64, 64], [190, 31, 31]];
     defaultRules = {
         person: 2, //几人模式
         turn: 8,  //小局数
@@ -191,6 +193,8 @@ export default class Qjhh extends cc.Component {
             event.target.active = false;
             return;
         }
+        let loc = this.nodeTips[index].parent.convertToNodeSpaceAR(event.getLocation());
+        this.nodeTips[index].position=loc;
         this.nodeTips[index].parent.active = true;
         this.nodeTips[index].active = true;
     }

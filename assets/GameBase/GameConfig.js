@@ -1108,6 +1108,8 @@ export class GameConfig {
         RecordGame16: "qj/prefab/RecordGame16",
         /**回放 hz*/
         RecordGame19: "qj/prefab/RecordGame19",
+        /**活动*/
+        RechargeActivityPop: "qj/prefab/RechargeActivityPop",
 
 
         /**提现 */
@@ -1514,10 +1516,14 @@ export class GameConfig {
         /** 副馆主 */
         MANAGER: 2,
         /** 申请者 */
-        APPLYER: 4
+        APPLYER: 4,
+        /** 副盟主 */
+        LEAGUE_MANAGER: 5,
+        /** 盟主 */
+        LEAGUE_OWNER:  6
     };
 
-    static CAN_OPERATE_ROLE = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER]
+    static CAN_OPERATE_ROLE = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER,GameConfig.ROLE.LEAGUE_MANAGER,GameConfig.ROLE.LEAGUE_OWNER]
 
     /**角色说明 */
     static ROLE_DESC = {
@@ -1525,15 +1531,20 @@ export class GameConfig {
         0: "成员",
         1: "合伙人",
         2: "副馆主",
-        4: '申请者'
+        4: '申请者',
+        5: '副盟主',
+        6: '盟主',
+
     };
 
     static ROLE_LEAGUE_DESC = {
-        3: "盟主",
+        3: "馆主",
         0: "成员",
         1: "合伙人",
         2: "副馆主",
-        4: '申请者'
+        4: '申请者',
+        5: '副盟主',
+        6: '盟主',
     };
     /**牌桌背景图 */
     static tableBgSprite = [];
@@ -1604,7 +1615,7 @@ export class GameConfig {
     /**娄底字牌是否显示大结算数据 （投降显示，正常不显示） */
     static LDZPShowGameSummary = false;
     /**是否弹出桌子大厅 */
-    static ShowTablePop = true;
+    static ShowTablePop = false;
 
     /**代理信息 */
     static ProxyData = {};

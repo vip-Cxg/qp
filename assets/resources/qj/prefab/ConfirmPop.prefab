@@ -190,8 +190,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1166.8,
-      "height": 321.4
+      "width": 1109,
+      "height": 321
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -202,8 +202,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -285.9,
-        98.7,
+        -286,
+        99,
         0,
         0,
         0,
@@ -247,7 +247,7 @@
     "_lineHeight": 90,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -305,8 +305,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 211,
-      "height": 79
+      "width": 197,
+      "height": 87
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -318,7 +318,7 @@
       "ctor": "Float64Array",
       "array": [
         137.33,
-        -107.755,
+        -125.043,
         0,
         0,
         0,
@@ -486,7 +486,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 55.745000000000005,
+    "_bottom": 34.456999999999994,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -554,7 +554,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        145.775,
+        132.809,
         0,
         0,
         0,
@@ -763,8 +763,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 211,
-      "height": 79
+      "width": 199,
+      "height": 87
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -776,7 +776,7 @@
       "ctor": "Float64Array",
       "array": [
         -135.405,
-        -108.45799999999997,
+        -125.74599999999998,
         0,
         0,
         0,
@@ -944,7 +944,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 55.042000000000016,
+    "_bottom": 33.754000000000005,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,

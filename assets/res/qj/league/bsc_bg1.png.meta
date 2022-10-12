@@ -7,8 +7,8 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-  "width": 1159,
-  "height": 184,
+  "width": 1174,
+  "height": 146,
   "platformSettings": {},
   "subMetas": {
     "bsc_bg1": {
@@ -22,14 +22,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 1159,
-      "height": 184,
-      "rawWidth": 1159,
-      "rawHeight": 184,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "width": 1174,
+      "height": 146,
+      "rawWidth": 1174,
+      "rawHeight": 146,
+      "borderTop": 56,
+      "borderBottom": 30,
+      "borderLeft": 41,
+      "borderRight": 43,
       "subMetas": {}
     }
   }

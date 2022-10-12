@@ -676,7 +676,7 @@ cc.Class({
             if (data.data) {
                 cc.gameConfig.ConfigUrl=data.data.resourceUrl;
                 GameConfig.ConfigUrl = data.data.resourceUrl;//'http://update.xyhldqp.com/'//
-                GameConfig.NoticeUrl = data.data.noticeUrl;
+                cc.gameConfig.NoticeUrl = data.data.noticeUrl;
                 GameConfig.RecordUrl = data.data.recordUrl;
                 GameConfig.HeadUrl = data.data.headUrl;
                 GameConfig.DownloadUrl = data.data.download;
