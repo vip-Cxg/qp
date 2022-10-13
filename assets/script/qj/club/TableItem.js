@@ -62,7 +62,7 @@ export default class TableItem extends cc.Component {
      * @param {number} rule.base
      */
     init(data) {
-        console.log("桌子数据---",data)
+        // console.log("桌子数据---",data)
         this._sprTable = this.node.getChildByName('sprTable').getComponent(cc.Sprite);
         this._lblTitle = this.node.getChildByName('lblTitle').getComponent(cc.Label);
         this._lblBase = this.node.getChildByName('lblBase').getComponent(cc.Label);

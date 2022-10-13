@@ -925,8 +925,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 224,
-      "height": 70.56
+      "width": 112,
+      "height": 37.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -944,8 +944,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -978,11 +978,11 @@
     "_useOriginalSize": false,
     "_string": "收拾收拾",
     "_N$string": "收拾收拾",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1034,8 +1034,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 385.98,
-      "height": 70.56
+      "width": 186.27,
+      "height": 37.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1053,8 +1053,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -1087,11 +1087,11 @@
     "_useOriginalSize": false,
     "_string": "茶馆ID: 148239",
     "_N$string": "茶馆ID: 148239",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1569,8 +1569,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 407.56,
-      "height": 70.56
+      "width": 203.44,
+      "height": 37.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1588,8 +1588,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -1622,11 +1622,11 @@
     "_useOriginalSize": false,
     "_string": "请输入申请备注:",
     "_N$string": "请输入申请备注:",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1678,8 +1678,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 351.56,
-      "height": 70.56
+      "width": 175.44,
+      "height": 37.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1697,8 +1697,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -1731,11 +1731,11 @@
     "_useOriginalSize": false,
     "_string": "茶馆馆主:小熊",
     "_N$string": "茶馆馆主:小熊",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2060,8 +2060,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 740.2,
-      "height": 355
+      "width": 370.1,
+      "height": 177.5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2079,8 +2079,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -2113,11 +2113,11 @@
     "_useOriginalSize": false,
     "_string": "请输入验证信息....",
     "_N$string": "请输入验证信息....",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2218,8 +2218,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -2252,11 +2252,11 @@
     "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 56,
-    "_lineHeight": 56,
+    "_fontSize": 28,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

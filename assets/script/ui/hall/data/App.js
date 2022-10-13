@@ -115,6 +115,8 @@ class Application {
     pop(popName, data, name) {
         if (GameUtils.isNullOrEmpty(popName))
             return;
+
+        console.log("弹出---",popName);
         // let nodeName = popName.replace(/[/]/g, "")
         let nodeName = name || popName.match(/.*\/(.*)/)[1];
         let node = cc.find('Canvas').getChildByName(nodeName);
@@ -177,8 +179,10 @@ class Application {
     }
 
     instancePrefab(prefab, data = {}, parent = cc.find('Canvas'), callback = null,) {
+
         let node;
         if (typeof (prefab) == 'string') {
+            console.log('加载item--',prefab)
             node = prefab.match(/.*\/(.*)/)[1];
             cc.loader.loadRes(prefab, (err, p) => {
                 if (!err) {

@@ -131,8 +131,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 91.6,
-      "height": 49.9
+      "width": 105,
+      "height": 49
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -143,8 +143,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        377.001,
-        75.899,
+        368.001,
+        76.899,
         0,
         0,
         0,
@@ -187,7 +187,7 @@
       "__uuid__": "c3e370b9-edbc-49de-a317-701f35ba94f3"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -429,7 +429,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 367.01,
+      "width": 375.63,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -486,7 +486,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -538,7 +538,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 224.59,
+      "width": 217.97,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -595,7 +595,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -647,7 +647,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 113.36,
+      "width": 113.44,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -704,7 +704,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -756,7 +756,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 291.11,
+      "width": 290.63,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -813,7 +813,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1416,7 +1416,7 @@
     "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1468,7 +1468,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 103.09,
+      "width": 99.49,
       "height": 22.68
     },
     "_anchorPoint": {
@@ -1525,7 +1525,7 @@
     "_lineHeight": 18,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2206,7 +2206,7 @@
     "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2258,7 +2258,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 103.09,
+      "width": 99.49,
       "height": 22.68
     },
     "_anchorPoint": {
@@ -2315,7 +2315,7 @@
     "_lineHeight": 18,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2649,7 +2649,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

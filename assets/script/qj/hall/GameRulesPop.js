@@ -10,12 +10,12 @@ export default class GameRulesPop extends cc.Component {
     content = null
     @property(cc.Sprite)
     descImg = null
-    @property(cc.Sprite)
-    desc2Img = null
+    // @property(cc.Sprite)
+    // desc2Img = null
+    // @property(cc.SpriteFrame)
+    // qjhh1Img = null
     @property(cc.SpriteFrame)
-    qjhh1Img = null
-    @property(cc.SpriteFrame)
-    qjhh2Img = null
+    qjhhImg = null
     @property(cc.SpriteFrame)
     qjhzmjImg = null
     @property(cc.SpriteFrame)
@@ -196,7 +196,7 @@ export default class GameRulesPop extends cc.Component {
 
     init() {
         this.descImg.spriteFrame = this.pdkImg;
-        this.desc2Img.spriteFrame = null;
+        // this.desc2Img.spriteFrame = null;
 
     }
 
@@ -204,16 +204,16 @@ export default class GameRulesPop extends cc.Component {
 
         console.log('node._name', toggle.node._name)
 
-        if (toggle.node._name == 'qjhh') {
-            this.descImg.spriteFrame = this.qjhh1Img;
-            this.desc2Img.spriteFrame = this.qjhh2Img;
-            this.desc2Img.node.active=true;
-        } else {
+        // if (toggle.node._name == 'qjhh') {
+        //     this.descImg.spriteFrame = this.qjhh1Img;
+        //     this.desc2Img.spriteFrame = this.qjhh2Img;
+        //     this.desc2Img.node.active=true;
+        // } else {
             this.descImg.spriteFrame = this[toggle.node._name + 'Img'];
-            this.desc2Img.spriteFrame = null;
-            this.desc2Img.node.active=false;
+            // this.desc2Img.spriteFrame = null;
+            // this.desc2Img.node.active=false;
 
-        }
+        // }
 
 
 

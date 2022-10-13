@@ -549,8 +549,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 124.49,
-      "height": 50.4
+      "width": 62.11,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -568,8 +568,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -602,11 +602,11 @@
     "_useOriginalSize": false,
     "_string": "Akuma",
     "_N$string": "Akuma",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 20,
+    "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -658,8 +658,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 229.08,
-      "height": 50.4
+      "width": 105.78,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -677,8 +677,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -711,11 +711,11 @@
     "_useOriginalSize": false,
     "_string": "ID:14871682",
     "_N$string": "ID:14871682",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 20,
+    "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

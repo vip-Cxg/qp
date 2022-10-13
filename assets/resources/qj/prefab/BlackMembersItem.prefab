@@ -559,7 +559,7 @@
     "_prefab": {
       "__id__": 17
     },
-    "_opacity": 190,
+    "_opacity": 173,
     "_color": {
       "__type__": "cc.Color",
       "r": 48,
@@ -569,8 +569,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 189.99,
-      "height": 75.6
+      "width": 86.25,
+      "height": 41.58
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -588,8 +588,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -622,11 +622,11 @@
     "_useOriginalSize": false,
     "_string": "Cxg(xi)",
     "_N$string": "Cxg(xi)",
-    "_fontSize": 60,
-    "_lineHeight": 60,
+    "_fontSize": 30,
+    "_lineHeight": 33,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -668,7 +668,7 @@
     "_prefab": {
       "__id__": 20
     },
-    "_opacity": 190,
+    "_opacity": 173,
     "_color": {
       "__type__": "cc.Color",
       "r": 48,
@@ -678,8 +678,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 280.2,
-      "height": 75.6
+      "width": 132.19,
+      "height": 41.58
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -697,8 +697,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -731,11 +731,11 @@
     "_useOriginalSize": false,
     "_string": "ID:19***68",
     "_N$string": "ID:19***68",
-    "_fontSize": 60,
-    "_lineHeight": 60,
+    "_fontSize": 30,
+    "_lineHeight": 33,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -777,7 +777,7 @@
     "_prefab": {
       "__id__": 23
     },
-    "_opacity": 190,
+    "_opacity": 173,
     "_color": {
       "__type__": "cc.Color",
       "r": 48,
@@ -787,8 +787,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 153.37,
-      "height": 75.6
+      "width": 77.11,
+      "height": 41.58
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -806,8 +806,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -840,11 +840,11 @@
     "_useOriginalSize": false,
     "_string": "5天前",
     "_N$string": "5天前",
-    "_fontSize": 60,
-    "_lineHeight": 60,
+    "_fontSize": 30,
+    "_lineHeight": 33,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

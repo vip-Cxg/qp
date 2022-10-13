@@ -927,8 +927,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 97.75,
-      "height": 50.4
+      "width": 54.3,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -946,9 +946,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -980,11 +980,11 @@
     "_useOriginalSize": false,
     "_string": "Cx(tt)",
     "_N$string": "Cx(tt)",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1036,8 +1036,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 251.99,
-      "height": 55.44
+      "width": 138.18,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1055,9 +1055,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -1089,11 +1089,11 @@
     "_useOriginalSize": false,
     "_string": "ID:19596368",
     "_N$string": "ID:19596368",
-    "_fontSize": 44,
-    "_lineHeight": 44,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1331,8 +1331,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 39,
-      "height": 39
+      "width": 56,
+      "height": 56
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1527,8 +1527,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 39,
-      "height": 39
+      "width": 56,
+      "height": 56
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1973,8 +1973,8 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5028218711178101,
-      "y": 0.4691193237340968
+      "x": 0.5,
+      "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -2035,8 +2035,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 82,
-      "height": 46
+      "width": 95,
+      "height": 47
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2047,8 +2047,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        31.564,
-        -1.1909999999999998,
+        49,
+        0,
         0,
         0,
         0,
@@ -2091,7 +2091,7 @@
       "__uuid__": "c3e370b9-edbc-49de-a317-701f35ba94f3"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -2228,8 +2228,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27.81,
-      "height": 63
+      "width": 14.26,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2247,8 +2247,8 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -2281,11 +2281,11 @@
     "_useOriginalSize": false,
     "_string": "0",
     "_N$string": "0",
-    "_fontSize": 50,
-    "_lineHeight": 50,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2380,8 +2380,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72.27,
-      "height": 63
+      "width": 32.23,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2399,9 +2399,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -2433,11 +2433,11 @@
     "_useOriginalSize": false,
     "_string": "0%",
     "_N$string": "0%",
-    "_fontSize": 50,
-    "_lineHeight": 50,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2508,9 +2508,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -2542,11 +2542,11 @@
     "_useOriginalSize": false,
     "_string": "0",
     "_N$string": "0",
-    "_fontSize": 50,
-    "_lineHeight": 50,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2598,8 +2598,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 102.23,
-      "height": 50.4
+      "width": 63.28,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2617,9 +2617,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -2651,11 +2651,11 @@
     "_useOriginalSize": false,
     "_string": "茶馆: ",
     "_N$string": "茶馆: ",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2707,8 +2707,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 131.11,
-      "height": 50.4
+      "width": 79.2,
+      "height": 32.76
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2726,9 +2726,9 @@
         0,
         0,
         1,
-        0.5,
-        0.5,
-        0.5
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -2760,11 +2760,11 @@
     "_useOriginalSize": false,
     "_string": "茶馆ID:",
     "_N$string": "茶馆ID:",
-    "_fontSize": 40,
-    "_lineHeight": 40,
+    "_fontSize": 25,
+    "_lineHeight": 26,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "2ca4b5da-2a8a-46cf-a999-78540807289f"
+      "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
