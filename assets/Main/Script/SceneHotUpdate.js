@@ -8,7 +8,7 @@ let DataBase = require("../Script/DataBase") //require("DataBase");
 const connector = require("../NetWork/Connector");
 // const JSEncrypt = require('./jsencrypt');
 
-const JSEncrypt = require("./jsencrypt");
+const JSEncrypt = require("./jsencrypt"); 
 const { SelectLink } = require("./SelectLink");
 const { App } = require("../../script/ui/hall/data/App");
 cc.Class({

@@ -1,0 +1,9 @@
+platform :ios, '9.0'
+target 'xyqp_client-mobile' do
+  # if swift
+  use_frameworks!
+  pod 'AFNetworking' , '~> 4.0'
+  pod 'INTULocationManager'
+  pod 'WechatOpenSDK_NoPay'
+  pod 'Bugly', '2.5.5'
+end

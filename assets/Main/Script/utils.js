@@ -1,6 +1,6 @@
 let { GameConfig } = require('../../GameBase/GameConfig');
 const { default: Http } = require('../../script/common/network/Http');
-const JSEncrypt = require('./jsencrypt'); 
+const JSEncrypt = require('./jsencrypt');  
  
 var loadNative = function (url, callback) {
     var dirpath = jsb.fileUtils.getWritablePath() + 'img/';

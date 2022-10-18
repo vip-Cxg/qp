@@ -1,6 +1,6 @@
 import { GameConfig } from "../../GameBase/GameConfig";
 import Http from "./network/Http";
-const JSEncrypt = require('../../Main/Script/jsencrypt');  
+const JSEncrypt = require('../../Main/Script/jsencrypt');
 export default class GameUtils {
     static eventHandle(target, handler, eventData = '') {
         let eventHandle = new cc.Component.EventHandler();

@@ -174,6 +174,7 @@ cc.Class({
                 App.confirmPop(err.message||'登录失败');
             })
         }
+      
         // _social.wxLoginCallBack = (res) => {
         //     let encryptDevices = utils.encryptToken(GameConfig.DeviceID);
         //     let encryptIdfa = utils.encryptToken(GameConfig.DeviceIDFA);
