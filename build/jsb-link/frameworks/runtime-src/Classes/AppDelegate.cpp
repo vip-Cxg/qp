@@ -39,11 +39,11 @@
 #endif
 
 
-#define SERVICE_AGORA 1
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
-#include "base/CCScheduler.h"
-#include "AgoraManager.h"
-#endif
+// #define SERVICE_AGORA 1
+// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+// #include "base/CCScheduler.h"
+// #include "AgoraManager.h"
+// #endif
 
 USING_NS_CC;
 
@@ -79,10 +79,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     jsb_register_all_modules();
     
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
-    getScheduler()->removeAllFunctionsToBePerformedInCocosThread();
-    AgoraManager::getInstance()->registerJSBCallback();
-#endif
+// #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+//     getScheduler()->removeAllFunctionsToBePerformedInCocosThread();
+//     AgoraManager::getInstance()->registerJSBCallback();
+// #endif
       
     se->start();
     

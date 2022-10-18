@@ -89,52 +89,52 @@ export default class SceneHall extends cc.Component {
         // this.node.on(GameConfig.GameEventNames.PLAYER_DATA_UPDATE, this.initPlayer, this);
         // this.invitationCardBtn.on(cc.Node.EventType.TOUCH_END, this.showInvitationCard, this);
         // App.EventManager.addEventListener(GameConfig.GameEventNames.JUDGE_TIPS, this.judgeTips, this);
-        if (agora) {
-            console.log('123123')
-            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
-            agora.on('leave-channel', this.onLeaveChannel, this);
+        // if (agora) {
+        //     console.log('123123')
+        //     // agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+        //     // agora.on('leave-channel', this.onLeaveChannel, this);
 
-            // agora.on('leave-channel', this.onLeaveChannel, this);
-            // agora.on('rejoin-channel-success', this.onRejoinChannelSuccess, this);
-            // agora.on('warning', this.onWarning, this);
-            // agora.on('error', this.onError, this);
-            // agora.on('audio-quality', this.onAudioQuality, this);
-            // agora.on('audio-volume-indication', this.onAudioVolumeIndication, this);
-            // agora.on('network-quality', this.onNetworkQuality, this);
-            // agora.on('user-joined', this.onUserJoined, this);
-            // agora.on('user-offline', this.onUserOffline, this);
-            // agora.on('user-mute-audio', this.onUserMuteAudio, this);
-            // agora.on('audio-routing-changed', this.onAudioRoutingChanged, this);
-            // agora.on('connection-lost', this.onConnectionLost, this);
-            // agora.on('connection-interrupted', this.onConnectionInterrupted, this);
-            // agora.on('request-token', this.onRequestToken, this);
-            // agora.on('connection-banned', this.onConnectionBanned, this);
-            // agora.on('client-role-changed', this.onClientRoleChanged, this);
-        }
+        //     // agora.on('leave-channel', this.onLeaveChannel, this);
+        //     // agora.on('rejoin-channel-success', this.onRejoinChannelSuccess, this);
+        //     // agora.on('warning', this.onWarning, this);
+        //     // agora.on('error', this.onError, this);
+        //     // agora.on('audio-quality', this.onAudioQuality, this);
+        //     // agora.on('audio-volume-indication', this.onAudioVolumeIndication, this);
+        //     // agora.on('network-quality', this.onNetworkQuality, this);
+        //     // agora.on('user-joined', this.onUserJoined, this);
+        //     // agora.on('user-offline', this.onUserOffline, this);
+        //     // agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        //     // agora.on('audio-routing-changed', this.onAudioRoutingChanged, this);
+        //     // agora.on('connection-lost', this.onConnectionLost, this);
+        //     // agora.on('connection-interrupted', this.onConnectionInterrupted, this);
+        //     // agora.on('request-token', this.onRequestToken, this);
+        //     // agora.on('connection-banned', this.onConnectionBanned, this);
+        //     // agora.on('client-role-changed', this.onClientRoleChanged, this);
+        // }
     }
     removeEvents() {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_INVITATION_CARD, this.updateInviteRed, this);
-        if (agora) {
-            console.log('22222')
-            agora.off('leave-channel', this.onLeaveChannel, this);
-            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
-            // agora.off('leave-channel', this.onLeaveChannel);
-            // agora.off('rejoin-channel-success', this.onRejoinChannelSuccess, this);
-            // agora.off('warning', this.onWarning, this);
-            // agora.off('error', this.onError, this);
-            // agora.off('audio-quality', this.onAudioQuality, this);
-            // agora.off('audio-volume-indication', this.onAudioVolumeIndication, this);
-            // agora.off('network-quality', this.onNetworkQuality, this);
-            // agora.off('user-joined', this.onUserJoined, this);
-            // agora.off('user-offline', this.onUserOffline, this);
-            // agora.off('user-mute-audio', this.onUserMuteAudio, this);
-            // agora.off('audio-routing-changed', this.onAudioRoutingChanged, this);
-            // agora.off('connection-lost', this.onConnectionLost, this);
-            // agora.off('connection-interrupted', this.onConnectionInterrupted, this);
-            // agora.off('request-token', this.onRequestToken, this);
-            // agora.off('connection-banned', this.onConnectionBanned, this);
-            // agora.off('client-role-changed', this.onClientRoleChanged, this);
-        }
+        // if (agora) {
+        //     console.log('22222')
+        //     // agora.off('leave-channel', this.onLeaveChannel, this);
+        //     // agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+        //     // agora.off('leave-channel', this.onLeaveChannel);
+        //     // agora.off('rejoin-channel-success', this.onRejoinChannelSuccess, this);
+        //     // agora.off('warning', this.onWarning, this);
+        //     // agora.off('error', this.onError, this);
+        //     // agora.off('audio-quality', this.onAudioQuality, this);
+        //     // agora.off('audio-volume-indication', this.onAudioVolumeIndication, this);
+        //     // agora.off('network-quality', this.onNetworkQuality, this);
+        //     // agora.off('user-joined', this.onUserJoined, this);
+        //     // agora.off('user-offline', this.onUserOffline, this);
+        //     // agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        //     // agora.off('audio-routing-changed', this.onAudioRoutingChanged, this);
+        //     // agora.off('connection-lost', this.onConnectionLost, this);
+        //     // agora.off('connection-interrupted', this.onConnectionInterrupted, this);
+        //     // agora.off('request-token', this.onRequestToken, this);
+        //     // agora.off('connection-banned', this.onConnectionBanned, this);
+        //     // agora.off('client-role-changed', this.onClientRoleChanged, this);
+        // }
         // App.EventManager.removeEventListener(GameConfig.GameEventNames.CLUB_CHANGE, this.changeClubInfo, this);
 
         // App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_HALL_CLUB, this.updateClubInfo, this);
@@ -234,7 +234,6 @@ export default class SceneHall extends cc.Component {
         this.sprHead.avatarUrl = App.Player.head;
         this.lblDiamond.string = "" + App.Player.diamond;
         App.PushManager.connect();
-        this.initVoice()
     }
 
 
@@ -335,38 +334,38 @@ export default class SceneHall extends cc.Component {
 
 
     initVoice() {
-        var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
-        agora && agora.init(appid);
-        // agora.setChannelProfile(agora.CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_GAME);
+        // var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
+        // agora && agora.init(appid);
+        // // agora.setChannelProfile(agora.CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_GAME);
     }
 
     onJoinChannelSuccess(channel, uid, elapsed) {
-        Cache.alertTip('进入频道')
-        this.joined = true;
-        agora && agora.muteAllRemoteAudioStreams(false);
-        agora && agora.muteLocalAudioStream(false);
-        agora && agora.adjustPlaybackSignalVolume(100);
-        agora && agora.adjustAudioMixingPlayoutVolume(100);
+        // Cache.alertTip('进入频道')
+        // this.joined = true;
+        // agora && agora.muteAllRemoteAudioStreams(false);
+        // agora && agora.muteLocalAudioStream(false);
+        // agora && agora.adjustPlaybackSignalVolume(100);
+        // agora && agora.adjustAudioMixingPlayoutVolume(100);
 
     }
     joined = false;
     joinChannel() {
-        if (this.joined) {
-            agora && agora.leaveChannel();
-            console.log(`agora && agora.leaveChannel();`);
-        } else {
-            let agoraToken = '007eJxTYFg3hfuTp++bP1+0Kpkt7KMSjDy5GBwj1XiPVUxmU8n4H6HAkJZmaphiZpFqaWKaZJJmkWphZmGUapiYmGRknmxpaZD0Qtg3uT6QkSFzoTorIwMEgvjMDAEu3gwMAEW1G0Q='
-            agora && agora.setDefaultAudioRouteToSpeakerphone(true);
-            agora && agora.joinChannel(agoraToken, 'PDK', "", App.Player.id);
-            console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
-        }
+        // if (this.joined) {
+        //     agora && agora.leaveChannel();
+        //     console.log(`agora && agora.leaveChannel();`);
+        // } else {
+        //     let agoraToken = '007eJxTYBC5uU/30/uHh7xq5TX6hZKUVv3kZ1h1yzq3zOrstNeRPQUKDGlppoYpZhapliamSSZpFqkWZhZGqYaJiUlG5smWlgZJ9Tl+yQ2BjAxzdB4wMzJAIIjPzBDg4s3AAABBlx7Y'
+        //     agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+        //     agora && agora.joinChannel(agoraToken, 'PDK', "", App.Player.id);
+        //     console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
+        // }
     }
     leaveChannel() {
-        agora && agora.leaveChannel();
+        // agora && agora.leaveChannel();
     }
     onLeaveChannel() {
-        Cache.alertTip('离开频道')
-        this.joined = false;
+        // Cache.alertTip('离开频道')
+        // this.joined = false;
     }
     testtt(e) {
         console.log('first-audio-frame-decode', e)
