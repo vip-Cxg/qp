@@ -52,9 +52,8 @@ module.exports = {
 
     /**post 请求 */
     request(method, data, callback, mask = 1, failCallback, timeout = 6000) {
-        let reqType = data == "getJson" ? "GET" : "POST";
-        reqType = "POST";
-        let url = data == "getJson" ? method : this.logicUrl + method;
+        let reqType = "POST";
+        let url = method.indexOf('http') != -1 ? method : this.logicUrl + method;
 
 
         if (cc.sys.isBrowser) {
@@ -98,11 +97,21 @@ module.exports = {
                         resData = JSON.parse(response);
                         // if(method!=GameConfig.ServerEventName.Tables){
                         if (cc.sys.isBrowser) {
-                            cc.log(method + ": ", resData);
+                            cc.log(url + ": ", resData);
                         } else {
-                            cc.log(method + ": ", response);
+                            cc.log(url + ": ", response);
                         }
                         // }
+                        
+                        if(method.indexOf('http')!=-1){
+                            
+                            if(resData.code=='200'&&callback){
+                                callback(resData);
+                            }
+
+
+                            return
+                        }
 
                         // if (!utils.isNullOrEmpty(resData.token)) {
                         //     console.log('ssss1sss',JSON.stringify(GameConfig.Encrtyptor));

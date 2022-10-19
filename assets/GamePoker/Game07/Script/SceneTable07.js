@@ -133,7 +133,14 @@ export default class SceneTable07 extends BaseGame {
     }
     /**添加监听事件 */
     addEvents() {
+        if (agora) {
+            console.log('123123')
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
 
+       
 
         this.ruleBtn.on(cc.Node.EventType.TOUCH_START, this.showRuleNode, this);
         this.node.on(cc.Node.EventType.TOUCH_END, () => {
@@ -155,6 +162,11 @@ export default class SceneTable07 extends BaseGame {
     }
     /**移除监听事件 */
     removeEvents() {
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
         this.startAutoBtn.off(cc.Node.EventType.TOUCH_END, this.onStartAuto, this);
         this.cancelAutoBtn.off(cc.Node.EventType.TOUCH_END, this.onCancelAuto, this);
         this.exitBtn.off(cc.Node.EventType.TOUCH_END, this.onClickExit, this);
@@ -466,6 +478,8 @@ export default class SceneTable07 extends BaseGame {
                 player.removePlayer();
             })
         }
+
+        this.initVoice();
 
         this.setTurn(data);
 
@@ -1218,4 +1232,31 @@ export default class SceneTable07 extends BaseGame {
         App.pop(GameConfig.pop.ObserversPop)
     }
 
+    onJoinChannelSuccess(channel, uid, elapsed) {
+        Cache.alertTip('进入频道')
+        this.joined = true;
+        //开启其他人喇叭
+        agora && agora.muteAllRemoteAudioStreams(false);
+        //关掉自己麦克风
+        agora && agora.muteLocalAudioStream(true);
+        agora && agora.adjustPlaybackSignalVolume(100);
+        agora && agora.adjustAudioMixingPlayoutVolume(100);
+
+    }
+    onLeaveChannel() {
+        Cache.alertTip('离开频道')
+        this.joined = false;
+    }
+    onUserMuteAudio (uid, muted) {
+        let audioIndex=-1;
+        TableInfo.players.forEach((player)=>{
+            if(player.prop?.pid==uid)
+                audioIndex=player.idx;
+        })
+        if(audioIndex!=-1){
+            this.nodePlayerInfo[TableInfo.realIdx[audioIndex]].otherIconChange(muted);
+        }
+
+        console.log("onUserMuteAudio, uid: " + uid + " muted: " + muted);
+    }
 }

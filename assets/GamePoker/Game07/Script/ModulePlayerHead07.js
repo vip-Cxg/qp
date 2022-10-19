@@ -1,7 +1,7 @@
 let TableInfo = require("../../../Main/Script/TableInfo");
 let cache = require('../../../Main/Script/Cache');
 const utils = require("../../../Main/Script/utils");
- var { GameConfig } = require("../../../GameBase/GameConfig");
+var { GameConfig } = require("../../../GameBase/GameConfig");
 let posBaodan = [
     cc.v2(106, 48),
     cc.v2(-106, 48),
@@ -37,8 +37,16 @@ cc.Class({
         clock: cc.Node,
         cardContainer: cc.Node,
         cardCount: cc.Label,
-        playerData: null
+        voiceContent: cc.Node,
+        localAudioSpr: cc.Node,
+        allRemoteSprite: cc.Sprite,
+        disableRemoteSprite: cc.SpriteFrame,
+        remoteSprite: cc.SpriteFrame,
+        playerData: null,
+        muteLocal: true,
+        muteRemote: false
     },
+
 
     /**初始化玩家状态 */
     init(data) {
@@ -56,7 +64,17 @@ cc.Class({
             cc.v2(-350, cc.winSize.height / 2 - this.node.height / 2),
             cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, 70)
         ]
-        console.log("位置--",TableInfo.realIdx,playPos[TableInfo.realIdx[data.idx]])
+
+        let voicePos = [
+            cc.v2(0, 120),
+            cc.v2(0, 120),
+            cc.v2(0, -120),
+            cc.v2(0, 120)
+        ]
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx]==0;
+
+        console.log("位置--", TableInfo.realIdx, playPos[TableInfo.realIdx[data.idx]])
         this.node.position = playPos[TableInfo.realIdx[data.idx]];
         let cardPos = [
             cc.v2(90, 0),
@@ -66,6 +84,8 @@ cc.Class({
         ]
         this.cardContainer.active = TableInfo.options?.rules.showRemainingCards;
         this.cardContainer.position = cardPos[TableInfo.realIdx[data.idx]];
+
+
         if (utils.isNullOrEmpty(data.prop))
             return;
 
@@ -82,6 +102,7 @@ cc.Class({
         this.lblName.string = utils.getStringByLength(data.prop.name, 6);
         this.sprHead.avatarUrl = data.prop.head
         this.sprBaodan.setPosition(posBaodan[TableInfo.realIdx[data.idx]]);
+        this.updateMute();
 
         this.node.on('touchend', () => {
             if (TableInfo.idx != data.idx) {
@@ -106,7 +127,7 @@ cc.Class({
         })
     },
     resetPlayer() {
-        console.log('重置',this.playerData)
+        console.log('重置', this.playerData)
 
         this.imgBanker.active = false;
         this.playLight.active = false;
@@ -160,9 +181,9 @@ cc.Class({
         this.sprStatus.active = bool && !utils.isNullOrEmpty(this.playerData.prop);;
     },
     activeNiao(data) {
-        console.log('鸟显示-1-',data)
-        console.log('鸟显示-2-',data.readyStatus)
-        console.log('鸟显示-3-',data.readyStatus.plus)
+        console.log('鸟显示-1-', data)
+        console.log('鸟显示-2-', data.readyStatus)
+        console.log('鸟显示-3-', data.readyStatus.plus)
         if (utils.isNullOrEmpty(data.readyStatus)) return;
         //打鸟显示
         if (data.readyStatus.plus) {
@@ -204,7 +225,7 @@ cc.Class({
             this.scoreChange.opacity = 0;
         this.scoreChange.active = true;
         let bp = cc.fadeIn(0.3);
-        let cp =  cc.moveBy(0.3, cc.v2(0, 50)) ;//: cc.moveTo(0.3, cc.v2(79, -30));
+        let cp = cc.moveBy(0.3, cc.v2(0, 50));//: cc.moveTo(0.3, cc.v2(79, -30));
         let fp = cc.spawn(bp, cp);
         let dp = cc.delayTime(1);
         let ep = cc.callFunc(() => {
@@ -236,6 +257,31 @@ cc.Class({
     },
 
 
+    changeLocalAudio() {
+        this.muteLocal = !this.muteLocal;
+        this.updateMute();
+        agora && agora.muteLocalAudioStream(this.muteLocal);
+
+
+    },
+    changAllRemoteAudio() {
+        this.muteRemote = !this.muteRemote;
+        this.updateMute();
+        agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+    },
+
+    updateMute() {
+        console.log("麦克风显示---", this.muteLocal)
+        console.log("喇叭显示---", this.muteRemote)
+        this.localAudioSpr.active = !this.muteLocal;
+        // this.disableLocalSprite.node.active = this.muteLocal;
+        this.allRemoteSprite.spriteFrame = this.muteRemote ? this.disableRemoteSprite : this.remoteSprite;
+
+    },
+
+    otherIconChange(mute) {
+        this.localAudioSpr.active = !mute;
+    },
     removePlayer() {
         if (this.node) {
             this.node.removeFromParent();

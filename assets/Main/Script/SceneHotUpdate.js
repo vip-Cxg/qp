@@ -8,7 +8,7 @@ let DataBase = require("../Script/DataBase") //require("DataBase");
 const connector = require("../NetWork/Connector");
 // const JSEncrypt = require('./jsencrypt');
 
-const JSEncrypt = require("./jsencrypt"); 
+const JSEncrypt = require("./jsencrypt");
 const { SelectLink } = require("./SelectLink");
 const { App } = require("../../script/ui/hall/data/App");
 cc.Class({
@@ -38,6 +38,9 @@ cc.Class({
         // GameConfig.enableLog = false//cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
+        var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
+        agora && agora.init(appid);
+
         cc.Button.prototype._onTouchEnded = function (t) {
             Cache.playSfx();
             if (this.interactable && this.enabledInHierarchy) {
@@ -674,7 +677,7 @@ cc.Class({
         Connector.request(GameConfig.ServerEventName.GetGameInfo, {}, (data) => {
 
             if (data.data) {
-                cc.gameConfig.ConfigUrl=data.data.resourceUrl;
+                cc.gameConfig.ConfigUrl = data.data.resourceUrl;
                 GameConfig.ConfigUrl = data.data.resourceUrl;//'http://update.xyhldqp.com/'//
                 cc.gameConfig.NoticeUrl = data.data.noticeUrl;
                 GameConfig.RecordUrl = data.data.recordUrl;

@@ -1,6 +1,9 @@
 import { GameConfig } from "../../GameBase/GameConfig";
+import Connector from "../../Main/NetWork/Connector";
 import AudioCtrl from "../../Main/Script/audio-ctrl";
+import Cache from "../../Main/Script/Cache";
 import DataBase from "../../Main/Script/DataBase";
+import TableInfo from "../../Main/Script/TableInfo";
 import GameUtils from "../common/GameUtils";
 import { App } from "../ui/hall/data/App";
 
@@ -50,6 +53,10 @@ export default class BaseGame extends cc.Component {
         //TODO
         // this.handleTrade();
     }
+
+
+
+
     tableBgmInit(hn = false) {
         let url = cc.url.raw('resources/Audio/Common/MJbgm.mp3');
         AudioCtrl.getInstance().playBGM(url);
@@ -61,25 +68,42 @@ export default class BaseGame extends cc.Component {
             DataBase.setString(DataBase.STORAGE_KEY.AUDIO[DataBase.gameType], "");
         }
     }
-    // initVoice() {
-    //     cc.loader.loadRes("GameBase/preVoice", (err, prefab) => {
-    //         if (!err) {
-    //             this.winVoice = cc.instantiate(prefab).getComponent('ModuleVoice');
-    //             this.winVoice.controlBtn = this.voiceCtrlButton;
-    //             this.winVoice.node.parent = cc.find('Canvas');
-    //             //this.winVoice.init();
-    //         } else {
-    //             //cc.log('initVoice error');
-    //             //this.initVoice();
-    //         }
-    //     });
-    // },
+    joined = false;
+    initVoice() {
+        Connector.request('http://120.27.209.239:8082/fetch_rtc_token', {
+            uid: App.Player.id,
+            channelName: TableInfo.options.gameType + TableInfo.options.tableID,
+
+        }, (res) => {
+            console.log('声网token---', res);
+
+            if (this.joined) {
+                agora && agora.leaveChannel();
+                console.log(`agora && agora.leaveChannel();`);
+            } else {
+                agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+                agora && agora.joinChannel(res.token, TableInfo.options.gameType + TableInfo.options.tableID, "", App.Player.id);
+                console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
+            }
+        })
+        // cc.loader.loadRes("GameBase/preVoice", (err, prefab) => {
+        //     if (!err) {
+        //         this.winVoice = cc.instantiate(prefab).getComponent('ModuleVoice');
+        //         this.winVoice.controlBtn = this.voiceCtrlButton;
+        //         this.winVoice.node.parent = cc.find('Canvas');
+        //         //this.winVoice.init();
+        //     } else {
+        //         //cc.log('initVoice error');
+        //         //this.initVoice();
+        //     }
+        // });
+    }
 
     showGps() {
 
     }
 
-    gameReconnect(){
+    gameReconnect() {
         //TODO
     }
 
@@ -127,8 +151,14 @@ export default class BaseGame extends cc.Component {
         cc.game.restart();
     }
 
-    addEvents() { }
-    removeEvents() { }
+    addEvents() {
+      
+    }
+    removeEvents() {
+       
+    }
+
+
     update(dt) {
         this.dtCount++;
         if (this.dtCount % 60) {
