@@ -1,6 +1,0 @@
-framework module Pods_xyqp_client_mobile {
-  umbrella header "Pods-xyqp_client-mobile-umbrella.h"
-
-  export *
-  module * { export * }
-}
