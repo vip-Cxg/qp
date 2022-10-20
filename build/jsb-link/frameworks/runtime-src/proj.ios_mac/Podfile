@@ -1,5 +1,6 @@
 platform :ios, '9.0'
 target 'xyqp_client-mobile' do
+  pod 'AgoraAudio_iOS','3.4.6'
   # if swift
   use_frameworks!
   pod 'AFNetworking' , '~> 4.0'

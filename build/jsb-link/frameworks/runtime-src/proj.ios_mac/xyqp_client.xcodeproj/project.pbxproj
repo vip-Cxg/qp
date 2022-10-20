@@ -20,9 +20,14 @@
 		1AE159EC18C9DF3600FCA372 /* project.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A1A081B18C9DF05005C6854 /* project.json */; };
 		1AFFCD7E1F7A5D5400628F2C /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFFCD7B1F7A5D4F00628F2C /* LaunchScreenBackground.png */; };
 		1AFFCD7F1F7A5D5400628F2C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC56911F7A005D00826282 /* Images.xcassets */; };
+		1EFF8C82B5A442779AE01991 /* AgoraManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CCBC8C6B5B747C4885D5295 /* AgoraManager.cpp */; };
+		223755FECD9E40E893B759D5 /* LogJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F2EF74C61B45FA8CA60F98 /* LogJson.cpp */; };
 		22CC757121BA5B5C00FBF2F7 /* SDKWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC756D21BA5B5C00FBF2F7 /* SDKWrapper.m */; };
 		28A34C10225B462E00926306 /* subpackages in Resources */ = {isa = PBXBuildFile; fileRef = 28A34C0F225B462E00926306 /* subpackages */; };
 		294D7D801D0D668F002CE7B7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D7D7F1D0D668F002CE7B7 /* CoreText.framework */; };
+		32C2005024014F51B80E55FC /* RtcChannelBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 352AF6FE20B248ADBA8C2603 /* RtcChannelBridge.cpp */; };
+		37167A3D343B4E3487C41B40 /* AudioPlaybackDeviceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C0FE817B7584951ADACAA1E /* AudioPlaybackDeviceManager.cpp */; };
+		378EFC8D55104CEFA8BBCF8A /* metadata_observer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D44F4A286153472BB6096F6D /* metadata_observer.cpp */; };
 		4011F9CF212BD6750091CC5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4011F9D1212BD6750091CC5B /* LaunchScreen.storyboard */; };
 		4011F9D5212BD7050091CC5B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4011F9D7212BD7050091CC5B /* Localizable.strings */; };
 		4033CDBC20E4935100DAA37B /* jsb-adapter in Resources */ = {isa = PBXBuildFile; fileRef = 4033CDBB20E4935000DAA37B /* jsb-adapter */; };
@@ -30,7 +35,6 @@
 		467AF6082321FBED00770112 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF6072321FBED00770112 /* WebKit.framework */; };
 		467AF613232881E400770112 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF612232881E400770112 /* AVKit.framework */; };
 		467AF615232881EB00770112 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF614232881EB00770112 /* CoreMedia.framework */; };
-		4DD5E6AB1CDAF6430046171E /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */; };
 		4DD5E6B11CDAF65C0046171E /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */; };
 		502380DC17EBB88200990C9B /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 502380DB17EBB88200990C9B /* libcurl.dylib */; };
 		509D4A8117EBB24E00697056 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4545215156E28EF00887EB5 /* AppDelegate.cpp */; };
@@ -49,7 +53,18 @@
 		509D4AE717EBB81800697056 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509D4AE617EBB81800697056 /* OpenGL.framework */; };
 		509D4AE917EBB82000697056 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509D4AE817EBB82000697056 /* AppKit.framework */; };
 		509D4AEB17EBB82600697056 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509D4AEA17EBB82600697056 /* IOKit.framework */; };
+		5233227897CE4CA2B444CFDE /* RtcEngineBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 409232E131C34147AEE6AC7C /* RtcEngineBridge.cpp */; };
+		58A170452901AEBA00EAE49D /* BuglyAgent.mm in Sources */ = {isa = PBXBuildFile; fileRef = 58A1703E2901AEBA00EAE49D /* BuglyAgent.mm */; };
+		58A170462901AEBA00EAE49D /* DeviceUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A1703F2901AEBA00EAE49D /* DeviceUID.m */; };
+		58A170472901AEBA00EAE49D /* CrashReport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 58A170402901AEBA00EAE49D /* CrashReport.mm */; };
+		58A170482901AEBA00EAE49D /* TQLocationConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 58A170442901AEBA00EAE49D /* TQLocationConverter.mm */; };
+		58A1704A2901AF0B00EAE49D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A170492901AF0B00EAE49D /* AdSupport.framework */; };
+		58A1704C2901AF2A00EAE49D /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A1704B2901AF2A00EAE49D /* AppTrackingTransparency.framework */; };
+		58A1704E2901AF3400EAE49D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A1704D2901AF3400EAE49D /* MapKit.framework */; };
+		6BC3EB4D25334F6CB7BE760D /* VideoDeviceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E676B56F2E194B10AB3C8092 /* VideoDeviceManager.cpp */; };
+		6FCD8506AA694387B89EDCFF /* jsb_agoraCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85914C1A35054E6EB04363A0 /* jsb_agoraCreator.cpp */; };
 		7066DAC915C2A39C30318982 /* Pods_xyqp_client_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649045E181F769EC1299E719 /* Pods_xyqp_client_mobile.framework */; };
+		7AA2D93C8DCC4FA29DA33C2F /* RtcEngineEventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 052A4D7B0DD04B95907F6122 /* RtcEngineEventHandler.cpp */; };
 		A92275421517C094001B78AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275411517C094001B78AA /* QuartzCore.framework */; };
 		A92275441517C094001B78AA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275431517C094001B78AA /* OpenGLES.framework */; };
 		A92275461517C094001B78AA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275451517C094001B78AA /* OpenAL.framework */; };
@@ -63,6 +78,7 @@
 		ABE456E71D34F87F00F1F400 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE456E61D34F87F00F1F400 /* MobileCoreServices.framework */; };
 		ABE456E91D34F88A00F1F400 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE456E81D34F88A00F1F400 /* SystemConfiguration.framework */; };
 		ABE456EB1D34F89000F1F400 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE456EA1D34F89000F1F400 /* GameController.framework */; };
+		B6A68BC388F345218EBFD44A /* ApiTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC78B67AE946FABCD63174 /* ApiTester.cpp */; };
 		BA3A85EC1A724AE900924D24 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3A85EB1A724AE900924D24 /* Security.framework */; };
 		BAEE4D841AC40C11003BEB0F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEE4D831AC40C11003BEB0F /* Security.framework */; };
 		C03780EB18BEE0E400FE4F13 /* src in Resources */ = {isa = PBXBuildFile; fileRef = C03780EA18BEE0E400FE4F13 /* src */; };
@@ -70,34 +86,25 @@
 		C06E23CC18CEFE680093C81A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C06E23CB18CEFE680093C81A /* main.cpp */; };
 		C0799CB918BAE62000E9C828 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C0799CB518BAE62000E9C828 /* res */; };
 		C0799CBA18BAE62000E9C828 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C0799CB518BAE62000E9C828 /* res */; };
+		C8A4989077ED4B1881831F19 /* AudioRecordingDeviceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF4835FE3361473E9E3C350D /* AudioRecordingDeviceManager.cpp */; };
+		CFC4B494CCCF49B185920E16 /* RtcChannelEventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0709C2701B2E44BE9993F2FB /* RtcChannelEventHandler.cpp */; };
 		D454520C156E22BD00887EB5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D454520B156E22BD00887EB5 /* libz.dylib */; };
 		D4545227156E28EF00887EB5 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4545215156E28EF00887EB5 /* AppDelegate.cpp */; };
 		D6B061241803AB9F0077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B061231803AB9F0077942B /* CoreMotion.framework */; };
+		ED1A1986B5DD469CB5DF7571 /* VideoFrameObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4E7B8EFA57545C69164BAB4 /* VideoFrameObserver.cpp */; };
+		F85438A1B62840269986917A /* Extensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99A5E3A74B694AF5B6D12240 /* Extensions.cpp */; };
 		FA676C761C71AFA200E091E3 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA676C751C71AFA200E091E3 /* libiconv.dylib */; };
 		FA676C781C71AFAB00E091E3 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA676C771C71AFAB00E091E3 /* libiconv.dylib */; };
+		FD3CE78A851A47A796CAC497 /* EventTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4348DC8C6D714E85B822C05A /* EventTester.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4DD0DB551CDAF5F40099AD86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1551A33F158F2AB200E66CFE;
-			remoteInfo = "libcocos2d Mac";
-		};
 		4DD0DB571CDAF5F40099AD86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A07A4D641783777C0073F6A7;
 			remoteInfo = "libcocos2d iOS";
-		};
-		4DD5E6A91CDAF6330046171E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1551A33E158F2AB200E66CFE;
-			remoteInfo = "libcocos2d Mac";
 		};
 		4DD5E6AF1CDAF6520046171E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -113,6 +120,8 @@
 		051C018221E32AE400D4A347 /* UserConfigIOS.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UserConfigIOS.debug.xcconfig; path = ios/UserConfigIOS.debug.xcconfig; sourceTree = "<group>"; };
 		051C018521E32AF000D4A347 /* UserConfigMac.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UserConfigMac.release.xcconfig; sourceTree = "<group>"; };
 		051C018621E32AF100D4A347 /* UserConfigMac.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UserConfigMac.debug.xcconfig; sourceTree = "<group>"; };
+		052A4D7B0DD04B95907F6122 /* RtcEngineEventHandler.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RtcEngineEventHandler.cpp; path = agora/callback/rtcEngineCallback/RtcEngineEventHandler.cpp; sourceTree = "<group>"; };
+		0709C2701B2E44BE9993F2FB /* RtcChannelEventHandler.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RtcChannelEventHandler.cpp; path = agora/callback/rtcChannnelCallback/RtcChannelEventHandler.cpp; sourceTree = "<group>"; };
 		102C25F345D685946B5872B6 /* Pods-xyqp_client-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xyqp_client-mobile.debug.xcconfig"; path = "Target Support Files/Pods-xyqp_client-mobile/Pods-xyqp_client-mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		1A1A081B18C9DF05005C6854 /* project.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = project.json; path = ../../../project.json; sourceTree = "<group>"; };
 		1A37E9D9200DEF110078AF72 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
@@ -132,10 +141,13 @@
 		22CC757021BA5B5C00FBF2F7 /* SDKWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDKWrapper.h; path = ios/SDKWrapper.h; sourceTree = "<group>"; };
 		28A34C0F225B462E00926306 /* subpackages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = subpackages; path = ../../../subpackages; sourceTree = "<group>"; };
 		294D7D7F1D0D668F002CE7B7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		352AF6FE20B248ADBA8C2603 /* RtcChannelBridge.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RtcChannelBridge.cpp; path = agora/rtcChannel/RtcChannelBridge.cpp; sourceTree = "<group>"; };
 		4011F9D2212BD6810091CC5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4011F9D8212BD7150091CC5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4011F9D9212BD73A0091CC5B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4033CDBB20E4935000DAA37B /* jsb-adapter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "jsb-adapter"; path = "../../../jsb-adapter"; sourceTree = "<group>"; };
+		409232E131C34147AEE6AC7C /* RtcEngineBridge.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RtcEngineBridge.cpp; path = agora/rtcEngine/RtcEngineBridge.cpp; sourceTree = "<group>"; };
+		4348DC8C6D714E85B822C05A /* EventTester.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EventTester.cpp; path = agora/test/EventTester.cpp; sourceTree = "<group>"; };
 		467AF6072321FBED00770112 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		467AF612232881E400770112 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		467AF614232881EB00770112 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
@@ -156,7 +168,24 @@
 		509D4AE617EBB81800697056 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		509D4AE817EBB82000697056 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		509D4AEA17EBB82600697056 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		58A1703D2901AEBA00EAE49D /* DeviceUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceUID.h; path = ios/DeviceUID.h; sourceTree = "<group>"; };
+		58A1703E2901AEBA00EAE49D /* BuglyAgent.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BuglyAgent.mm; path = ios/BuglyAgent.mm; sourceTree = "<group>"; };
+		58A1703F2901AEBA00EAE49D /* DeviceUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceUID.m; path = ios/DeviceUID.m; sourceTree = "<group>"; };
+		58A170402901AEBA00EAE49D /* CrashReport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CrashReport.mm; path = ios/CrashReport.mm; sourceTree = "<group>"; };
+		58A170412901AEBA00EAE49D /* CrashReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrashReport.h; path = ios/CrashReport.h; sourceTree = "<group>"; };
+		58A170422901AEBA00EAE49D /* TQLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TQLocationConverter.h; path = ios/TQLocationConverter.h; sourceTree = "<group>"; };
+		58A170432901AEBA00EAE49D /* BuglyAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuglyAgent.h; path = ios/BuglyAgent.h; sourceTree = "<group>"; };
+		58A170442901AEBA00EAE49D /* TQLocationConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TQLocationConverter.mm; path = ios/TQLocationConverter.mm; sourceTree = "<group>"; };
+		58A170492901AF0B00EAE49D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
+		58A1704B2901AF2A00EAE49D /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = DEVELOPER_DIR; };
+		58A1704D2901AF3400EAE49D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		649045E181F769EC1299E719 /* Pods_xyqp_client_mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xyqp_client_mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F2EF74C61B45FA8CA60F98 /* LogJson.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LogJson.cpp; path = agora/test/LogJson.cpp; sourceTree = "<group>"; };
+		7C0FE817B7584951ADACAA1E /* AudioPlaybackDeviceManager.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AudioPlaybackDeviceManager.cpp; path = agora/deviceManager/audioDeviceManager/AudioPlaybackDeviceManager.cpp; sourceTree = "<group>"; };
+		7CCBC8C6B5B747C4885D5295 /* AgoraManager.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AgoraManager.cpp; path = agora/AgoraManager.cpp; sourceTree = "<group>"; };
+		85914C1A35054E6EB04363A0 /* jsb_agoraCreator.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = jsb_agoraCreator.cpp; path = agora/jsb_agoraCreator.cpp; sourceTree = "<group>"; };
+		8DAC78B67AE946FABCD63174 /* ApiTester.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ApiTester.cpp; path = agora/test/ApiTester.cpp; sourceTree = "<group>"; };
+		99A5E3A74B694AF5B6D12240 /* Extensions.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Extensions.cpp; path = agora/Extensions.cpp; sourceTree = "<group>"; };
 		A922753D1517C094001B78AA /* xyqp_client-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xyqp_client-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92275411517C094001B78AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A92275431517C094001B78AA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -179,12 +208,16 @@
 		C03780EA18BEE0E400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
 		C06E23CB18CEFE680093C81A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C0799CB518BAE62000E9C828 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
+		D44F4A286153472BB6096F6D /* metadata_observer.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = metadata_observer.cpp; path = agora/observer/metadata/metadata_observer.cpp; sourceTree = "<group>"; };
 		D454520B156E22BD00887EB5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D4545215156E28EF00887EB5 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		D4545216156E28EF00887EB5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D4E7B8EFA57545C69164BAB4 /* VideoFrameObserver.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = VideoFrameObserver.cpp; path = agora/VideoFrameObserver.cpp; sourceTree = "<group>"; };
 		D6B061231803AB9F0077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		E676B56F2E194B10AB3C8092 /* VideoDeviceManager.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = VideoDeviceManager.cpp; path = agora/deviceManager/videoDeviceManager/VideoDeviceManager.cpp; sourceTree = "<group>"; };
 		FA676C751C71AFA200E091E3 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
 		FA676C771C71AFAB00E091E3 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		FF4835FE3361473E9E3C350D /* AudioRecordingDeviceManager.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AudioRecordingDeviceManager.cpp; path = agora/deviceManager/audioDeviceManager/AudioRecordingDeviceManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +228,6 @@
 				1A37E9DC200DEF190078AF72 /* SystemConfiguration.framework in Frameworks */,
 				1ACA99231F550A20002DE225 /* JavaScriptCore.framework in Frameworks */,
 				1A499EBB1F0CDDC3004E6AEC /* CFNetwork.framework in Frameworks */,
-				4DD5E6AB1CDAF6430046171E /* libcocos2d Mac.a in Frameworks */,
 				FA676C781C71AFAB00E091E3 /* libiconv.dylib in Frameworks */,
 				BAEE4D841AC40C11003BEB0F /* Security.framework in Frameworks */,
 				502380DC17EBB88200990C9B /* libcurl.dylib in Frameworks */,
@@ -217,6 +249,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A1704E2901AF3400EAE49D /* MapKit.framework in Frameworks */,
+				58A1704C2901AF2A00EAE49D /* AppTrackingTransparency.framework in Frameworks */,
+				58A1704A2901AF0B00EAE49D /* AdSupport.framework in Frameworks */,
 				467AF615232881EB00770112 /* CoreMedia.framework in Frameworks */,
 				467AF613232881E400770112 /* AVKit.framework in Frameworks */,
 				467AF6082321FBED00770112 /* WebKit.framework in Frameworks */,
@@ -275,7 +310,6 @@
 		4DD0DB511CDAF5F40099AD86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */,
 				4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */,
 			);
 			name = Products;
@@ -300,7 +334,6 @@
 				102C25F345D685946B5872B6 /* Pods-xyqp_client-mobile.debug.xcconfig */,
 				AC3AB7BC64EB47712B6F38E8 /* Pods-xyqp_client-mobile.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -331,6 +364,9 @@
 		A92275401517C094001B78AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58A1704D2901AF3400EAE49D /* MapKit.framework */,
+				58A1704B2901AF2A00EAE49D /* AppTrackingTransparency.framework */,
+				58A170492901AF0B00EAE49D /* AdSupport.framework */,
 				467AF614232881EB00770112 /* CoreMedia.framework */,
 				467AF612232881E400770112 /* AVKit.framework */,
 				467AF6072321FBED00770112 /* WebKit.framework */,
@@ -378,6 +414,14 @@
 		D45446CC156DE73F00887EB5 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				58A170432901AEBA00EAE49D /* BuglyAgent.h */,
+				58A1703E2901AEBA00EAE49D /* BuglyAgent.mm */,
+				58A170412901AEBA00EAE49D /* CrashReport.h */,
+				58A170402901AEBA00EAE49D /* CrashReport.mm */,
+				58A1703D2901AEBA00EAE49D /* DeviceUID.h */,
+				58A1703F2901AEBA00EAE49D /* DeviceUID.m */,
+				58A170422901AEBA00EAE49D /* TQLocationConverter.h */,
+				58A170442901AEBA00EAE49D /* TQLocationConverter.mm */,
 				051C018221E32AE400D4A347 /* UserConfigIOS.debug.xcconfig */,
 				051C018121E32AE400D4A347 /* UserConfigIOS.release.xcconfig */,
 				22CC756E21BA5B5C00FBF2F7 /* service */,
@@ -402,6 +446,21 @@
 			children = (
 				D4545215156E28EF00887EB5 /* AppDelegate.cpp */,
 				D4545216156E28EF00887EB5 /* AppDelegate.h */,
+				0709C2701B2E44BE9993F2FB /* RtcChannelEventHandler.cpp */,
+				052A4D7B0DD04B95907F6122 /* RtcEngineEventHandler.cpp */,
+				7C0FE817B7584951ADACAA1E /* AudioPlaybackDeviceManager.cpp */,
+				FF4835FE3361473E9E3C350D /* AudioRecordingDeviceManager.cpp */,
+				E676B56F2E194B10AB3C8092 /* VideoDeviceManager.cpp */,
+				D44F4A286153472BB6096F6D /* metadata_observer.cpp */,
+				352AF6FE20B248ADBA8C2603 /* RtcChannelBridge.cpp */,
+				409232E131C34147AEE6AC7C /* RtcEngineBridge.cpp */,
+				8DAC78B67AE946FABCD63174 /* ApiTester.cpp */,
+				4348DC8C6D714E85B822C05A /* EventTester.cpp */,
+				78F2EF74C61B45FA8CA60F98 /* LogJson.cpp */,
+				7CCBC8C6B5B747C4885D5295 /* AgoraManager.cpp */,
+				99A5E3A74B694AF5B6D12240 /* Extensions.cpp */,
+				85914C1A35054E6EB04363A0 /* jsb_agoraCreator.cpp */,
+				D4E7B8EFA57545C69164BAB4 /* VideoFrameObserver.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -421,7 +480,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4DD5E6AA1CDAF6330046171E /* PBXTargetDependency */,
 			);
 			name = "xyqp_client-desktop";
 			productName = xyqp_client;
@@ -454,7 +512,12 @@
 		A92275341517C094001B78AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 500;
+				TargetAttributes = {
+					A922753C1517C094001B78AA = {
+						DevelopmentTeam = MD9JZ2AF94;
+					};
+				};
 			};
 			buildConfigurationList = A92275371517C094001B78AA /* Build configuration list for PBXProject "xyqp_client" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -484,13 +547,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libcocos2d Mac.a";
-			remoteRef = 4DD0DB551CDAF5F40099AD86 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -564,11 +620,21 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-xyqp_client-mobile/Pods-xyqp_client-mobile-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${PODS_ROOT}/AgoraAudio_iOS/AgoraAIDenoiseExtension.framework",
+				"${PODS_ROOT}/AgoraAudio_iOS/AgoraCore.framework",
+				"${PODS_ROOT}/AgoraAudio_iOS/AgoraRtcKit.framework",
+				"${PODS_ROOT}/AgoraAudio_iOS/AgoraSoundTouch.framework",
+				"${PODS_ROOT}/AgoraAudio_iOS/Agorafdkaac.framework",
 				"${BUILT_PRODUCTS_DIR}/INTULocationManager/INTULocationManager.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAIDenoiseExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/INTULocationManager.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,20 +660,34 @@
 			files = (
 				509D4AC917EBB2AB00697056 /* RootViewController.mm in Sources */,
 				D4545227156E28EF00887EB5 /* AppDelegate.cpp in Sources */,
+				58A170462901AEBA00EAE49D /* DeviceUID.m in Sources */,
 				509D4AC817EBB2AB00697056 /* main.m in Sources */,
 				22CC757121BA5B5C00FBF2F7 /* SDKWrapper.m in Sources */,
+				58A170452901AEBA00EAE49D /* BuglyAgent.mm in Sources */,
 				509D4ABC17EBB2AB00697056 /* AppController.mm in Sources */,
+				CFC4B494CCCF49B185920E16 /* RtcChannelEventHandler.cpp in Sources */,
+				7AA2D93C8DCC4FA29DA33C2F /* RtcEngineEventHandler.cpp in Sources */,
+				37167A3D343B4E3487C41B40 /* AudioPlaybackDeviceManager.cpp in Sources */,
+				C8A4989077ED4B1881831F19 /* AudioRecordingDeviceManager.cpp in Sources */,
+				6BC3EB4D25334F6CB7BE760D /* VideoDeviceManager.cpp in Sources */,
+				378EFC8D55104CEFA8BBCF8A /* metadata_observer.cpp in Sources */,
+				32C2005024014F51B80E55FC /* RtcChannelBridge.cpp in Sources */,
+				5233227897CE4CA2B444CFDE /* RtcEngineBridge.cpp in Sources */,
+				B6A68BC388F345218EBFD44A /* ApiTester.cpp in Sources */,
+				FD3CE78A851A47A796CAC497 /* EventTester.cpp in Sources */,
+				223755FECD9E40E893B759D5 /* LogJson.cpp in Sources */,
+				1EFF8C82B5A442779AE01991 /* AgoraManager.cpp in Sources */,
+				F85438A1B62840269986917A /* Extensions.cpp in Sources */,
+				58A170482901AEBA00EAE49D /* TQLocationConverter.mm in Sources */,
+				6FCD8506AA694387B89EDCFF /* jsb_agoraCreator.cpp in Sources */,
+				58A170472901AEBA00EAE49D /* CrashReport.mm in Sources */,
+				ED1A1986B5DD469CB5DF7571 /* VideoFrameObserver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4DD5E6AA1CDAF6330046171E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libcocos2d Mac";
-			targetProxy = 4DD5E6A91CDAF6330046171E /* PBXContainerItemProxy */;
-		};
 		4DD5E6B01CDAF6520046171E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libcocos2d iOS";
@@ -746,6 +826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = MD9JZ2AF94;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -756,14 +837,29 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/ios/agora/include",
+					"$(SRCROOT)/../Classes/agora",
+					"$(SRCROOT)/../Classes/agora/callback",
+					"$(SRCROOT)/../Classes/agora/common",
+					"$(SRCROOT)/../Classes/agora/include",
+					"$(SRCROOT)/../Classes/agora/observer",
+					"$(SRCROOT)/../Classes/agora/rtcChannel",
+					"$(SRCROOT)/../Classes/agora/rtcEngine",
+					"$(SRCROOT)/../Classes/agora/test",
+				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LIBRARY_SEARCH_PATHS = "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/external/ios/libs";
+				LIBRARY_SEARCH_PATHS = (
+					"/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/external/ios/libs",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.ios;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -780,6 +876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = MD9JZ2AF94;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -789,14 +886,29 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/ios/agora/include",
+					"$(SRCROOT)/../Classes/agora",
+					"$(SRCROOT)/../Classes/agora/callback",
+					"$(SRCROOT)/../Classes/agora/common",
+					"$(SRCROOT)/../Classes/agora/include",
+					"$(SRCROOT)/../Classes/agora/observer",
+					"$(SRCROOT)/../Classes/agora/rtcChannel",
+					"$(SRCROOT)/../Classes/agora/rtcEngine",
+					"$(SRCROOT)/../Classes/agora/test",
+				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LIBRARY_SEARCH_PATHS = "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/external/ios/libs";
+				LIBRARY_SEARCH_PATHS = (
+					"/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/external/ios/libs",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.ios;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
