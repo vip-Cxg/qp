@@ -150,7 +150,7 @@ android.applicationVariants.all { variant ->
 
 dependencies {
 
-   implementation 'com.android.support:appcompat-v7:23.4.0'
+    implementation 'com.android.support:appcompat-v7:23.4.0'
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation project(':libcocos2dx')
@@ -161,4 +161,5 @@ dependencies {
     // implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation 'com.tencent.bugly:crashreport:3.3.3'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.700'
+    implementation files('libs/agora-rtc-sdk.jar')
 }

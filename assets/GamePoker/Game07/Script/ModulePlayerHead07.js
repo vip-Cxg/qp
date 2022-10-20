@@ -2,6 +2,8 @@ let TableInfo = require("../../../Main/Script/TableInfo");
 let cache = require('../../../Main/Script/Cache');
 const utils = require("../../../Main/Script/utils");
 var { GameConfig } = require("../../../GameBase/GameConfig");
+const Cache = require("../../../Main/Script/Cache");
+const { App } = require("../../../script/ui/hall/data/App");
 let posBaodan = [
     cc.v2(106, 48),
     cc.v2(-106, 48),
@@ -71,9 +73,10 @@ cc.Class({
             cc.v2(0, -120),
             cc.v2(0, 120)
         ]
-        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
-        this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx]==0;
 
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
+        
         console.log("位置--", TableInfo.realIdx, playPos[TableInfo.realIdx[data.idx]])
         this.node.position = playPos[TableInfo.realIdx[data.idx]];
         let cardPos = [
@@ -88,7 +91,7 @@ cc.Class({
 
         if (utils.isNullOrEmpty(data.prop))
             return;
-
+        this.voiceContent.active=true;
         this.playLight.active = false;
         // this.sprBaodan.active = false;
         this.sprStatus.active = data.offline;
@@ -258,25 +261,24 @@ cc.Class({
 
 
     changeLocalAudio() {
-        this.muteLocal = !this.muteLocal;
-        this.updateMute();
-        agora && agora.muteLocalAudioStream(this.muteLocal);
-
-
+        if(this.playerData.prop&&this.playerData.prop.pid==App.Player.id){
+            this.muteLocal = !this.muteLocal;
+            this.updateMute();
+            agora && agora.muteLocalAudioStream(this.muteLocal);
+        }
     },
     changAllRemoteAudio() {
-        this.muteRemote = !this.muteRemote;
-        this.updateMute();
-        agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+        if(this.playerData.prop&&this.playerData.prop.pid==App.Player.id){
+
+            this.muteRemote = !this.muteRemote;
+            this.updateMute();
+            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+        }
     },
 
     updateMute() {
-        console.log("麦克风显示---", this.muteLocal)
-        console.log("喇叭显示---", this.muteRemote)
         this.localAudioSpr.active = !this.muteLocal;
-        // this.disableLocalSprite.node.active = this.muteLocal;
         this.allRemoteSprite.spriteFrame = this.muteRemote ? this.disableRemoteSprite : this.remoteSprite;
-
     },
 
     otherIconChange(mute) {

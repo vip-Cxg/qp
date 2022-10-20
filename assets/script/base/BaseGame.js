@@ -75,17 +75,22 @@ export default class BaseGame extends cc.Component {
             channelName: TableInfo.options.gameType + TableInfo.options.tableID,
 
         }, (res) => {
-            console.log('声网token---', res);
+            console.log('声网token---', res.token);
 
-            if (this.joined) {
-                agora && agora.leaveChannel();
-                console.log(`agora && agora.leaveChannel();`);
-            } else {
+            if (!this.joined) {
                 agora && agora.setDefaultAudioRouteToSpeakerphone(true);
                 agora && agora.joinChannel(res.token, TableInfo.options.gameType + TableInfo.options.tableID, "", App.Player.id);
                 console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
             }
         })
+        // let testToken='007eJxTYOD/PkHfiO1T8ZlVbtbcv8+tVb/Zlu/buPrvjPvrXL+c8Y9WYEhLMzVMMbNItTQxTTJJs0i1MLMwSjVMTEwyMk+2tDRIerImILkhkJFBcakmCyMDBIL4zAwBLt4MDACcUSAg'
+        // if (!this.joined) {
+        //     agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+        //     agora && agora.joinChannel(testToken, "PDK", "", App.Player.id);
+        // }
+        
+
+
         // cc.loader.loadRes("GameBase/preVoice", (err, prefab) => {
         //     if (!err) {
         //         this.winVoice = cc.instantiate(prefab).getComponent('ModuleVoice');

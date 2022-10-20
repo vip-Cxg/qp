@@ -159,6 +159,8 @@ export default class SceneTable19 extends BaseGame {
     ruleContent = null;
     @property(cc.Label)
     lblRule = null;
+    @property(cc.Node)
+    playerContent = null;
 
     summaryData = [];
     lastTxTime = 0;
@@ -216,6 +218,12 @@ export default class SceneTable19 extends BaseGame {
             this.bgTing.active = false;
         })
 
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
+
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_SHOW_SAME_CARD, this.showSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_RESET_SAME_CARD, this.resetSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_CHECK_HU, this.handleCheckHu, this)
@@ -233,7 +241,12 @@ export default class SceneTable19 extends BaseGame {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.HNMJ_GAME_SUMMARY, this.roundReset, this)
         App.EventManager.removeEventListener(GameConfig.GameEventNames.MJ_GAME_NEXT, this.sendReady, this)
 
-
+        // this.node.off(GameConfig.GameEventNames.PDK_BACK_HALL, this.backHall, this);
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
     }
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -437,6 +450,8 @@ export default class SceneTable19 extends BaseGame {
         // this.players = new Array(4);
         this.players = new Array(TableInfo.options.rules.person);
 
+        this.initVoice();
+
         //初始化玩家状态显示
         this.initPlayer(data);
         //TODO  没坐下
@@ -452,7 +467,7 @@ export default class SceneTable19 extends BaseGame {
                 this.seatBtnContent.getChildByName('seat' + idx).active = GameUtils.isNullOrEmpty(player.prop) && data.idx == -1;
                 let nodePlayer = cc.instantiate(this.player);
                 //TODO  playerContainer
-                this.node.addChild(nodePlayer);
+                this.playerContent.addChild(nodePlayer);
                 this.players[idx] = nodePlayer.getComponent('PlayerMJ');
                 this.players[idx].playerInit(player);
                 if (((player.idx == TableInfo.idx) && !player.ready && data.status != GameConfig.GameStatus.START))
@@ -1838,6 +1853,29 @@ export default class SceneTable19 extends BaseGame {
     showObservers() {
         console.log("旁观者--", TableInfo.observers)
         App.pop(GameConfig.pop.ObserversPop);
+    }
+
+    onJoinChannelSuccess(channel, uid, elapsed) {
+        this.joined = true;
+        //开启其他人喇叭
+        agora && agora.muteAllRemoteAudioStreams(false);
+        //关掉自己麦克风
+        agora && agora.muteLocalAudioStream(true);
+        // agora && agora.adjustPlaybackSignalVolume(100);
+        // agora && agora.adjustAudioMixingPlayoutVolume(100);
+    }
+    onLeaveChannel() {
+        this.joined = false;
+    }
+    onUserMuteAudio(uid, muted) {
+        let audioIndex = -1;
+        TableInfo.players.forEach((player) => {
+            if (player&&player.prop&& player.prop?.pid == uid)
+                audioIndex = player.idx;
+        })
+        if (audioIndex != -1) {
+            this.players[TableInfo.realIdx[audioIndex]].otherIconChange(muted);
+        }
     }
     /**解散 */
     showVotePop(voteData) {

@@ -1,9 +1,11 @@
 let DataBase = require('DataBase');
 let audioCtrl = require('audio-ctrl');
 let utils = require("../Main/Script/utils");
- var { GameConfig } = require('./GameConfig');
+var { GameConfig } = require('./GameConfig');
 const Cache = require('../Main/Script/Cache');
 const { App } = require('../script/ui/hall/data/App');
+const Connector = require('../Main/NetWork/Connector');
+const TableInfo = require('../Main/Script/TableInfo');
 cc.Class({
     extends: cc.Component,
 
@@ -11,13 +13,15 @@ cc.Class({
         // voiceCtrlButton: cc.Node,
         lblPhoneTime: cc.Label,
         dtCount: 0,
+        joined: false
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    playManageAudio  (msg) {
+    playManageAudio(msg) {
 
-        console.log("播放音效--",msg);
+        console.log("播放音效--", msg);
         let game = DataBase.gameType < 10 ? ("Game0" + DataBase.gameType) : ("Game" + DataBase.gameType);
         if (!cc.sys.isNative) {
             return;
@@ -47,7 +51,6 @@ cc.Class({
         // this.initShare();
         this.initChat();
         // this.initVote();
-        // this.initVoice();
         // this.showPlayerInfo();
         // this.initPlayerInfo();
         // this.initAudioManage();
@@ -68,34 +71,55 @@ cc.Class({
         audioCtrl.getInstance().playBGM(url);
         // audioCtrl.getInstance().playBGM(this.bgmClip);
     },
-    removeDir  () {
+    removeDir() {
         let game = DataBase.gameType < 10 ? ("Game0" + DataBase.gameType) : ("Game" + DataBase.gameType);
         if (jsb.fileUtils.isDirectoryExist(jsb.fileUtils.getWritablePath() + "remote-asset")) {
             jsb.fileUtils.removeDirectory(jsb.fileUtils.getWritablePath() + "remote-asset");
             DataBase.setString(DataBase.STORAGE_KEY.AUDIO[DataBase.gameType], "");
         }
     },
-    // initVoice() {
-    //     cc.loader.loadRes("GameBase/preVoice", (err, prefab) => {
-    //         if (!err) {
-    //             this.winVoice = cc.instantiate(prefab).getComponent('ModuleVoice');
-    //             this.winVoice.controlBtn = this.voiceCtrlButton;
-    //             this.winVoice.node.parent = cc.find('Canvas');
-    //             //this.winVoice.init();
-    //         } else {
-    //             //cc.log('initVoice error');
-    //             //this.initVoice();
-    //         }
-    //     });
-    // },
+    initVoice() {
+        Connector.request('http://120.27.209.239:8082/fetch_rtc_token', {
+            uid: App.Player.id,
+            channelName: TableInfo.options.gameType + TableInfo.options.tableID,
+
+        }, (res) => {
+            console.log('声网token---', res.token);
+
+            if (!this.joined) {
+                agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+                agora && agora.joinChannel(res.token, TableInfo.options.gameType + TableInfo.options.tableID, "", App.Player.id);
+                console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
+            }
+        })
+        // let testToken = '007eJxTYOD/PkHfiO1T8ZlVbtbcv8+tVb/Zlu/buPrvjPvrXL+c8Y9WYEhLMzVMMbNItTQxTTJJs0i1MLMwSjVMTEwyMk+2tDRIerImILkhkJFBcakmCyMDBIL4zAwBLt4MDACcUSAg'
+        // if (!this.joined) {
+        //     agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+        //     agora && agora.joinChannel(testToken, 'PDK', "", App.Player.id);
+        // }
+
+
+
+        // cc.loader.loadRes("GameBase/preVoice", (err, prefab) => {
+        //     if (!err) {
+        //         this.winVoice = cc.instantiate(prefab).getComponent('ModuleVoice');
+        //         this.winVoice.controlBtn = this.voiceCtrlButton;
+        //         this.winVoice.node.parent = cc.find('Canvas');
+        //         //this.winVoice.init();
+        //     } else {
+        //         //cc.log('initVoice error');
+        //         //this.initVoice();
+        //     }
+        // });
+    },
 
     showGps() {
 
     },
-    gameReconnect(){
+    gameReconnect() {
         //TODO
     },
-    initShare  () {
+    initShare() {
         cc.loader.loadRes("GameBase/preShare", (err, prefab) => {
             if (!err) {
                 this.share = cc.instantiate(prefab).getComponent('ModuleShare');
@@ -104,13 +128,13 @@ cc.Class({
             }
         });
     },
-    showSet () {
-        
+    showSet() {
+
         // utils.pop(GameConfig.pop.GameSetting);
         App.pop(GameConfig.pop.GameSettingPop)
     },
 
-    initChat  () {
+    initChat() {
         cc.loader.loadRes("GameBase/preChat", (err, prefab) => {
             if (!err) {
                 this.chat = cc.instantiate(prefab).getComponent('ModuleChat');
@@ -123,12 +147,12 @@ cc.Class({
         });
     },
 
-    showChat  () {
+    showChat() {
         if (this.chat == null)
             return;
 
 
-        
+
         let nowTime = new Date().getTime();
         if (nowTime - this.lastClickChat < 1000) {
             return;
@@ -139,7 +163,7 @@ cc.Class({
         // }
     },
 
-    restartGame  () {
+    restartGame() {
         audioCtrl.getInstance().stopAll();
         cc.game.restart();
     },

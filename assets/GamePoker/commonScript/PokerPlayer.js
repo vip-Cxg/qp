@@ -3,6 +3,7 @@ import Cache from "../../Main/Script/Cache";
 import TableInfo from "../../Main/Script/TableInfo";
 import GameUtils from "../../script/common/GameUtils";
 import Avatar from "../../script/ui/common/Avatar";
+import { App } from "../../script/ui/hall/data/App";
 import PokerSelfCard from "./PokerSelfCard";
 const posHead = [
     cc.v2(-511, -232),
@@ -66,12 +67,25 @@ export default class PokerPlayer extends cc.Component {
     zhuaCard = null;
 
 
+    @property(cc.Node)
+    voiceContent = null;
+    @property(cc.Node)
+    localAudioSpr = null;
+    @property(cc.Sprite)
+    allRemoteSprite = null;
+    @property(cc.SpriteFrame)
+    disableRemoteSprite = null;
+    @property(cc.SpriteFrame)
+    remoteSprite = null;
+    muteLocal = true;
+    muteRemote = false;
+    
     playerData = null;
     lastTime = 0;
 
     /**初始化玩家状态 */
     init(data, index) {
-        console.log("玩家; ",data)
+        console.log("玩家; ", data)
         this.playerData = data;
         let windowNode = cc.find("Canvas")
 
@@ -82,7 +96,7 @@ export default class PokerPlayer extends cc.Component {
         //     cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + GameConfig.FitScreen, 70)
         // ]
         let playPos = [
-            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2+44),
+            cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2 + 44),
             cc.v2(cc.winSize.width / 2 - this.node.width / 2 - 44, 70),
             cc.v2(-350, cc.winSize.height / 2 - this.node.height / 2),
             cc.v2(-cc.winSize.width / 2 + this.node.width / 2 + 44, 70)
@@ -101,6 +115,16 @@ export default class PokerPlayer extends cc.Component {
             cc.v2(85, -50)
         ]
 
+        let voicePos = [
+            cc.v2(107, 40),
+            cc.v2(-107, 40),
+            cc.v2(-107, 40),
+            cc.v2(107, 40)
+        ]
+
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
+
         this.cardContainer.active = TableInfo.options?.rules.showRemainingCards;
         this.cardContainer.position = cardPos[TableInfo.realIdx[data.idx]];
         this.zhuaScoreContainer.position = zhuaScorePos[TableInfo.realIdx[data.idx]];
@@ -108,6 +132,7 @@ export default class PokerPlayer extends cc.Component {
         if (GameUtils.isNullOrEmpty(data.prop))
             return;
 
+        this.voiceContent.active = true;
         this.playLight.active = false;
         this.zhuaCard.node.active = false;
 
@@ -115,14 +140,14 @@ export default class PokerPlayer extends cc.Component {
         this.sprStatus.active = data.offline;
         this.imgBanker.active = data.idx == TableInfo.zhuang && TableInfo.status != GameConfig.GameStatus.WAIT;
         this.lblZongjifen.string = GameUtils.formatGold(data.wallet);
-        this.zhuaScoreCount.string = data.scores?.credit||0;
+        this.zhuaScoreCount.string = data.scores?.credit || 0;
         this.cardCount.string = typeof data.hands == 'number' ? '' + data.hands : '';
 
-        if(!GameUtils.isNullOrEmpty(data.sign)){
-            this.zhuaCardAnim(data.sign,true)
+        if (!GameUtils.isNullOrEmpty(data.sign)) {
+            this.zhuaCardAnim(data.sign, true)
         }
 
-        this.readyIcon.active = data.ready&&TableInfo.status != GameConfig.GameStatus.START;
+        this.readyIcon.active = data.ready && TableInfo.status != GameConfig.GameStatus.START;
         this.niaoNode.active = data.ready && data.ready.plus;
 
         this.lblName.string = GameUtils.getStringByLength(data.prop.name, 6);
@@ -272,7 +297,7 @@ export default class PokerPlayer extends cc.Component {
     }
     showClock(value) {
         // let a = new cc.Label();
-        console.log('显示倒计时',value);
+        console.log('显示倒计时', value);
 
         let labelNode = this.clock.getChildByName("time").getComponent(cc.Label)
         labelNode.string = GameUtils.isNullOrEmpty(value) ? "15" : "" + parseInt(value);
@@ -318,9 +343,9 @@ export default class PokerPlayer extends cc.Component {
         this.rankSpr.node.runAction(cc.sequence(bp, cc.delayTime(0.3), cc.spawn(cp, cc.moveTo(0.3, cc.v2(-19, 40)))));
     }
     zhuaCardAnim(card, resume = false) {
-        
+
         this.zhuaCard.init(card);
-        let pos = TableInfo.realIdx[this.playerData.idx] == 2 ? cc.v2(-158,0) : cc.v2(0, 125)
+        let pos = TableInfo.realIdx[this.playerData.idx] == 2 ? cc.v2(-158, 0) : cc.v2(0, 125)
         if (resume) {
             this.zhuaCard.node.position = pos;
             this.zhuaCard.node.active = true;
@@ -335,6 +360,30 @@ export default class PokerPlayer extends cc.Component {
         let cp = cc.scaleTo(0.3, 1);
         this.zhuaCard.node.runAction(cc.sequence(bp, cc.delayTime(0.3), cc.spawn(cp, cc.moveTo(0.3, pos))));
 
+    }
+
+    changeLocalAudio() {
+        if (this.playerData.prop && this.playerData.prop.pid == App.Player.id) {
+            this.muteLocal = !this.muteLocal;
+            this.updateMute();
+            agora && agora.muteLocalAudioStream(this.muteLocal);
+        }
+    }
+    changAllRemoteAudio() {
+        if (this.playerData.prop && this.playerData.prop.pid == App.Player.id) {
+            this.muteRemote = !this.muteRemote;
+            this.updateMute();
+            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+        }
+    }
+
+    updateMute() {
+        this.localAudioSpr.active = !this.muteLocal;
+        this.allRemoteSprite.spriteFrame = this.muteRemote ? this.disableRemoteSprite : this.remoteSprite;
+    }
+
+    otherIconChange(mute) {
+        this.localAudioSpr.active = !mute;
     }
 
     removePlayer() {

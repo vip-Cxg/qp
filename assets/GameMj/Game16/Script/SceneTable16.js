@@ -14,6 +14,7 @@ var { GameConfig } = require("../../../GameBase/GameConfig");
 const { Queue } = require("../../Game16/demo/queue");
 const { App } = require('../../../script/ui/hall/data/App');
 const { Calc } = require('../Hulib/calc16');
+const { idx } = require('../../../Main/Script/TableInfo');
 // let Calc = require('../../Game19/Hulib/calc19');//require("../Hulib/calc19");
 const TING_POSTION = [
     cc.v2(6, -168),
@@ -179,7 +180,11 @@ cc.Class({
         })
         // this.ruleBtn.on(cc.Node.EventType.TOUCH_CANCEL, this.hideRuleNode, this);
         // this.ruleBtn.on(cc.Node.EventType.TOUCH_END, this.hideRuleNode, this);
-
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_SHOW_SAME_CARD, this.showSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_RESET_SAME_CARD, this.resetSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_CHECK_HU, this.handleCheckHu, this)
@@ -196,6 +201,12 @@ cc.Class({
         App.EventManager.removeEventListener(GameConfig.GameEventNames.HNMJ_QUEST_CALL, this.questCall, this)
         App.EventManager.removeEventListener(GameConfig.GameEventNames.HNMJ_GAME_SUMMARY, this.roundReset, this)
         App.EventManager.removeEventListener(GameConfig.GameEventNames.MJ_GAME_NEXT, this.sendReady, this)
+   
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
     },
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -401,6 +412,10 @@ cc.Class({
         //初始化玩家状态显示
         this.initPlayer(data);
         //TODO  没坐下
+        
+
+        
+        this.initVoice();
 
         // this.handleSeatDownBtn(data);
 
@@ -1707,6 +1722,7 @@ cc.Class({
         // if (TableInfo.options.mode == 'CUSTOM') {
         // GameConfig.ShowTablePop = true;
         App.confirmPop("是否退出房间", () => {
+            this.onLeaveChannel()
             Connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
         });
         // } else {
@@ -1889,5 +1905,27 @@ cc.Class({
     /**解散 */
     showVotePop(voteData) {
         App.pop(GameConfig.pop.GameVotePop, voteData);
+    },
+    onJoinChannelSuccess(channel, uid, elapsed) {
+        this.joined = true;
+        //开启其他人喇叭
+        agora && agora.muteAllRemoteAudioStreams(false);
+        //关掉自己麦克风
+        agora && agora.muteLocalAudioStream(true);
+        // agora && agora.adjustPlaybackSignalVolume(100);
+        // agora && agora.adjustAudioMixingPlayoutVolume(100);
+    },
+    onLeaveChannel() {
+        this.joined = false;
+    },
+    onUserMuteAudio(uid, muted) {
+        let audioIndex = -1;
+        TableInfo.players.forEach((player) => {
+            if (player&&player.prop&& player.prop?.pid == uid)
+                audioIndex = player.idx;
+        })
+        if (audioIndex != -1) {
+            this.players[TableInfo.realIdx[audioIndex]].otherIconChange(muted);
+        }
     }
 });

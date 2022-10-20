@@ -171,6 +171,11 @@ export default class SceneTable10 extends BaseGame {
     }
     /**添加监听事件 */
     addEvents() {
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
         this.ruleBtn.on(cc.Node.EventType.TOUCH_END, this.showRuleNode, this);
 
         this.node.on(cc.Node.EventType.TOUCH_START, () => {
@@ -199,7 +204,11 @@ export default class SceneTable10 extends BaseGame {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.PDK_CONTINUE_GAME, this.normalReady, this);
 
         // this.node.off(GameConfig.GameEventNames.PDK_BACK_HALL, this.backHall, this);
-
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
     }
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -543,6 +552,7 @@ export default class SceneTable10 extends BaseGame {
             })
         }
 
+        this.initVoice();
         this.setTurn(data);
 
         this.initPlayers(data);
@@ -1282,6 +1292,7 @@ export default class SceneTable10 extends BaseGame {
     }
 
     backHall() {
+        this.onLeaveChannel()
         GameConfig.ShowTablePop = true;
         Cache.showMask("正在返回大厅...请稍后");
         Connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
@@ -1394,8 +1405,10 @@ export default class SceneTable10 extends BaseGame {
     }
     /**返回大厅 */
     onClickExit() {
+
         if (TableInfo.status == GameConfig.GameStatus.START && TableInfo.idx >= 0) return;
         App.confirmPop("是否退出房间", () => {
+            this.onLeaveChannel()
             Connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
         }, () => {
         });
@@ -1492,7 +1505,28 @@ export default class SceneTable10 extends BaseGame {
 
 
     }
-
+    onJoinChannelSuccess(channel, uid, elapsed) {
+        this.joined = true;
+        //开启其他人喇叭
+        agora && agora.muteAllRemoteAudioStreams(false);
+        //关掉自己麦克风
+        agora && agora.muteLocalAudioStream(true);
+        // agora && agora.adjustPlaybackSignalVolume(100);
+        // agora && agora.adjustAudioMixingPlayoutVolume(100);
+    }
+    onLeaveChannel() {
+        this.joined = false;
+    }
+    onUserMuteAudio(uid, muted) {
+        let audioIndex = -1;
+        TableInfo.players.forEach((player) => {
+            if (player.prop?.pid == uid)
+                audioIndex = player.idx;
+        })
+        if (audioIndex != -1) {
+            this.players[TableInfo.realIdx[audioIndex]].otherIconChange(muted);
+        }
+    }
     sortHandsCard() {
         this.layerHandCards.sortCard();
     }

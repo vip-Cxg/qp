@@ -49,6 +49,19 @@ export default class ClubProxyItem extends cc.Component {
     winSummaryScore = null;
 
 
+    @property(cc.Node)
+    voiceContent = null;
+    @property(cc.Node)
+    localAudioSpr = null;
+    @property(cc.Sprite)
+    allRemoteSprite = null;
+    @property(cc.SpriteFrame)
+    disableRemoteSprite = null;
+    @property(cc.SpriteFrame)
+    remoteSprite = null;
+    muteLocal = true;
+    muteRemote = false;
+
     totalTime = 0;
     clockTime = 0;
 
@@ -61,27 +74,18 @@ export default class ClubProxyItem extends cc.Component {
         this.playData = data;
         this.realIdx = TableInfo.realIdx[data.idx];
 
-        if (!GameUtils.isNullOrEmpty(data.prop)) {
-            this.imgHead.avatarUrl = data.prop.head;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '' : data.prop.head;
-            this.imgReady.active = data.ready != null;
-            if (this.realIdx == 1) {
-                this.imgReady.x = -this.imgReady.x;
-                this.betStr.node.x = -82;
-            }
-            this.imgOffline.active = data.offline; // TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? false : data.offline;
-            TableInfo.players[data.idx] = data;
-            this.lblName.string = GameUtils.getStringByLength(data.prop.name, 5);// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '等待加入' : GameUtils.getStringByLength(data.prop.name, 5);
-            this.imgZhuang.active = this.idx == TableInfo.zhuang;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? false : this.idx == TableInfo.zhuang;
-            this.lblScores.string = '' + GameUtils.formatGold(data.wallet);//TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '0' : '' + data.total;
-            this.niaoNode.active = data.ready && data.ready.plus;
-        } else {
-            this.imgOffline.active = false;
-        }
-
+        let voicePos = [
+            cc.v2(75, 0),
+            cc.v2(-75, 0),
+            cc.v2(75, 0),
+            cc.v2(75, 0)
+        ]
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
 
 
         let playPos = [
-            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2+44),
+            cc.v2(this.node.width / 2 - cc.winSize.width / 2 + 44, -cc.winSize.height / 2 + this.node.height / 2 + 44),
             cc.v2(cc.winSize.width / 2 - this.node.width / 2 - 44, 120),
             cc.v2(450, cc.winSize.height / 2 - 128 / 2),
             cc.v2(this.node.width / 2 - cc.winSize.width / 2 + 44, 120)
@@ -94,6 +98,29 @@ export default class ClubProxyItem extends cc.Component {
         this.node.position = playPos[this.realIdx];
         this.winSummaryScore.node.position = scorePos[this.realIdx];
         this.loseSummaryScore.node.position = scorePos[this.realIdx];
+
+        this.voiceContent.active = false;
+
+        this.imgOffline.active = false;
+        if (GameUtils.isNullOrEmpty(data.prop))
+            return;
+
+            
+        this.voiceContent.active = true;
+
+        this.imgHead.avatarUrl = data.prop.head;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '' : data.prop.head;
+        this.imgReady.active = data.ready != null;
+        if (this.realIdx == 1) {
+            this.imgReady.x = -this.imgReady.x;
+            this.betStr.node.x = -82;
+        }
+        this.imgOffline.active = data.offline; // TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? false : data.offline;
+        TableInfo.players[data.idx] = data;
+        this.lblName.string = GameUtils.getStringByLength(data.prop.name, 5);// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '等待加入' : GameUtils.getStringByLength(data.prop.name, 5);
+        this.imgZhuang.active = this.idx == TableInfo.zhuang;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? false : this.idx == TableInfo.zhuang;
+        this.lblScores.string = '' + GameUtils.formatGold(data.wallet);//TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '0' : '' + data.total;
+        this.niaoNode.active = data.ready && data.ready.plus;
+
 
         this.node.on('touchend', () => {
             if (TableInfo.idx != data.idx) {
@@ -154,7 +181,7 @@ export default class ClubProxyItem extends cc.Component {
             let endTime = GameUtils.getTimeStamp(data.clock);
             let newTime = GameUtils.getTimeStamp();
             this.totalTime = (endTime - newTime);
-            this.lblDownTime.string = ''+Math.max(Math.floor(this.totalTime / 1000), 0);
+            this.lblDownTime.string = '' + Math.max(Math.floor(this.totalTime / 1000), 0);
 
 
         } else {
@@ -302,6 +329,32 @@ export default class ClubProxyItem extends cc.Component {
             this.node.destroy();
         }
     }
+
+
+    changeLocalAudio() {
+        if (this.playData.prop && this.playData.prop.pid == App.Player.id) {
+            this.muteLocal = !this.muteLocal;
+            this.updateMute();
+            agora && agora.muteLocalAudioStream(this.muteLocal);
+        }
+    }
+    changAllRemoteAudio() {
+        if (this.playData.prop && this.playData.prop.pid == App.Player.id) {
+            this.muteRemote = !this.muteRemote;
+            this.updateMute();
+            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+        }
+    }
+
+    updateMute() {
+        this.localAudioSpr.active = !this.muteLocal;
+        this.allRemoteSprite.spriteFrame = this.muteRemote ? this.disableRemoteSprite : this.remoteSprite;
+    }
+
+    otherIconChange(mute) {
+        this.localAudioSpr.active = !mute;
+    }
+
     update(dt) {
         if (!this.progressBar.node.active)
             return;
@@ -312,7 +365,7 @@ export default class ClubProxyItem extends cc.Component {
         let newTime = GameUtils.getTimeStamp();
         let time = (endTime - newTime);
         this.lblDownTime.string = Math.max(Math.floor(time / 1000), 0);
-        
+
         if (time <= 0) {
             this.progressBar.progress = 1;
             return;

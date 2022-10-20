@@ -196,7 +196,7 @@ module.exports = {
                 }
             };
             xhr.ontimeout = () => {
-                console.log('request ontimeout' + method + this.logicUrl);
+                console.log('request ontimeout :'+ this.logicUrl + method );
                 cache.hideMask();
                 if (failCallback) {
                     failCallback({ message: "当前网络较差,请稍后再试", type: GameConfig.ErrorType.Timeout })
