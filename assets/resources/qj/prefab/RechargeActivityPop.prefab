@@ -536,7 +536,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "139wKCq9dHU780NO5VAyX7",
+    "fileId": "b8/cD/BchJuaI1vO+JpFDs",
     "sync": false
   },
   {
@@ -761,7 +761,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "29iW/4pHdErLs3s98OJ0H7",
+    "fileId": "b08t8P3QxPWrHEaOfv9fg6",
     "sync": false
   },
   {
@@ -872,7 +872,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "eaArBH4x9FEZa6Rukua3xF",
+    "fileId": "d6b81jbF1Pl4n14xW41fGU",
     "sync": false
   },
   {
@@ -983,7 +983,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "8evUz49sREXZmruuBtLs2T",
+    "fileId": "efm27DsVlKuIseebcVDfWV",
     "sync": false
   },
   {
@@ -1094,7 +1094,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "09ook42aRFrYsl/W+VGwdQ",
+    "fileId": "013NysFi1JVrUG6KNZ1fSA",
     "sync": false
   },
   {
@@ -1205,7 +1205,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "f2bp6VqgFGoYewVi2TS75v",
+    "fileId": "9bqrEmuZhBK6JX880dHuxe",
     "sync": false
   },
   {
@@ -1276,7 +1276,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 672.66,
+      "width": 666.56,
       "height": 130.39999999999998
     },
     "_anchorPoint": {
@@ -1421,7 +1421,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "a2BG3Mf7xMPoK3w/BLtf/g",
+    "fileId": "1fhXXgzL9EVqI+jx+ZwgYq",
     "sync": false
   },
   {
@@ -1451,7 +1451,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 672.66,
+      "width": 666.56,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1504,8 +1504,8 @@
       }
     ],
     "_useOriginalSize": true,
-    "_string": "                  活动截止日期2022年10月20日23时59分",
-    "_N$string": "                  活动截止日期2022年10月20日23时59分",
+    "_string": "                  活动截止日期2022年10月31日23时59分",
+    "_N$string": "                  活动截止日期2022年10月31日23时59分",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1532,7 +1532,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "3cXhal0xRHB4eYJJdFyuHg",
+    "fileId": "5cHPEhNEFARb0ePO2wpNMS",
     "sync": false
   },
   {
@@ -1545,7 +1545,7 @@
     "_enabled": true,
     "_fontFamily": "Arial",
     "_isSystemFontUsed": false,
-    "_N$string": "福利活动1: 充值以上任意金额额外赠送5000元宝\n                  活动截止日期2022年10月20日23时59分\n",
+    "_N$string": "福利活动1: 充值以上任意金额额外赠送5000元宝\n                  活动截止日期2022年10月31日23时59分\n",
     "_N$horizontalAlign": 0,
     "_N$fontSize": 30,
     "_N$font": {
@@ -1748,7 +1748,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "a1q7L40HlNa5m85MV/8iVo",
+    "fileId": "03qnmIzChNLoytBngY+Muo",
     "sync": false
   },
   {
@@ -1859,7 +1859,7 @@
     "asset": {
       "__uuid__": "1e1237fb-16de-4418-98d6-f02cce704c33"
     },
-    "fileId": "48cEyZPDBM1LtH3tclWMo1",
+    "fileId": "acrK45COxJeb+BbvuL26G0",
     "sync": false
   },
   {

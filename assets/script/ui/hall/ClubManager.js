@@ -60,6 +60,7 @@ export class ClubManager {
         this._tableCount = 0;
 
         this._reward = 0;
+        this._level = 0;
     }
 
     get leagueConfig() {
@@ -76,7 +77,7 @@ export class ClubManager {
 
     init(data) {
         let { club, rooms } = data;
-        let { club: { name, id, config, contact, leagueConfig = {}, oglClubID, notice, power: clubPower }, owner, peoples = 0, online = 0, user: { role, score, power: userPower } } = club;
+        let { club: { name, id, config, level, contact, leagueConfig = {}, oglClubID, notice, power: clubPower }, owner, peoples = 0, online = 0, user: { role, score, power: userPower } } = club;
         this._name = name;
         // this._power = power;
         this._id = id;
@@ -90,7 +91,7 @@ export class ClubManager {
             online,
             peoples: 0
         };
-        console.log('初始化club--',data);
+        console.log('初始化club--', data);
         this._reward = data.oglClubScore || 0;
         this._config = config;
         this._notice = notice;
@@ -104,6 +105,8 @@ export class ClubManager {
         this._leagueOnlineMembers = data.leagueOnlineMembers || 0;
 
         this._tableCount = data.tableCount || 0;
+
+        this._level = level || 0;
     }
 
     get reward() {
@@ -135,6 +138,10 @@ export class ClubManager {
 
     set id(value) {
         this._id = value
+    }
+
+    get level() {
+        return this._level;
     }
 
     get applyMembers() {

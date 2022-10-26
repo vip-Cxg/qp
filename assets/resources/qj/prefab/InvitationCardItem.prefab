@@ -235,7 +235,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1100,
+      "width": 569,
       "height": 30.240000000000002
     },
     "_anchorPoint": {
@@ -248,7 +248,7 @@
       "ctor": "Float64Array",
       "array": [
         -409,
-        -10,
+        -7.495,
         0,
         0,
         0,
@@ -380,7 +380,7 @@
     "asset": {
       "__uuid__": "21ac5a9d-db97-4d04-b6fc-bf941fc9a2ae"
     },
-    "fileId": "91i5o6w1FKsKpW93RvBreb",
+    "fileId": "c62/TbQzpEO4t07qal3u8h",
     "sync": false
   },
   {
@@ -491,7 +491,7 @@
     "asset": {
       "__uuid__": "21ac5a9d-db97-4d04-b6fc-bf941fc9a2ae"
     },
-    "fileId": "f8Z4xtF1dOoqANmH4OzAXC",
+    "fileId": "98228NkApJxoX/UTVVdlck",
     "sync": false
   },
   {
@@ -602,7 +602,7 @@
     "asset": {
       "__uuid__": "21ac5a9d-db97-4d04-b6fc-bf941fc9a2ae"
     },
-    "fileId": "44W3IOkZ5OF6dPxTqV9YSb",
+    "fileId": "7b0Ekxv/hJ7ZJdL+l1e2VQ",
     "sync": false
   },
   {
@@ -622,7 +622,7 @@
       "__uuid__": "b791163e-de6b-4e9a-9d2f-3474c77454c5"
     },
     "_N$cacheMode": 0,
-    "_N$maxWidth": 1100,
+    "_N$maxWidth": 569,
     "_N$lineHeight": 24,
     "_N$imageAtlas": null,
     "_N$handleTouchEvent": true,

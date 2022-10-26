@@ -550,7 +550,7 @@ export default class GameUtils {
             GameConfig.FitScreen = 44;
 
         } else {
-            GameConfig.FitScreen = 0;
+            GameConfig.FitScreen = 44;
         }
         // GameConfig.FitScreen = (cc.view.getFrameSize().width - DesignWidth) / 2;
         if ((cc.view.getFrameSize().width / cc.view.getFrameSize().height) >= (DesignWidth / DesignHeight)) {

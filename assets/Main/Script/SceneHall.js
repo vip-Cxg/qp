@@ -371,6 +371,20 @@ export default class SceneHall extends cc.Component {
         console.log('first-audio-frame-decode', e)
     }
 
+    openServer() {
+        let url = 'https://196ad724f7cc7.mstalk.cn/dist/standalone.html?eid=10a1d21c07548ec590f6c55245e115f2'
+        let openUrl = `${url}&metadata={"id":"${App.Player.id}"}`//  ;
+        if (cc.sys.os === cc.sys.OS_IOS) {
+            _social.setCopy(openUrl);
+            App.confirmPop('客服地址已复制,请打开浏览器粘贴访问')
+        } else {
+            _social.openUrl(openUrl)
+
+        }
+
+        // App.pop(GameConfig.pop.ServicePop)
+    }
+
 
     onDestroy() {
         this.removeEvents();

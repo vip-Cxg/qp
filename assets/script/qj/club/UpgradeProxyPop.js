@@ -4,6 +4,7 @@ import Connector from "../../../Main/NetWork/Connector";
 import { GameConfig } from "../../../GameBase/GameConfig";
 import GameUtils from "../../common/GameUtils";
 import Avatar from "../../ui/common/Avatar";
+import Cache from "../../../Main/Script/Cache";
 
 @ccclass
 export default class UpgradeProxyPop extends cc.Component {
@@ -117,6 +118,12 @@ export default class UpgradeProxyPop extends cc.Component {
             path = GameConfig.ServerEventName.InviteClub
         }
 
+        console.log("添加茶馆--",level,power)
+
+        if(level>100){
+            Cache.alertTip('最高百分比不能超过100%')
+            return;
+        }
         Connector.request(path, post, (data) => {
             App.alertTips(data.message);
             App.EventManager.dispatchEventWith(GameConfig.GameEventNames.INIT_MEMBERS_LIST);

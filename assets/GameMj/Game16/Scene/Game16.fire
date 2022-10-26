@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        556.3130687560288,
+        418.2902700278839,
         0,
         0,
         0,
@@ -46461,15 +46461,15 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.49895530475589495,
-      "y": 0.4894655431709813
+      "x": 0.5,
+      "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -1.3936234556360887,
-        -312.7325314489952,
+        0,
+        -311.5,
         0,
         0,
         0,
@@ -46516,7 +46516,7 @@
     "_isAbsBottom": true,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
-    "_originalWidth": 1200,
+    "_originalWidth": 1334,
     "_originalHeight": 0,
     "_id": "676twbg11LZrwXTWAxQb2g"
   },
@@ -54252,6 +54252,7 @@
       "__id__": 1423
     },
     "dtCount": 0,
+    "joined": false,
     "playCardMask": {
       "__id__": 1245
     },

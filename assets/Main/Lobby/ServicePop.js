@@ -25,13 +25,18 @@ cc.Class({
 
     onLoad() {
 
-        this.refreshUI();
-        _social.serviceImgCallBack = (data) => {
-            this.addImgItem(data);
-        }
-
+       
 
     },
+
+    init(){
+        this.refreshUI();
+        // _social.serviceImgCallBack = (data) => {
+        //     this.addImgItem(data);
+        // }
+
+    },
+
     addEvents() {
         App.EventManager.addEventListener(GameConfig.GameEventNames.GOEASY_UPDATE_SERVICE, this.handleChat, this);
 
@@ -41,25 +46,26 @@ cc.Class({
     },
     /**更新UI */
     refreshUI() {
-        if (GameConfig.GameInfo.serviceMode) {
-            this.web.node.active = false;
-            this.chatRoomNode.active = true;
-            GoEasy.privateHistory(GoEasyConfig.ServiceID).then((data) => {
-                GoEasy.markServiceAsRead();
-                data.content.forEach(element => {
-                    this.addChatItem(element)
-                });
-                this.addEvents();
-            }).catch((err) => {
-                this.addEvents();
-            });
+        // if (GameConfig.GameInfo.serviceMode) {
+        //     this.web.node.active = false;
+        //     this.chatRoomNode.active = true;
+        //     GoEasy.privateHistory(GoEasyConfig.ServiceID).then((data) => {
+        //         GoEasy.markServiceAsRead();
+        //         data.content.forEach(element => {
+        //             this.addChatItem(element)
+        //         });
+        //         this.addEvents();
+        //     }).catch((err) => {
+        //         this.addEvents();
+        //     });
 
-        } else {
+        // } else {
             this.web.node.active = true;
             this.chatRoomNode.active = false;
-            this.web.url = `${GameConfig.GameInfo.customeService}&metadata={"tel":"${dataBase.player.phone}","name":"${dataBase.player.name}","qq":"${dataBase.player.id}","addr":"xyqp"}`//  ;
-            console.log(`${GameConfig.GameInfo.customeService}&metadata={"tel":"${dataBase.player.phone}","name":"${dataBase.player.name}","qq":"${dataBase.player.id}","addr":"xyqp"}`)
-        }
+            GameConfig.GameInfo.customeService='https://196ad724f7cc7.mstalk.cn/dist/standalone.html?eid=10a1d21c07548ec590f6c55245e115f2'
+            this.web.url = `${GameConfig.GameInfo.customeService}&metadata={"id":"${App.Player.id}"}`//  ;
+            console.log(`${GameConfig.GameInfo.customeService}&metadata={"id":"${App.Player.id}"}`)
+        // }
 
 
 

@@ -340,15 +340,18 @@ export default class ModuleHandsMJ extends cc.Component {
             if (a.isLai || b.isLai) return Number(b.isLai) - Number(a.isLai) || a.uid - b.uid;
             return a._card - b._card;
         });
+
+        // this.node.width=this._hands[0].width*14.5;
+        // this.node.x=0;
         let cardCount = this._hands.filter(c => !c.getCard).length;
         this._hands.forEach((nodeCard, i) => {
             nodeCard._pos = i;
             nodeCard.zIndex = 1;
-            let totalWidth = this.node.width;//cc.winSize.width;
+            let totalWidth = this._hands[0].width * 14.5;//this.node.width;//cc.winSize.width;
             if (nodeCard.getCard) {
-                nodeCard.setPosition(cc.v2(totalWidth / 2 - GameConfig.FitScreen, (nodeCard == this.checkedCard && this.moveTime < 5) ? -this.node.height / 2 + nodeCard.height / 2 + 20 : -this.node.height / 2 + nodeCard.height / 2));
+                nodeCard.setPosition(cc.v2(totalWidth / 2 + nodeCard.width, (nodeCard == this.checkedCard && this.moveTime < 5) ? -this.node.height / 2 + nodeCard.height / 2 + 20 : -this.node.height / 2 + nodeCard.height / 2));
             } else {
-                nodeCard.setPosition(cc.v2(GameConfig.FitScreen > 0 ? totalWidth / 2 - nodeCard.width - (nodeCard.width) * (cardCount - i) : totalWidth / 2 - nodeCard.width / 2 - (nodeCard.width) * (cardCount - i), (nodeCard == this.checkedCard && this.moveTime < 5) ? -this.node.height / 2 + nodeCard.height / 2 + 20 : -this.node.height / 2 + nodeCard.height / 2));
+                nodeCard.setPosition(cc.v2(GameConfig.FitScreen > 0 ? totalWidth / 2 + nodeCard.width / 2 - (nodeCard.width) * (cardCount - i) : totalWidth / 2 - nodeCard.width / 2 - (nodeCard.width) * (cardCount - i), (nodeCard == this.checkedCard && this.moveTime < 5) ? -this.node.height / 2 + nodeCard.height / 2 + 20 : -this.node.height / 2 + nodeCard.height / 2));
             }
             // cc.log('+++++++++++++');
             // cc.log(GameConfig.FitScreen);

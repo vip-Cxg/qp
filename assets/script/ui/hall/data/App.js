@@ -49,9 +49,8 @@ class Application {
 
         if ((cc.view.getFrameSize().width / cc.view.getFrameSize().height) >= ((2436 / 1125) - 0.05)) {
             GameConfig.FitScreen = 44;
-
         } else {
-            GameConfig.FitScreen = 0;
+            GameConfig.FitScreen = 44;
         }
 
         if ((cc.view.getFrameSize().width / cc.view.getFrameSize().height) >= (DesignWidth / DesignHeight)) {

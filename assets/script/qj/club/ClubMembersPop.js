@@ -37,6 +37,8 @@ export default class ClubMembersPop extends cc.Component {
 
     @property(cc.Node)
     nodeBtn = null
+    @property(cc.Label)
+    lblLevel = null
 
     @property(cc.Node)
     sprPoint = null
@@ -57,6 +59,10 @@ export default class ClubMembersPop extends cc.Component {
             node.active = show.includes(Number(node._name));
         })
         this.nodeBtn.active = isLeague && (App.Club.role == GameConfig.ROLE.OWNER||App.Club.role == GameConfig.ROLE.LEAGUE_OWNER);
+
+        if(this.nodeBtn.active)
+            this.lblLevel.string=App.Club.level+'%';
+
         if (!GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) && !isLeague) {
             this.toggleLeft._children.forEach(node => {
                 node.active = [0, 1, 2, 5].includes(Number(node._name))

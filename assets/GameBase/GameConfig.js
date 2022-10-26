@@ -326,7 +326,7 @@ export class GameConfig {
         DiamondLog: 'game/diamondLog',
         DiamondStatistic: 'game/diamondStatistic',
         LogClubScore: 'game/logClubScore',
-        
+
 
         GameLogsLeague: 'game/leagueLogs',
         /** 茶馆日志 */
@@ -1110,7 +1110,8 @@ export class GameConfig {
         RecordGame19: "qj/prefab/RecordGame19",
         /**活动*/
         RechargeActivityPop: "qj/prefab/RechargeActivityPop",
-
+        /**客服 */
+        ServicePop: "qj/prefab/GameServicePop",
 
         /**提现 */
         CashPop: "Main/Prefab/CashPop",
@@ -1124,8 +1125,7 @@ export class GameConfig {
         ProblemPop: "Main/Prefab/ProblemPop",
         /**规则 */
         RulePop: "Main/Prefab/RulePop",
-        /**客服 */
-        ServicePop: "Main/Prefab/ServicePop",
+
         /**个人信息 */
         InfoPop: "Main/Prefab/InfoPop",
         /**分享 */
@@ -1520,10 +1520,10 @@ export class GameConfig {
         /** 副盟主 */
         LEAGUE_MANAGER: 5,
         /** 盟主 */
-        LEAGUE_OWNER:  6
+        LEAGUE_OWNER: 6
     };
 
-    static CAN_OPERATE_ROLE = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER,GameConfig.ROLE.LEAGUE_MANAGER,GameConfig.ROLE.LEAGUE_OWNER]
+    static CAN_OPERATE_ROLE = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER, GameConfig.ROLE.LEAGUE_MANAGER, GameConfig.ROLE.LEAGUE_OWNER]
 
     /**角色说明 */
     static ROLE_DESC = {
@@ -1584,7 +1584,7 @@ export class GameConfig {
 
 
     /**屏幕适配 */
-    static FitScreen = 0;
+    static FitScreen = 44;
     /**设备id */
     static DeviceID = "defaultDeviceId";
     /**IOS设备idfa */
