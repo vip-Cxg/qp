@@ -1555,7 +1555,11 @@ export default class SceneTable19 extends BaseGame {
     /** 修改菜单栏按钮 active状态 */
     refreshMenuActive() {
         this.btnAuto.active = TableInfo.idx >= 0 && TableInfo.options.rules.auto > 0;
-        this.btnDisband.active = TableInfo.idx >= 0;
+        if( TableInfo.options.club.isLeague){
+            this.btnDisband.active = TableInfo.idx >= 0&&TableInfo.options.rules.disband==0;
+        }else{
+            this.btnDisband.active = TableInfo.idx >= 0;
+        }
     }
 
     reconnect(data) {

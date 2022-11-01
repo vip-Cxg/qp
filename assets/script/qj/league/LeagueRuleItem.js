@@ -13,6 +13,8 @@ export default class LeagueRuleItem extends cc.Component {
 
     @property(cc.Label)
     lblBase = null
+    @property(cc.Label)
+    lblBaseCredit = null
 
     @property(cc.Label)
     lblPerson = null
@@ -41,10 +43,11 @@ export default class LeagueRuleItem extends cc.Component {
     init(data) {
         this._room = data;
         console.log('房间---',data)
-        let { rules: { base, person, turn }, fee: { limit, isAA, aaFee, win: { free } }, index, gameType } = data;
+        let { rules: { base, person, turn,baseCredit}, fee: { limit, isAA, aaFee, win: { free } }, index, gameType } = data;
         this.lblBase.string = `底分:${base}`;
         this.lblPerson.string = `人数:${person}`;
         this.lblTurn.string = `局数${turn}`;
+        this.lblBaseCredit.string = baseCredit?`底子${baseCredit}`:'';
         let [ruleTitle, rulesArray] = GameUtils.getChineseRule(data.rules, gameType);
         this.lblTitle.string = `玩法${index + 1}[${ruleTitle}]`;
         this.lblRules.string = rulesArray.join(' ');

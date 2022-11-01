@@ -83,14 +83,15 @@ let AudioCtrl = cc.Class({
     },
 
     setBGMVolume(v, force) {
-        if (this.bgmAudioID >= 0) {
-            if (v > 0) {
-                cc.audioEngine.resume(this.bgmAudioID);
-            }
-            else {
-                cc.audioEngine.pause(this.bgmAudioID);
-            }
-        }
+        console.log("123123123: ",v);
+        // if (this.bgmAudioID >= 0) {
+        //     if (v > 0) {
+        //         cc.audioEngine.resume(this.bgmAudioID);
+        //     }
+        //     else {
+        //         cc.audioEngine.pause(this.bgmAudioID);
+        //     }
+        // }
         cc.sys.localStorage.setItem('BGM_VOLUME', v.toString())
         if (this.bgmVolume != v || force) {
             this.bgmVolume = v;

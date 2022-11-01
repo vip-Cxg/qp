@@ -1,5 +1,6 @@
 import { GameConfig } from "../../../../GameBase/GameConfig"
 import GameUtils from "../../../common/GameUtils"
+import Avatar from "../../../ui/common/Avatar"
 import moment from "../../other/moment"
 const { ccclass, property } = cc._decorator
 @ccclass
@@ -23,6 +24,10 @@ export default class RecordItem extends cc.Component {
     @property(cc.Node)
     layerPlayer = null
 
+
+    @property(cc.Node)
+    disbandInfo = null
+
     _data = null;
     init(row) {
         this._data = row;
@@ -37,15 +42,25 @@ export default class RecordItem extends cc.Component {
         } else if (isLeague == 1) {
             this.lblPay.string = fee.isAA ? 'AA支付' : '大赢家分档支付';
         }
-        
+
         this.sprType.spriteFrame = this.spriteFrameType[person];
         this.layerPlayer.removeAllChildren();
         let maxScore = Math.max(...players.map(p => p.total));
         players.forEach(p => {
             p.maxScore = maxScore;
             GameUtils.instancePrefab(this.recordPlayerItem, p, this.layerPlayer);
-        }) 
-    }   
+        })
+
+        console.log("disbandInfo",row.disbandInfo)
+        if (!GameUtils.isNullOrEmpty(row.disbandInfo)) {
+            this.disbandInfo.active = true;
+            this.disbandInfo.getChildByName('Avatar').getComponent(Avatar).avatarUrl = row.disbandInfo.head;
+            this.disbandInfo.getChildByName('lblName').getComponent(cc.Label).string = row.disbandInfo.name;
+            this.disbandInfo.getChildByName('lblID').getComponent(cc.Label).string = 'ID: '+row.disbandInfo.id;
+        } else {
+            this.disbandInfo.active = false;
+        }
+    }
 
     onClickCheck() {
         GameUtils.instancePrefab(GameConfig.pop.RecordDetailPop, this._data);

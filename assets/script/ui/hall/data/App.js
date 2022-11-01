@@ -158,12 +158,13 @@ class Application {
         }
     }
 
-    confirmPop(message, callback1) {
+    confirmPop(message, callback1,callback2=null) {
         App.instancePrefab(
             GameConfig.pop.ConfirmPop,
             {
                 message,
-                callback1: callback1
+                callback1: callback1,
+                callback2: callback2
             }
         );
     }

@@ -23,6 +23,8 @@ export default class PokerSummary extends cc.Component {
 
 
     renderUI(data) {
+        
+        agora && agora.leaveChannel();
         let winData = {};
         let loseData = {};
         // bomb: 0

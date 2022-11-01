@@ -1112,6 +1112,8 @@ export class GameConfig {
         RechargeActivityPop: "qj/prefab/RechargeActivityPop",
         /**客服 */
         ServicePop: "qj/prefab/GameServicePop",
+        /**查找房间 hz*/
+        SearchTablePop: "qj/prefab/SearchTablePop",
 
         /**提现 */
         CashPop: "Main/Prefab/CashPop",
@@ -1125,6 +1127,7 @@ export class GameConfig {
         ProblemPop: "Main/Prefab/ProblemPop",
         /**规则 */
         RulePop: "Main/Prefab/RulePop",
+
 
         /**个人信息 */
         InfoPop: "Main/Prefab/InfoPop",

@@ -273,6 +273,7 @@ export default class CreatePop extends cc.Component {
         let person = rules.person;
         let base = rules.base;
         let index = this.ruleIndex;
+        rules.disband=App.Club.leagueConfig.disband||0;
         GameUtils.pop(GameConfig.pop.GameOptionPop, (node) => {
             node.getComponent(node._name).init({ base, person, isLeague, room, auto, rules, fee, gameType, index })
         });

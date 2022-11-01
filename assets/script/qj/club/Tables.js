@@ -64,68 +64,76 @@ export default class Tables extends cc.Component {
         if (isLeague != App.Club.isLeague) return;
         // return;
 
-        this.lblTableCount.string = `${count}桌激战中`;
-        this.content.removeAllChildren();
-        let a = [
-            {
-                players: [],
-                status: 'OPENPOP',
-                person: 4,
-                gameType: 'QJHH',
-                rules: { base: 0, turn: 0, title: '潜江晃晃', color: 0 },
-                tableID: 0,
-                round: 0
-            },
-            {
-                players: [],
-                status: 'OPENPOP',
-                person: 4,
-                gameType: 'QJHZMJ',
-                rules: { base: 0, turn: 0, title: '潜江红中麻将', color: 1 },
-                tableID: 0,
-                round: 0
-            },
-            {
-                players: [],
-                status: 'OPENPOP',
-                person: 4,
-                gameType: 'WSK',
-                rules: { base: 0, turn: 0, title: '五十K', color: 2 },
-                tableID: 0,
-                round: 0
-            },
-            {
-                players: [],
-                status: 'OPENPOP',
-                person: 4,
-                gameType: 'WSKBD',
-                rules: { base: 0, turn: 0, title: '五十K必打', color: 3 },
-                tableID: 0,
-                round: 0
-            },
-            {
-                players: [],
-                status: 'OPENPOP',
-                person: 3,
-                gameType: 'PDK',
-                rules: { base: 0, turn: 0, title: '跑得快', color: 4 },
-                tableID: 0,
-                round: 0
-            },
-        ]
-        // tables.unshift(a);
-        tables=a.concat(tables)
-        for (let table of tables) {
-            let  item=cc.instantiate(this.tableItem);
-            item.getComponent('TableItem').init(table);
-            this.content.addChild(item);
-            // this._tables.push(item.getComponent(item._name));
+        try {
+            
 
-            // let node = App.instancePrefab(this.tableItem, table, this.content);
-            // this._tables.push(node.getComponent(node._name));
+            this.lblTableCount.string = `${count}桌激战中`;
+            this.content.removeAllChildren();
+            let a = [
+                {
+                    players: [],
+                    status: 'OPENPOP',
+                    person: 4,
+                    gameType: 'QJHH',
+                    rules: { base: 0, turn: 0, title: '潜江晃晃', color: 0 },
+                    tableID: 0,
+                    round: 0
+                },
+                {
+                    players: [],
+                    status: 'OPENPOP',
+                    person: 4,
+                    gameType: 'QJHZMJ',
+                    rules: { base: 0, turn: 0, title: '潜江红中麻将', color: 1 },
+                    tableID: 0,
+                    round: 0
+                },
+                {
+                    players: [],
+                    status: 'OPENPOP',
+                    person: 4,
+                    gameType: 'WSK',
+                    rules: { base: 0, turn: 0, title: '五十K', color: 2 },
+                    tableID: 0,
+                    round: 0
+                },
+                {
+                    players: [],
+                    status: 'OPENPOP',
+                    person: 4,
+                    gameType: 'WSKBD',
+                    rules: { base: 0, turn: 0, title: '五十K必打', color: 3 },
+                    tableID: 0,
+                    round: 0
+                },
+                {
+                    players: [],
+                    status: 'OPENPOP',
+                    person: 3,
+                    gameType: 'PDK',
+                    rules: { base: 0, turn: 0, title: '跑得快', color: 4 },
+                    tableID: 0,
+                    round: 0
+                },
+            ]
+            // tables.unshift(a);
+            tables=a.concat(tables)
+            for (let table of tables) {
+                let  item=cc.instantiate(this.tableItem);
+                item.getComponent('TableItem').init(table);
+                this.content.addChild(item);
+                // this._tables.push(item.getComponent(item._name));
+    
+                // let node = App.instancePrefab(this.tableItem, table, this.content);
+                // this._tables.push(node.getComponent(node._name));
+            }
+            // this.content.width = Math.ceil(this.content._children.length / 2) * 355;
+            App.Club.updateTableMessage(timestamp);
+
+        } catch (error) {
+            
         }
-        // this.content.width = Math.ceil(this.content._children.length / 2) * 355;
-        App.Club.updateTableMessage(timestamp);
+
     }
 
     requestTables() {

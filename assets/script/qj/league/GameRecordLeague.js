@@ -82,10 +82,11 @@ export default class GameRecordLeague extends cc.Component {
             page: 1,
             pageSize: 50,
             clubID: App.Club.id,
+            clubID: App.Club.id,
             condition: this.condition,
-            userID: this.editBox.string
+            userID: this.editBox.string,
+            oglClubID: App.Club.oglID
         }
-        cc.log(data);
         Connector.request(GameConfig.ServerEventName.GameLogsLeague, data, this.render.bind(this), true);
     }
 

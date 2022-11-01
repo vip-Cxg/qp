@@ -34,7 +34,8 @@ export default class QuickCreateItem extends cc.Component {
         let [ruleTitle, rulesArray] = GameUtils.getChineseRule(rules, gameType);
         this.lblRules.string = rulesArray.join('｜');
         this.lblTitle.string = `${ruleTitle}｜${payMode}`;
-        this.lblBase.string = `底分:${base}｜局数:${turn} | 人数:${person}`;
+        let baseCreditStr=rules.baseCredit?`｜底子:${rules.baseCredit}`:'';
+        this.lblBase.string = `底分:${rules.base}`+baseCreditStr+`｜局数:${turn} | 人数:${person}`;
     }
 
     onClickQuickCreate() {

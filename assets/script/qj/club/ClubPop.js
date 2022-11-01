@@ -37,6 +37,8 @@ export default class ClubPop extends cc.Component {
     btnPopRecord = null
     @property(cc.Node)
     btnPopStatistics = null
+    @property(cc.Node)
+    btnSearchTable = null
 
     @property(cc.Node)
     nodeSetting = null
@@ -85,7 +87,10 @@ export default class ClubPop extends cc.Component {
     onLoad() {
 
         this.node.getComponent(cc.Sprite).spriteFrame = App.Club.isLeague > 0 ? this.sprMatch : this.sprChaGuan;
-
+        App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
+        App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_CLUB, this.updateClub, this);
+        App.EventManager.addEventListener(GameConfig.GameEventNames.CLUB_APPLY, this.updateApply, this);
+   
     }
 
     init(data = { update: false, clubID: 0, oglClubID: 0 }) {
@@ -128,12 +133,16 @@ export default class ClubPop extends cc.Component {
 
         switch (isLeague) {
             case 0: //茶馆
+                this.btnSearchTable.active = false;
                 this.btnPopHome.active = true;
                 this.btnPopRule.active = role == GameConfig.ROLE.OWNER;
                 this.btnPopStatistics.active = role != GameConfig.ROLE.USER && role != GameConfig.ROLE.APPLYER && role != GameConfig.ROLE.LEAGUE_MANAGER
                 break;
             case 1: //比赛场
                 this.btnPopHome.active = false;
+
+                this.btnSearchTable.active =App.Club.leagueConfig.disband==1&&( role == GameConfig.ROLE.LEAGUE_OWNER||role == GameConfig.ROLE.LEAGUE_MANAGER||role == GameConfig.ROLE.OWNER||role == GameConfig.ROLE.MANAGER);
+
                 this.btnPopRule.active = role == GameConfig.ROLE.LEAGUE_OWNER;
 
                 this.btnPopStatistics.active = role == GameConfig.ROLE.LEAGUE_OWNER;
@@ -148,10 +157,6 @@ export default class ClubPop extends cc.Component {
         this.btnEnterLeague.active = !Boolean(isLeague > 0);
         this.tables.init();
         this.sprPoint.active = App.Club.applyMembers > 0;
-        App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
-        App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
-        App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_CLUB, this.updateClub, this);
-        App.EventManager.addEventListener(GameConfig.GameEventNames.CLUB_APPLY, this.updateApply, this);
     }
 
     updateApply() {
@@ -159,12 +164,8 @@ export default class ClubPop extends cc.Component {
     }
 
     updateClub(data) {
-        // if (data.clubID != App.Club.id || data.oglClubID != App.Club.oglID) return;   
-        console.log("club---1-", App.Club.oglID)
-        console.log("club---2-", App.Club)
-        console.log("club---3-", App)
+        console.log("123123123",data)
         Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.oglID, isLeague: App.Club.isLeague }, (data) => {
-
             // Connector.request(GameConfig.ServerEventName.ClubInfo, { clubID: App.Club.id, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, (data) => {
             App.Club.init(data);
             this.init();
@@ -180,7 +181,9 @@ export default class ClubPop extends cc.Component {
     onDestroy() {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
         App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_CLUB, this.updateClub, this);
-    }
+        App.EventManager.removeEventListener(GameConfig.GameEventNames.CLUB_APPLY, this.updateApply, this);
+   
+     }
 
     onClickHead(event, eventData) {
         if (App.Club.isLeague > 0) {
@@ -218,10 +221,12 @@ export default class ClubPop extends cc.Component {
     }
 
     onClickMembers() {
+        // App.pop(GameConfig.pop.ClubMembersPop);
         GameUtils.pop(GameConfig.pop.ClubMembersPop, this.pop);
     }
 
     onClickHome() {
+        // App.pop(GameConfig.pop.ClubHomePop);
         GameUtils.pop(GameConfig.pop.ClubHomePop, this.pop);
     }
 
@@ -298,7 +303,7 @@ export default class ClubPop extends cc.Component {
             this.sprReward.active = false;
 
         } else {
-            this.sprReward.active = App.Club.role == GameConfig.ROLE.OWNER || App.Club.role == GameConfig.ROLE.PROXY||App.Club.role==GameConfig.ROLE.LEAGUE_OWNER;
+            this.sprReward.active = App.Club.role == GameConfig.ROLE.OWNER || App.Club.role == GameConfig.ROLE.PROXY || App.Club.role == GameConfig.ROLE.LEAGUE_OWNER;
             this.sprOnlineCount.active = true;
             this.sprTableInfo.active = true;
             this.lblOnlineCount.string = (App.Club.leagueOnlineMembers || 0) + '/ ' + (App.Club.leagueMembers || 0) + '人在线';
@@ -309,8 +314,12 @@ export default class ClubPop extends cc.Component {
 
     }
 
+    onClickSearch() {
+        App.pop(GameConfig.pop.SearchTablePop)
+    }
+
     onClickClose() {
-        App.Club.reset();   
+        App.Club.reset();
         if (this.node) {
             this.node.removeFromParent();
             this.node.destroy();

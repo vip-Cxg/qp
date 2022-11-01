@@ -18,20 +18,16 @@ export default class LeagueRulePop extends cc.Component {
     @property(cc.Node)
     btnAdd = null
 
-    @property(cc.Label)
-    lblStartDay = null
-
-    @property(cc.Label)
-    lblEndDay = null
-
-    @property(cc.Label)
-    lblDate = null
-
     @property(cc.Prefab)
     selectDay = null
 
+
     @property(cc.ToggleContainer)
     togglePay = null
+
+    @property(cc.ToggleContainer)
+    toggleDisband = null
+
 
     @property(cc.Node)
     bgTop = null
@@ -54,24 +50,22 @@ export default class LeagueRulePop extends cc.Component {
         this.bgTop.active = isLeague;
         let leagueConfig = App.Club.leagueConfig;
         // cc.log()
-        this.lblStartDay.string = leagueConfig.date[0];
-        this.lblEndDay.string = leagueConfig.date[1];
-        this.lblDate.string = leagueConfig.hour.join(' - ');
         let payMode = leagueConfig.payMode;
+        let disband = leagueConfig.disband || 0;
 
+        console.log("leagueConfig", leagueConfig)
 
         // this.togglePay.node.children.forEach((item) => {
         //     item.getComponent(cc.Toggle).interactable = rooms.length == 0;
         // })
 
         this.togglePay.toggleItems.find(t => t.node._name == payMode).check();
+        this.toggleDisband.toggleItems.find(t => t.node._name == disband).check();
 
 
     }
 
-    onClickToggleContainer() {
-
-     
+    onClickPayToggle() {
         let color = ['#73978B', '#D15A0A'];
         this.togglePay.toggleItems.forEach(toggle => {
             let isChecked = toggle.isChecked;
@@ -79,32 +73,28 @@ export default class LeagueRulePop extends cc.Component {
             label.color = new cc.Color().fromHEX(color[Number(isChecked)]);
         })
     }
+    onClickDisbandToggle() {
+        let color = ['#73978B', '#D15A0A'];
+        this.toggleDisband.toggleItems.forEach(toggle => {
+            let isChecked = toggle.isChecked;
+            let label = toggle.node.getChildByName('label');
+            label.color = new cc.Color().fromHEX(color[Number(isChecked)]);
+        })
+    }
 
     onClickModify() {
-        if( App.Club.rooms.length>0){
+        if (App.Club.rooms.length > 0) {
             Cache.alertTip('必须删除其他房型才可修改')
             return;
         }
-
         let payMode = this.togglePay.toggleItems.find(toggle => toggle.isChecked).node._name;
         payMode = Number(payMode);
-        let startDay = this.lblStartDay.string;
-        let endDay = this.lblEndDay.string;
-        let hour = this.lblDate.string;
-        hour = hour.split(' - ');
-        if (startDay > endDay) {
-            App.alertTips('日期错误');
-            return;
-        }
-        if (moment(`2022-04-01 ${hour[0]}`) > moment(`2022-04-01 ${hour[1]}`)) {
-            App.alertTips('时间错误');
-            return;
-        }
-        let date = [startDay, endDay];
+        let disband = this.toggleDisband.toggleItems.find(toggle => toggle.isChecked).node._name;
+        disband = Number(disband);
         let clubID = App.Club.id;
-        let data = { payMode, date, hour, clubID };
-        if (payMode != App.Club.payMode) {
-            App.confirmPop('切换支付方式,重新保存模版才能生效', () => {
+        let data = { payMode, disband, clubID };
+        if (payMode != App.Club.payMode || disband != App.Club.disband) {
+            App.confirmPop('重新保存模版才能生效', () => {
                 this.request(data);
             })
             return;
@@ -117,6 +107,8 @@ export default class LeagueRulePop extends cc.Component {
             App.alertTips('修改成功');
             App.Club.leagueConfig = leagueConfig;
             this.init();
+            App.EventManager.dispatchEventWith(GameConfig.GameEventNames.UPDATE_CLUB)
+
         })
     }
 
@@ -125,38 +117,6 @@ export default class LeagueRulePop extends cc.Component {
         App.pop(pop, 'LEAGUE');
     }
 
-    onClickDay(_, eventData) {
-        let label;
-        switch (eventData) {
-            case '0':
-                label = this.lblStartDay;
-                break;
-            case '1':
-                label = this.lblEndDay;
-                break;
-        }
-        let node = cc.instantiate(this.selectDay);
-        this.node.addChild(node);
-        let date = moment(label.string);
-        let datePicker = node.getComponent("UIDatePicker");
-        datePicker.setDate(date.year(), date.month(), date.date());
-        datePicker.setPickDateCallback((year, month, day) => {
-            month = (month + 1) > 9 ? (month + 1) : '0' + (month + 1);
-            day = day.toString().length == 1 ? `0${day}` : day;
-            label.string = moment(`${year}${month}${day}`).format('YYYY-MM-DD');
-        });
-    }
-
-    onClickDate() {
-        let dates = this.lblDate.string.split(' - ');
-        dates = dates.map(d => `${moment().format('YYYY-MM-DD')} ${d}`)
-        App.pop(GameConfig.pop.HourPop, [dates, this.updateDate.bind(this)], 'DatePop');
-    }
-
-    updateDate(dates) {
-        dates = dates.slice().map(d => moment(d).format('HH:mm'));
-        this.lblDate.string = dates.join(' - ');
-    }
 
     onClickClose() {
         if (this.node) {

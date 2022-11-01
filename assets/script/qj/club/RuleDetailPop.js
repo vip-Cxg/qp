@@ -26,10 +26,10 @@ export default class RuleDetailPop extends cc.Component {
     init(data) {
         let { rules, gameType, fee: { isAA, aaFee, win, payMode, limit }, status } = data;
         this.data = data;
-        let { base, turn } = rules;
+        let { base, turn ,baseCredit} = rules;
         let [ruleTitle, rulesArray] = GameUtils.getChineseRule(rules, gameType);
         this.lblRule.string = ruleTitle;
-        this.lblBase.string = base;
+        this.lblBase.string = base+(baseCredit?'  (底子:'+baseCredit+')':'');
         this.lblTurn.string = turn;
         this.nodeTips.active = !isAA;
         this.lblFee.string = isAA ? `AA支付(${aaFee})` : '大赢家支付';

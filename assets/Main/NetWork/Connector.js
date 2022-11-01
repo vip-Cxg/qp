@@ -95,17 +95,17 @@ module.exports = {
                     let resData;
                     try {
                         resData = JSON.parse(response);
-                        // if(method!=GameConfig.ServerEventName.Tables){
-                        if (cc.sys.isBrowser) {
-                            cc.log(url + ": ", resData);
-                        } else {
-                            cc.log(url + ": ", response);
-                        }
+                        // if (method != GameConfig.ServerEventName.Tables) {
+                            if (cc.sys.isBrowser) {
+                                cc.log(url + ": ", resData);
+                            } else {
+                                cc.log(url + ": ", response);
+                            }
                         // }
-                        
-                        if(method.indexOf('http')!=-1){
-                            
-                            if(resData.code=='200'&&callback){
+
+                        if (method.indexOf('http') != -1) {
+
+                            if (resData.code == '200' && callback) {
                                 callback(resData);
                             }
 
@@ -196,7 +196,7 @@ module.exports = {
                 }
             };
             xhr.ontimeout = () => {
-                console.log('request ontimeout :'+ this.logicUrl + method );
+                console.log('request ontimeout :' + this.logicUrl + method);
                 cache.hideMask();
                 if (failCallback) {
                     failCallback({ message: "当前网络较差,请稍后再试", type: GameConfig.ErrorType.Timeout })

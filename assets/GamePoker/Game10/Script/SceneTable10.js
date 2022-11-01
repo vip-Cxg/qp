@@ -37,6 +37,8 @@ export default class SceneTable10 extends BaseGame {
     @property(cc.Label)
     lblBase = null;
     @property(cc.Label)
+    lblBaseCredit = null;
+    @property(cc.Label)
     lblDistance = null;
     @property(cc.Node)
     btnTips = null;
@@ -521,7 +523,14 @@ export default class SceneTable10 extends BaseGame {
         this.wskGameChat.active = data.options.gameType == GameConfig.GameType.WSK;
 
         //显示游戏 类型 公会
+        
         this.lblBase.string = '' + data.options.rules.base;
+        if(data.options.rules.baseCredit){
+            this.lblBaseCredit.node.parent.active=true;
+            this.lblBaseCredit.string = '' + data.options.rules.baseCredit;
+        }else{
+            this.lblBaseCredit.node.parent.active=false;
+        }
         this.lblRoomId.string = '' + data.tableID;
 
         //TODO 设置位置
@@ -619,8 +628,13 @@ export default class SceneTable10 extends BaseGame {
     }
 
     refreshMenuActive() {
+       
         this.startAutoBtn.active = TableInfo.options.rules.auto > 0;//TableInfo.idx >= 0;
-        this.btnDisband.active = TableInfo.idx >= 0;
+        if( TableInfo.options.club.isLeague){
+            this.btnDisband.active = TableInfo.idx >= 0&&TableInfo.options.rules.disband==0;
+        }else{
+            this.btnDisband.active = TableInfo.idx >= 0;
+        }
     }
 
     /**重连 */

@@ -93,6 +93,8 @@ export default class SceneTable07 extends BaseGame {
     seatBtnContent = null;
 
     @property(cc.Node)
+    btnDisband = null;
+    @property(cc.Node)
     ruleBtn = null;
     @property(cc.Label)
     lblRule = null;
@@ -440,6 +442,16 @@ export default class SceneTable07 extends BaseGame {
             this.initHands(this.shuffleData, false);
         }
     }
+
+    /** 修改菜单栏按钮 active状态 */
+    refreshMenuActive() {
+        if (TableInfo.options.club.isLeague) {
+            this.btnDisband.active = TableInfo.idx >= 0 && TableInfo.options.rules.disband == 0;
+        } else {
+            this.btnDisband.active = TableInfo.idx >= 0;
+        }
+    }
+
     /**初始化桌子 */
     initTable(data) {
         TableInfo.observers = data.observers;
@@ -455,7 +467,7 @@ export default class SceneTable07 extends BaseGame {
         //显示游戏 类型 公会
         this.lblBase.string = '' + data.options.rules.base;
         this.lblRoomId.string = '' + data.tableID;
-
+        this.refreshMenuActive();
         //TODO 设置位置
         let idx = Math.max(data.idx, 0);
         //设置玩家座位位置方位
@@ -1164,7 +1176,7 @@ export default class SceneTable07 extends BaseGame {
     }
     /**返回大厅 */
     onClickExit() {
-        if (TableInfo.status == GameConfig.GameStatus.START) return;
+        if (TableInfo.status == GameConfig.GameStatus.START&&TableInfo.idx>=0) return;
         App.confirmPop("是否退出房间", () => {
             this.onLeaveChannel()
             Connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
@@ -1203,7 +1215,7 @@ export default class SceneTable07 extends BaseGame {
 
     }
     exitBtnStatus() {
-        this.exitBtn.active = TableInfo.status == GameConfig.GameStatus.WAIT;
+        this.exitBtn.active = TableInfo.status == GameConfig.GameStatus.WAIT || TableInfo.idx < 0;;
 
     }
 
@@ -1243,7 +1255,7 @@ export default class SceneTable07 extends BaseGame {
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     }
     onLeaveChannel() {
-        Cache.alertTip('离开频道')
+        // Cache.alertTip('离开频道')
         this.joined = false;
     }
     onUserMuteAudio(uid, muted) {
@@ -1259,6 +1271,6 @@ export default class SceneTable07 extends BaseGame {
         console.log("onUserMuteAudio, uid: " + uid + " muted: " + muted);
     }
 
-   
+
 
 }

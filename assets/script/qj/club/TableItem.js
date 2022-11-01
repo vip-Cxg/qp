@@ -67,7 +67,6 @@ export default class TableItem extends cc.Component {
         this._lblTitle = this.node.getChildByName('lblTitle').getComponent(cc.Label);
         this._lblBase = this.node.getChildByName('lblBase').getComponent(cc.Label);
         this._lblRule = this.node.getChildByName('lblRule').getComponent(cc.Label);
-        this._lblTurn = this.node.getChildByName('lblTurn').getComponent(cc.Label);
         this._lblPlay = this.node.getChildByName('lblPlay').getComponent(cc.Label);
         this._heads = [];
         let headsNode = this.node.getChildByName('heads');
@@ -80,12 +79,11 @@ export default class TableItem extends cc.Component {
         this._tableData=data;
         /** color 桌子颜色 0-蓝色 1-绿色 2-紫色 3-红色 */
 
-        let { players, status, person, gameType, rules: { base, turn, title = '潜江晃晃', color = 0 }, tableID, round, createdAt } = data;
+        let { players, status, person, gameType, rules: { base, turn, title = '潜江晃晃', color = 0,baseCredit }, tableID, round, createdAt } = data;
         this._sprTable.spriteFrame = this.spriteFrameTable[(person - 2) * 4 + color];
 
         if(tableID==0){
             this._lblBase.node.active = false;
-            this._lblTurn.node.active = false;
             this._lblRule.node.active = false;
             this._lblPlay.node.active = false;
             this.lblDesc.node.active = true;
@@ -99,10 +97,8 @@ export default class TableItem extends cc.Component {
         this._tableID = tableID;
         this._lblTitle.string = title;
         this._lblBase.node.active = true;
-        this._lblTurn.node.active = true;
         this._lblPlay.node.active = false;
-        this._lblBase.string = `${base}分`;
-        this._lblTurn.string = `${turn}局`;
+        this._lblBase.string = `${base}分`+(baseCredit?`${baseCredit}底子`:'') +`${turn}局`;
         this._lblRule.string = title;
         let isLeague = App.Club.isLeague;
         /** 防作弊 */
@@ -114,7 +110,6 @@ export default class TableItem extends cc.Component {
         /** 激战中 */
         if (status != 'WAIT') {
             this._lblBase.node.active = false;
-            this._lblTurn.node.active = false;
             this._lblPlay.node.active = true;
             this._lblRule.string = `${round}/${turn}局 ${moment().format('HH:mm')}`
         }
@@ -131,12 +126,26 @@ export default class TableItem extends cc.Component {
     /**点击桌子  */
     onClickTable() {
         if(this._tableData.tableID==0){
-
             GameUtils.pop(GameConfig.pop.QuickCreatePop, (node)=>{
                 node.getComponent(node._name).init(this._tableData);
             }); 
             return;
         }
+        let powerRole=[GameConfig.ROLE.OWNER,GameConfig.ROLE.MANAGER,GameConfig.ROLE.LEAGUE_OWNER,GameConfig.ROLE.LEAGUE_MANAGER,GameConfig.ROLE.PROXY]
+        if(powerRole.includes(App.Club.role)&&this._tableData.status!='WAIT'&&this._tableData.isLeague==1&&this._tableData.rules.disband==1){
+            App.confirmPop('是否解散房间 ' + this._tableData.tableID, () => {
+                Connector.request(GameConfig.ServerEventName.DestroyTable, { roomID: this._tableData.roomID, gameType: this._tableData.gameType, tableID: this._tableData.tableID,clubID:App.Club.id,isLeague:App.Club.isLeague ,oglClubID: App.Club.oglID }, (res) => {
+                    Cache.alertTip("解散成功");
+                    App.EventManager.dispatchEventWith(GameConfig.GameEventNames.UPDATE_TABLE_LIST);
+                }, true, (err) => {
+                    Cache.alertTip(err.message || "解散失败");
+                })
+            },()=>{
+                this.enterGame();
+            })
+            return;
+        }
+       
         //TODO 进入游戏 可能会根据不同角色 桌子状态有不同方法
         this.enterGame();
 
