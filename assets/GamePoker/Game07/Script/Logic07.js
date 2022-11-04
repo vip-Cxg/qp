@@ -11,7 +11,7 @@ poker.CARD_TYPE = {
     SI: 'SI'
 };
 
-poker.countPair = function(cards) {
+poker.countPair = function (cards) {
     let count = 0;
     cards.forEach(c => {
         count += Math.floor(c / 2);
@@ -25,7 +25,7 @@ poker.countPair = function(cards) {
  * @param length
  */
 poker.decode = function (cards, length, rules = {}, current) {
-    console.log("解码-",cards,length,rules,current)
+    console.log("解码-", cards, length, rules, current)
     let tmpCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     cards.forEach(card => {
         tmpCards[card % 100]++;
@@ -53,24 +53,24 @@ poker.decode = function (cards, length, rules = {}, current) {
     /** 规则 可四带三 bombWithThree*/
     let maxSILength = rules.bombWithThree ? 3 : 2;
     if (length == 6 && maxSILength == 3) maxSILength == 2;
-    if ((current == null || current.type == poker.CARD_TYPE.SI) && 
-        formatCards[4].length == 1 && 
-        cards.length == maxSILength + 4
+    if ((current == null || current.type == poker.CARD_TYPE.SI) &&
+        formatCards[4].length == 1 &&
+        (cards.length == maxSILength + 4 || cards.length == 6)
     ) {
         let card = tmpCards.findIndex(count => count == 4);
         return { type: poker.CARD_TYPE.SI, count: 1, card: card, cards: cards };
     }
-    
+
     if (
-        (current == null || current.type == poker.CARD_TYPE.SAN) && 
-        formatCards[3].length == 1 && 
+        (current == null || current.type == poker.CARD_TYPE.SAN) &&
+        formatCards[3].length == 1 &&
         (cards.length == 5 || (length <= 5 && length == cards.length))
     ) {
         let card = tmpCards.findIndex(count => count >= 3);
         /** 规则 三带对 threeWithPair*/
         let remainCards = tmpCards.slice();
         remainCards[card] -= 3;
-        
+
         if (rules.threeWithPair && poker.countPair(remainCards) != 1) {
             return null;
         }
@@ -92,7 +92,7 @@ poker.decode = function (cards, length, rules = {}, current) {
                 }
                 if (tmpCount >= count) {
                     let otherCards = tmpCards.slice();
-                    for (let i = base; i < base + count; i ++) {
+                    for (let i = base; i < base + count; i++) {
                         otherCards[i] -= 3;
                     }
                     if (rules.threeWithPair && poker.countPair(otherCards) != count) {
@@ -212,9 +212,9 @@ poker.sortPlayedCard = function (group) {
     return sortedCards;
 };
 
-poker.remainCards = function(cards, hands) {
+poker.remainCards = function (cards, hands) {
     cards.forEach(c => {
-        hands[c] --;
+        hands[c]--;
     });
     return hands;
 };
@@ -262,7 +262,7 @@ poker.autoplay = function (currentHands, current, tipsTime, rules) {
     hands.forEach((cards, card) => {
         if (cards.length >= 4 || (rules.threeAce && cards.length == 3 && card == 14)) {
             bombs.push({ type: poker.CARD_TYPE.BOMB, card: card, count: cards.length, cards: hands[card].slice() });
-            if(!rules.canSeperateBomb) {
+            if (!rules.canSeperateBomb) {
                 hands[card] = [];
                 tmpCards[card] = 0;
             }
@@ -296,9 +296,9 @@ poker.autoplay = function (currentHands, current, tipsTime, rules) {
                 let tmpHands = hands.slice();
                 results = tmpHands[card].splice(0, 3);
                 if (!rules.threeWithPair) {
-                    results = results.concat(findPlus(tmpHands.reduce((p, c) => p.concat(c) ,[]), 2));
+                    results = results.concat(findPlus(tmpHands.reduce((p, c) => p.concat(c), []), 2));
                 } else {
-                    results = results.concat(findPair(tmpHands.reduce((p, c) => p.concat(c) ,[]), 1));
+                    results = results.concat(findPair(tmpHands.reduce((p, c) => p.concat(c), []), 1));
                 }
                 matchs.push(results);
             }
@@ -306,10 +306,25 @@ poker.autoplay = function (currentHands, current, tipsTime, rules) {
         /////
         case poker.CARD_TYPE.SI:
             card = hands.findIndex((cards, c) => ((cards.length > 3 || (cards.length == 3 && c == 14 && rules.aaa)) && c > current.card % 100));
+            // let maxSILength = rules.bombWithThree ? 3 : 2;
+
+            let withCardsCount = current.cards.length - 4;
+            let curWithCardsCount = 0;
+            let withCards = [];
+            hands.forEach((cards, c) => {
+                if (card == c) return;
+                if (withCardsCount == curWithCardsCount) return;
+
+                withCards = withCards.concat(cards);
+                curWithCardsCount += cards.length;
+
+            })
+
             if (card >= 0) {
-                results = hands[card].slice(0, 4);
+                results = hands[card].slice(0, 4).concat(withCards);
                 matchs.push(results);
             }
+
             break;
         //////
         case poker.CARD_TYPE.SHUN:
@@ -356,16 +371,16 @@ poker.autoplay = function (currentHands, current, tipsTime, rules) {
                 for (c = i; c < i + count; c++) {
                     if (hands[c].length > 2) {
                         otherCards[c] -= 3;
-                        tmp ++;
+                        tmp++;
                         results = results.concat(tmpHands[c].splice(0, 3));
                     }
                 }
                 /** 规则 三带对 threeWithPair */
-                if (tmp == count && poker.sumHands(hands) >= count * 5 && (!rules.threeWithPair ||  poker.countPair(otherCards) >= count)) {
+                if (tmp == count && poker.sumHands(hands) >= count * 5 && (!rules.threeWithPair || poker.countPair(otherCards) >= count)) {
                     if (!rules.threeWithPair) {
-                        results = results.concat(findPlus(tmpHands.reduce((p, c) => p.concat(c) ,[]), count * 2));
+                        results = results.concat(findPlus(tmpHands.reduce((p, c) => p.concat(c), []), count * 2));
                     } else {
-                        results = results.concat(findPair(tmpHands.reduce((p, c) => p.concat(c) ,[]), count));
+                        results = results.concat(findPair(tmpHands.reduce((p, c) => p.concat(c), []), count));
                     }
                     matchs.push(results);
                 }
@@ -409,11 +424,17 @@ poker.checkCard = function (currentCards, length, rules, current) {
     });
     if (current) { //上家出牌 自己要
         let cardList = poker.autoplay(currentCards, current, 0, rules);
+        // card = hands.findIndex((cards, c) => ((cards.length > 3 || (cards.length == 3 && c == 14 && rules.aaa)) && c > current.card % 100));
+
+
         //TODO cardList=[];
         if (cardList.length > 0) {
-            result.cardList = poker.decode(cardList[0], length, rules, current);
+
+            let resIndex = Math.max(cardList.findIndex((arr, i) => (arr.length == current.cards.length)), 0)
+
+            result.cardList = poker.decode(cardList[resIndex], length, rules, current);
             currentCards.forEach((e) => {
-                if (cardList[0].indexOf(e) != -1) return;
+                if (cardList[resIndex].indexOf(e) != -1) return;
                 result.otherCard.push(e);
             });
         }
@@ -454,7 +475,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
             // }
             //炸弹
             /** 规则 三A 算炸 */
-            if(e.length == 4 || (rules.threeAce && e.length == 3 && i == 14)) {
+            if (e.length == 4 || (rules.threeAce && e.length == 3 && i == 14)) {
                 BOMBCardIndex.push(i);
                 /** 规则 炸弹可拆 */
                 if (!rules.canSeperateBomb) return;
@@ -521,12 +542,12 @@ poker.checkCard = function (currentCards, length, rules, current) {
         //炸弹
         if (BOMBCardIndex.length > 0) {
             BOMBList = hands[BOMBCardIndex[0]].slice();
-            
+
             let BOMBCardCount = 0;//带牌数
             let MaxBOMBCardCount = rules.bombWithThree ? 3 : 2;
             /** 规则 4带3 bombWithThree*/
             DANCardIndex.forEach((e) => {
-                if (BOMBCardCount == MaxBOMBCardCount || BOMBList.reduce((p,c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
+                if (BOMBCardCount == MaxBOMBCardCount || BOMBList.reduce((p, c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
                 let l = Math.min(MaxBOMBCardCount - BOMBCardCount, hands[e].length);
                 BOMBList = BOMBList.concat(hands[e].slice(0, l))
                 BOMBCardCount += l;
@@ -540,7 +561,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
                     BOMBList = BOMBList.concat(hands[e]);
                     BOMBCardCount += hands[e].length;
                 } else {
-                    let l = hands[e].slice(0,MaxBOMBCardCount - BOMBCardCount);
+                    let l = hands[e].slice(0, MaxBOMBCardCount - BOMBCardCount);
                     BOMBList = BOMBList.concat(l);
                     BOMBCardCount += l.length;
                 }
@@ -555,10 +576,10 @@ poker.checkCard = function (currentCards, length, rules, current) {
             let FEIJICardCount = 0;//带牌数
             /** 规则 三带对 threeWithPair*/
             let MaxFEIJICardCount = rules.threeWithPair ? FEIJICardIndex.length * 2 : Math.min(FEIJICardIndex.length * 2, length - FEIJICardIndex.length * 3);//带牌数
-            
+
             if (!rules.threeWithPair) {
                 DANCardIndex.forEach((e) => {
-                    if (FEIJICardCount == MaxFEIJICardCount || FEIJIList.reduce((p,c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
+                    if (FEIJICardCount == MaxFEIJICardCount || FEIJIList.reduce((p, c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
                     let l = Math.min(MaxFEIJICardCount - FEIJICardCount, hands[e].length);
                     FEIJIList = FEIJIList.concat(hands[e].slice(0, l))
                     FEIJICardCount += l;
@@ -572,7 +593,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
                     FEIJIList = FEIJIList.concat(hands[e]);
                     FEIJICardCount += hands[e].length;
                 } else {
-                    let l = hands[e].slice(0,MaxFEIJICardCount - FEIJICardCount);
+                    let l = hands[e].slice(0, MaxFEIJICardCount - FEIJICardCount);
                     FEIJIList = FEIJIList.concat(l);
                     FEIJICardCount += l.length;
                 }
@@ -585,12 +606,12 @@ poker.checkCard = function (currentCards, length, rules, current) {
         //三张 
         if (SANCardIndex.length > 0) {
             let h = JSON.parse(JSON.stringify(hands))
-            SANList = SANList.concat(h[SANCardIndex[0]].splice(0,3));
+            SANList = SANList.concat(h[SANCardIndex[0]].splice(0, 3));
             let SANCardCount = 0;//带牌数
             let MaxSANCardCount = rules.threeWithPair ? 2 : Math.min(2, length - 3);//带牌数
             if (!rules.threeWithPair) {
                 DANCardIndex.forEach((e) => {
-                    if (SANCardCount >= MaxSANCardCount || SANList.reduce((p,c) => c % 100 == e ? (p += 1) : p, 0) >= h[e].length) return;
+                    if (SANCardCount >= MaxSANCardCount || SANList.reduce((p, c) => c % 100 == e ? (p += 1) : p, 0) >= h[e].length) return;
                     let l = Math.min(MaxSANCardCount - SANCardCount, h[e].length);
                     SANList = SANList.concat(h[e].slice(0, l))
                     SANCardCount += l;
@@ -626,7 +647,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
         if (DANCardIndex.length > 0) {
             DANList.push(hands[DANCardIndex[0]][0]);
         }
-        
+
 
         if (DUICardIndex.length == 0 && SANCardIndex.length == 0 && LIANDUICardIndex.length == 0 && FEIJICardIndex.length == 0) {
             if (SHUNList.length > 0) {
@@ -646,7 +667,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
                     if (BOMBList.indexOf(e) != -1) return;
                     result.otherCard.push(e);
                 });
-        
+
             }
             return result;
         }
@@ -693,7 +714,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
                 result.cardList = { type: poker.CARD_TYPE.SHUN, count: SHUNList.length, card: cards[0] % 100, cards: cards };
                 break;
             case 6:
-                result.cardList = cards.length == 4 ? { type: poker.CARD_TYPE.BOMB, count: cards.length, card: cards[0]  % 100, cards: cards } : { type: poker.CARD_TYPE.SI, count: 1, card: cards[0]  % 100, cards: cards };
+                result.cardList = cards.length == 4 ? { type: poker.CARD_TYPE.BOMB, count: cards.length, card: cards[0] % 100, cards: cards } : { type: poker.CARD_TYPE.SI, count: 1, card: cards[0] % 100, cards: cards };
                 break;
         }
 

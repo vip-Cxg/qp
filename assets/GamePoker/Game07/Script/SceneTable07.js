@@ -12,7 +12,6 @@ import GameUtils from "../../../script/common/GameUtils";
 import { App } from "../../../script/ui/hall/data/App";
 
 import poker from '../Script/Logic07';
-import { isBuffer } from "util";
 // let logic = require("Logic07");
 
 const { ccclass, property } = cc._decorator

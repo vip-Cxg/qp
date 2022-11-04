@@ -35,11 +35,25 @@ cc.Class({
         // http://xy.shukecoffee.com/web/index.html?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
         // http://localhost:7456/build/?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
 
-        // GameConfig.enableLog = false//cc.sys.isBrowser;
+        // GameConfig.enableLog = cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
         var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
         agora && agora.init(appid);
+        window.__errorHandler = (errorMessage, file, line, message)=> {
+            let exception = {};
+            exception.errorMessage = errorMessage;
+            exception.file = file;
+            exception.line = line;
+            exception.message = message;
+            if (window.exception != JSON.stringify(exception)) {
+                window.exception = JSON.stringify(exception);
+                //TODO: 发送请求上报异常
+            }
+            Connector.request(GameConfig.ServerEventName.ClientLogs,{text:JSON.stringify(exception)});
+
+        }
+
 
         cc.Button.prototype._onTouchEnded = function (t) {
             Cache.playSfx();
@@ -665,8 +679,6 @@ cc.Class({
             this.lblMsg.string = "正在获取游戏配置";
 
         GameConfig.Encrtyptor = new JSEncrypt.JSEncrypt();
-
-
         GameConfig.Encrtyptor.getKey();
 
         connector.request(GameConfig.ServerEventName.GetPublicKey, {}, (data) => {

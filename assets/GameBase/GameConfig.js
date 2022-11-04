@@ -635,6 +635,7 @@ export class GameConfig {
 
         /**打点日志 */
         LogsClient: 'game/logs/client',
+
         /**玩家历史记录 */
         UserHistoryLogs: 'game/wallet/logs',
         /**admin历史记录 */
@@ -847,6 +848,8 @@ export class GameConfig {
         Table: 'game/Table',
         /**获取每日收益*/
         WithDrawInClubScore: 'game/withDrawInClubScore',
+        /**打点日志 */
+        ClientLogs: 'global/clientLogs',
     }
 
     static ErrorCode = {

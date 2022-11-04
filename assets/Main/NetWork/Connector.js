@@ -55,13 +55,14 @@ module.exports = {
         let reqType = "POST";
         let url = method.indexOf('http') != -1 ? method : this.logicUrl + method;
 
+        if (method != GameConfig.ServerEventName.Tables) {
 
-        if (cc.sys.isBrowser) {
-            console.log("data:   ", data)
-        } else {
-            console.log("data:   ", JSON.stringify(data))
+            if (cc.sys.isBrowser) {
+                console.log("data:   ", data)
+            } else {
+                console.log("data:   ", JSON.stringify(data))
+            }
         }
-
 
 
 
@@ -95,13 +96,13 @@ module.exports = {
                     let resData;
                     try {
                         resData = JSON.parse(response);
-                        // if (method != GameConfig.ServerEventName.Tables) {
+                        if (method != GameConfig.ServerEventName.Tables) {
                             if (cc.sys.isBrowser) {
                                 cc.log(url + ": ", resData);
                             } else {
                                 cc.log(url + ": ", response);
                             }
-                        // }
+                        }
 
                         if (method.indexOf('http') != -1) {
 

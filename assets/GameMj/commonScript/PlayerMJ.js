@@ -105,7 +105,7 @@ export default class ClubProxyItem extends cc.Component {
         if (GameUtils.isNullOrEmpty(data.prop))
             return;
 
-            
+
         this.voiceContent.active = true;
 
         this.imgHead.avatarUrl = data.prop.head;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '' : data.prop.head;
@@ -121,15 +121,14 @@ export default class ClubProxyItem extends cc.Component {
         this.lblScores.string = '' + GameUtils.formatGold(data.wallet);//TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '0' : '' + data.total;
         this.niaoNode.active = data.ready && data.ready.plus;
 
-
-        this.node.on('touchend', () => {
-            if (TableInfo.idx != data.idx) {
-                this.showInfo(data);
-            }
-        })
+        this.node.off('touchend', this.showInfo, this);
+        this.node.on('touchend', this.showInfo, this);
     }
 
+
+
     showInfo() {
+        if (TableInfo.idx == this.playData.idx || TableInfo.idx < 0) return;
         if (!this.playData) return;
         App.lockScene();
         let idx = this.playData.idx;

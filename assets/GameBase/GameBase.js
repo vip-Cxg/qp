@@ -79,19 +79,24 @@ cc.Class({
         }
     },
     initVoice() {
-        Connector.request('http://120.27.209.239:8082/fetch_rtc_token', {
-            uid: App.Player.id,
-            channelName: TableInfo.options.gameType + TableInfo.options.tableID,
 
-        }, (res) => {
-            console.log('声网token---', res.token);
-
-            if (!this.joined) {
-                agora && agora.setDefaultAudioRouteToSpeakerphone(true);
-                agora && agora.joinChannel(res.token, TableInfo.options.gameType + TableInfo.options.tableID, "", App.Player.id);
-                console.log(`agora && agora.joinChannel( "", '${App.Player.id}');`);
-            }
-        })
+                
+            Connector.request('http://120.27.209.239:8082/fetch_rtc_token', {
+                uid: App.Player.id,
+                channelName: ''+TableInfo.options.gameType + TableInfo.options.tableID,
+    
+            }, (res) => {
+                // console.log('声网token---', res.token);
+                try {
+                    if (!this.joined) {
+                        agora && agora.setDefaultAudioRouteToSpeakerphone(true);
+                        agora && agora.joinChannel(res.token, ""+TableInfo.options.gameType + TableInfo.options.tableID, "", App.Player.id);
+                    }
+                } catch (error) {
+                    
+                }
+               
+            })
         // let testToken = '007eJxTYOD/PkHfiO1T8ZlVbtbcv8+tVb/Zlu/buPrvjPvrXL+c8Y9WYEhLMzVMMbNItTQxTTJJs0i1MLMwSjVMTEwyMk+2tDRIerImILkhkJFBcakmCyMDBIL4zAwBLt4MDACcUSAg'
         // if (!this.joined) {
         //     agora && agora.setDefaultAudioRouteToSpeakerphone(true);

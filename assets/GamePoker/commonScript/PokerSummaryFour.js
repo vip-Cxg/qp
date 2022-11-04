@@ -16,8 +16,13 @@ export default class PokerSummaryFour extends cc.Component {
 
     isReplay = false;
     renderUI(data, replay = false) {
-        
-        agora && agora.leaveChannel();
+
+
+        try {
+            agora && agora.leaveChannel();
+        } catch (error) {
+
+        }
         this.isReplay = replay;
         let maxTotal = Math.max.apply(Math, data.map(item => { return item.total }))
         let maxIndex = data.findIndex(item => { return item.total == maxTotal });

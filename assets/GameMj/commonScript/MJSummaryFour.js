@@ -23,8 +23,11 @@ export default class MJSummaryFour extends cc.Component {
 
     renderUI(data) {
 
-        
-        agora && agora.leaveChannel();
+        try {
+            agora && agora.leaveChannel();
+        } catch (error) {
+
+        }
 
         let maxTotal = Math.max.apply(Math, data.map(item => { return item.total }))
         let maxIndex = data.findIndex(item => { return item.total == maxTotal });

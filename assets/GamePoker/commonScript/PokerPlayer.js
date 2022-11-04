@@ -155,7 +155,9 @@ export default class PokerPlayer extends cc.Component {
         this.sprBaodan.setPosition(posBaodan[TableInfo.realIdx[data.idx]]);
 
         this.node.on('touchend', () => {
+
             if (TableInfo.idx != data.idx) {
+                console.log("注册-----事件")
                 this.showInfo(data);
             }
         })
@@ -163,6 +165,7 @@ export default class PokerPlayer extends cc.Component {
 
 
     showInfo(data) {
+    
         let myDate = new Date();
         let currentTime = myDate.getTime();
         if (currentTime - this.lastTime < 2000) {
