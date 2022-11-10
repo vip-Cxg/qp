@@ -94,8 +94,8 @@ export default class GameVotePop extends cc.Component {
             this.sprHead[i].avatarUrl = TableInfo.players[i].prop.head;
         });
         /** 托管一局自动解散 */
-        if (data.type == 'auto') {
-            this.lblTips.string = `玩家[${TableInfo.players[data.idx].prop.name}]已开启自动托管,游戏即将自动解散`;
+        if (data.type == 'auto'&&data.idx>=0) {
+            this.lblTips.string = `玩家[${TableInfo.players[data.idx].prop?.name}]已开启自动托管,游戏即将自动解散`;
             this.btnAgree.active = false;
             this.btnRefuse.active = false;
             this.voteTips.active = false;

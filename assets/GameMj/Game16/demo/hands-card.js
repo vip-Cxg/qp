@@ -165,6 +165,8 @@ export default class HandsCard extends cc.Component {
         });
         let btnPlay = this.btnPlayCards.getComponent(cc.Button);
         let newCardList = logic.checkCard(playCards, this.nodeCards.length, TableInfo.config, TableInfo.current);
+        console.log('handsCards--newCardList',newCardList);
+
         let cardList = null;
         if (!utils.isNullOrEmpty(newCardList.cardList))
             cardList = newCardList.cardList;
@@ -192,6 +194,9 @@ export default class HandsCard extends cc.Component {
                 Cache.alertTip("必须带黑桃三");
             }
         }
+        
+        console.log('handsCards--cardList',cardList);
+
         TableInfo.select = cardList;
 
         let idxNext;

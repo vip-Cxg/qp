@@ -96,13 +96,13 @@ module.exports = {
                     let resData;
                     try {
                         resData = JSON.parse(response);
-                        if (method != GameConfig.ServerEventName.Tables) {
+                        // if (method != GameConfig.ServerEventName.Tables) {
                             if (cc.sys.isBrowser) {
                                 cc.log(url + ": ", resData);
                             } else {
                                 cc.log(url + ": ", response);
                             }
-                        }
+                        // }
 
                         if (method.indexOf('http') != -1) {
 

@@ -409,6 +409,8 @@ poker.checkCard = function (currentCards, length, rules, current) {
         otherCard: []
     };
     let tmpCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    console.log("checkCard.currentCards: ", currentCards);
+    console.log("checkCard.current: ", current);
 
     currentCards.forEach(card => {
         tmpCards[card % 100]++;
@@ -429,8 +431,12 @@ poker.checkCard = function (currentCards, length, rules, current) {
 
         //TODO cardList=[];
         if (cardList.length > 0) {
+            console.log("checkCard.cardList:", cardList)
 
-            let resIndex = Math.max(cardList.findIndex((arr, i) => (arr.length == current.cards.length)), 0)
+
+            let resIndex = 0
+            if (current.type == 'SI')
+                resIndex = Math.max(cardList.findIndex((arr, i) => (arr.length == current.cards.length)), 0)
 
             result.cardList = poker.decode(cardList[resIndex], length, rules, current);
             currentCards.forEach((e) => {
@@ -468,7 +474,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
         let BOMBList = [];//炸弹
         let BOMBCardIndex = [];
 
-
+        console.log("checkCard.hands:", hands)
         hands.forEach((e, i) => {
             if (e.length == 0) return;
             // if(e.length>=4) {//炸弹
@@ -681,6 +687,7 @@ poker.checkCard = function (currentCards, length, rules, current) {
             SHUNList,
             BOMBList,
         ];
+        console.log("checkCard.total:", total)
         // console.log(total);
         // total.sort((a, b) => b.length - a.length);
         let max = total[0].length;

@@ -146,6 +146,7 @@ cc.Class({
             })
         }
         let newCardList = logic.checkCard(playCards, this.nodeCards.length, TableInfo.config, TableInfo.current);
+        console.log('handsCards--newCardList',newCardList);
         let cardList = {};
         if (!utils.isNullOrEmpty(newCardList.cardList))
             cardList = newCardList.cardList;
@@ -178,8 +179,9 @@ cc.Class({
                 cache.alertTip("必须带红桃三");
             }
         }
-        TableInfo.select = cardList;
+        console.log('handsCards--cardList',cardList);
 
+        TableInfo.select = cardList;
         let idxNext;
         if (TableInfo.options.rules.person == 2) {
             idxNext = (TableInfo.currentPlayer + 1) % 2;
