@@ -639,6 +639,8 @@ export default class SceneTable10 extends BaseGame {
 
     /**重连 */
     resume(data) {
+        this.summaryHands.forEach(s => s && s.reset());
+
         TableInfo.cardRecord = data.playRecords;
         this.initTable(data);
         if (!GameUtils.isNullOrEmpty(data.drops)) {
@@ -1027,6 +1029,8 @@ export default class SceneTable10 extends BaseGame {
     }
 
     showPlayCards(group, score = true) {
+        this.summaryHands.forEach(s => s && s.reset());
+
         let cardType = ["", "", "", "", "", "五连顺", "六连顺", "七连顺", "八连顺", "九连顺", "十连顺", "十一连顺", "十二连顺",];
         //刷新当前分数
         this.refreshTableScore(group);

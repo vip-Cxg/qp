@@ -267,7 +267,9 @@ export default class SceneHall extends cc.Component {
     }
 
     onClickActivity() {
-        App.pop(GameConfig.pop.RechargeActivityPop);
+        Cache.alertTip('暂无活动')
+        // return;
+        // App.pop(GameConfig.pop.RechargeActivityPop);
 
     }
     onClickShare() {
