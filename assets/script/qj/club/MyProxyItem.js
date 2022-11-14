@@ -17,6 +17,7 @@ export default class MyProxyItem extends cc.Component {
     lblName = null
     @property(cc.Label)
     lblID = null
+
     @property(Avatar)
     avatar = null
     @property(cc.Node)
@@ -40,13 +41,15 @@ export default class MyProxyItem extends cc.Component {
     lblClubName = null
     @property(cc.Label)
     lblClubID = null
-
+    @property(cc.Label)
+    lblClubScore = null
     user = null
+    targetClubID = null;
 
     init(data) {
-        cc.log('proxyItem',data);
+        cc.log('proxyItem', data);
         this.user = data;
-        let { user : { name, head, id: userID }, league: { score, role }, index, membersCount = 0, sumScore = 0, club: { level = 0 } } = data;
+        let { user: { name, head, id: userID }, league: { score, role }, index, membersCount = 0, sumScore = 0, club: { level = 0 } } = data;
         // this.sprBg.spriteFrame = this.sprFrameBg[index % 2];
         this.lblName.string = name;
 
@@ -54,14 +57,16 @@ export default class MyProxyItem extends cc.Component {
         this.lblID.string = `ID:${userID}`;
         this.avatar.avatarUrl = head;
 
-        this.lblClubID.string='茶馆ID: '+data.club.id;
-        this.lblClubName.string='茶馆: '+data.club.name;
+        this.targetClubID=data.club.id;
+        this.lblClubID.string = '茶馆ID: ' + data.club.id;
+        this.lblClubName.string = '茶馆: ' + data.club.name;
+
 
         this.sprOffice.forEach((node, i) => {
             if (node)
                 node.active = i == role;
         })
-        this.lblMemberCount.string = Math.max(membersCount-1,0);//去除自己
+        this.lblMemberCount.string = Math.max(membersCount - 1, 0);//去除自己
         this.lblSumScore.string = App.transformScore(sumScore);
         this.lblLevel.string = `${level}%`
         App.EventManager.addEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
@@ -109,11 +114,19 @@ export default class MyProxyItem extends cc.Component {
         })
     }
 
+    getSumScore() {
+        const { id: clubID } = App.Club;
+        const { user: { id: userID }, club: { id: oglClubID } } = this.user;
+        Connector.request(GameConfig.ServerEventName.SumClubScore, { clubID, targetClubID: this.targetClubID}, (data) => {
+            this.lblClubScore.string = '茶馆总体力: ' + (App.transformScore(data.sumScore) || 0);
+        })
+    }
+
     onDestroy() {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.UPDATE_MEMBERS, this.updateInfo, this);
     }
 
     onClickOperate() {
-        App.pop(GameConfig.pop.UpgradeProxyPop, { ...this.user, node: this.node,type:'PROXY' } );
+        App.pop(GameConfig.pop.UpgradeProxyPop, { ...this.user, node: this.node, type: 'PROXY' });
     }
 }

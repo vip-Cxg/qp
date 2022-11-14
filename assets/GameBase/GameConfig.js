@@ -749,6 +749,8 @@ export class GameConfig {
         UserList: 'game/userList',//'game/userList',
         /**公会上下分 */
         UpdateScore: 'game/updateScore',
+        /**查询公会总分 */
+        SumClubScore: 'game/sumClubScore',
         /**玩家回复邀请 */
         ProcessInvite: 'game/processInvite',
         /**更新公会公告 */
