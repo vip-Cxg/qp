@@ -58,7 +58,10 @@ export default class ClubPop extends cc.Component {
     @property(cc.Label)
     lblOnlineCount = null
 
-
+    @property(cc.Node)
+    sprTotalScore = null
+    @property(cc.Label)
+    lblTotalScore = null
 
 
     @property(cc.Node)
@@ -301,9 +304,11 @@ export default class ClubPop extends cc.Component {
             this.sprOnlineCount.active = false;
             this.sprTableInfo.active = false;
             this.sprReward.active = false;
+            this.sprTotalScore.active = false;
 
         } else {
             this.sprReward.active = App.Club.role == GameConfig.ROLE.OWNER || App.Club.role == GameConfig.ROLE.PROXY || App.Club.role == GameConfig.ROLE.LEAGUE_OWNER;
+            this.sprTotalScore.active = App.Club.role == GameConfig.ROLE.OWNER || App.Club.role == GameConfig.ROLE.PROXY || App.Club.role == GameConfig.ROLE.LEAGUE_OWNER;
             this.sprOnlineCount.active = true;
             this.sprTableInfo.active = true;
             this.lblOnlineCount.string = (App.Club.leagueOnlineMembers || 0) + '/ ' + (App.Club.leagueMembers || 0) + '人在线';
@@ -312,6 +317,13 @@ export default class ClubPop extends cc.Component {
 
         }
 
+    }
+
+    getTotalScore(){
+        const { id: clubID } = App.Club;
+        Connector.request(GameConfig.ServerEventName.SumClubScore, { clubID, targetClubID: App.Club.oglID}, (data) => {
+            this.lblTotalScore.string = '' + (App.transformScore(data.sumScore) || 0);
+        })
     }
 
     onClickSearch() {
