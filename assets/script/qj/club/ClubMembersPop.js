@@ -2,6 +2,7 @@ import Connector from "../../../Main/NetWork/Connector";
 import { GameConfig } from "../../../GameBase/GameConfig";
 import GameUtils from "../../common/GameUtils";
 import { App } from "../../ui/hall/data/App";
+import Cache from "../../../Main/Script/Cache";
 const { ccclass, property } = cc._decorator
 @ccclass
 export default class ClubMembersPop extends cc.Component {
@@ -48,6 +49,14 @@ export default class ClubMembersPop extends cc.Component {
     @property(cc.Toggle)
     myMembers = null
 
+
+
+
+    @property(cc.Node)
+    pageContent = null
+    @property(cc.Label)
+    lblCurrentPage = null
+
     init() {
         let isLeague = App.Club.isLeague;
 
@@ -58,10 +67,10 @@ export default class ClubMembersPop extends cc.Component {
         this.toggleLeft._children.forEach(node => {
             node.active = show.includes(Number(node._name));
         })
-        this.nodeBtn.active = isLeague && (App.Club.role == GameConfig.ROLE.OWNER||App.Club.role == GameConfig.ROLE.LEAGUE_OWNER);
+        this.nodeBtn.active = isLeague && (App.Club.role == GameConfig.ROLE.OWNER || App.Club.role == GameConfig.ROLE.LEAGUE_OWNER);
 
-        if(this.nodeBtn.active)
-            this.lblLevel.string=App.Club.level+'%';
+        if (this.nodeBtn.active)
+            this.lblLevel.string = App.Club.level + '%';
 
         if (!GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) && !isLeague) {
             this.toggleLeft._children.forEach(node => {
@@ -107,20 +116,26 @@ export default class ClubMembersPop extends cc.Component {
     onClickLeftToggle(toggle) {
         let index = toggle.node._name;
         this._pageIndex = index;
+        this.currentPage = 1;
+        this.totalPage = 1;
+        this.lblCurrentPage.string = '第 1 页';
+
         this.scrollViews.forEach((scroll, i) => {
-            if (i == index) this.render(scroll);
-            cc.log(i == index);
+            if (i == index) this.render();
             scroll.node.parent.active = i == index;
         })
     }
 
+    currentPage = 1;
+    totalPage = 1;
     render() {
         let isLeague = App.Club.isLeague;
         let oglClubID = App.Club.oglID;
         console.log('按钮数列--', this._pageIndex);
+        this.pageContent.active = this._pageIndex == '0' || this._pageIndex == '6';
         switch (this._pageIndex) {
             case '0':
-                Connector.request(GameConfig.ServerEventName.UserList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.UserList, { page: this.currentPage, pageSize: 50, clubID: App.Club.clubInfo.id, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '2':
                 this.onClickSearch();
@@ -138,10 +153,10 @@ export default class ClubMembersPop extends cc.Component {
                 Connector.request(GameConfig.ServerEventName.UserList, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, black: true, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '6':
-                Connector.request(GameConfig.ServerEventName.MyMembers, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, oglClubID }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.MyMembers, { page: this.currentPage, pageSize: 50, clubID: App.Club.clubInfo.id, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
             case '7':
-                Connector.request(GameConfig.ServerEventName.MyProxy, { page: 1, pageSize: 50, clubID: App.Club.clubInfo.id, black: true, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
+                Connector.request(GameConfig.ServerEventName.MyProxy, { page: this.currentPage, pageSize: 50, clubID: App.Club.clubInfo.id, black: true, isLeague, oglClubID }, this.renderAllItems.bind(this), true);
                 break;
         }
     }
@@ -150,10 +165,21 @@ export default class ClubMembersPop extends cc.Component {
         let scroll = this.scrollViews[this._pageIndex];
         scroll.content.removeAllChildren()
         let isLeague = App.Club.isLeague;
-        console.log("渲染item", data)
+        console.log("渲染item", this._pageIndex, data)
 
         let { userList, online, total, memberCount, proxyCount } = data;
-        let { rows } = userList;
+        let { rows, count } = userList;
+
+        if (!GameUtils.isNullOrEmpty(data.page))
+            this.lblCurrentPage.string = '第 ' + data.page + ' 页';
+
+        if (count){
+            this.totalPage = (Math.ceil(count / 50)) || 1
+            console.log("this.totalPage",this.totalPage);
+
+        }
+
+
         if (GameConfig.CAN_OPERATE_ROLE.includes(App.Club.role) || isLeague) {
             if (total || total == 0)
                 this.lblAllMembers.string = `全部成员(${total})`;
@@ -167,7 +193,6 @@ export default class ClubMembersPop extends cc.Component {
         // if (proxyCount) {
         if (this._pageIndex == '7')
             this.lblMyProxy.string = `合伙茶馆(${userList.length})`;
-        console.log('----', userList.length)
         // this.lblMyProxyCheck.string = `合伙茶馆(${userList.length})`;
         // this.lblMyProxy.string = `合伙茶馆(${proxyCount})`;
         // }
@@ -178,16 +203,46 @@ export default class ClubMembersPop extends cc.Component {
             this.nodeTopBgAllMembers[0].active = true;
         }
         if (rows) {
+            console.log('----', rows.length)
+
             rows.forEach((r, i) => {
                 App.instancePrefab(prefab, { ...r, index: i, pageIndex: this._pageIndex }, scroll.content);
             })
         } else {
+            console.log('----', userList.length)
+
             userList.forEach((r, i) => {
                 App.instancePrefab(prefab, { ...r, index: i, pageIndex: this._pageIndex }, scroll.content);
             })
         }
 
     }
+
+
+
+    addPage() {
+        console.log("this.currentPage",this.currentPage);
+        console.log("this.totalPage",this.totalPage);
+        if (this.currentPage >= this.totalPage) {
+            Cache.alertTip('已经是最后一页');
+            return;
+        }
+        this.currentPage++;
+        this.render();
+    }
+    reducePage() {
+
+        console.log("this.currentPage",this.currentPage);
+        console.log("this.totalPage",this.totalPage);
+        if (this.currentPage == 1) {
+            Cache.alertTip('已经是第一页');
+            return;
+        }
+        this.currentPage--;
+
+        this.render();
+    }
+
 
     onClickSearch() {
         if (this.editBoxSearch.string == '') {

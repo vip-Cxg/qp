@@ -139,7 +139,7 @@ export default class PokerPlayer extends cc.Component {
         // this.sprBaodan.active = false;
         this.sprStatus.active = data.offline;
         this.imgBanker.active = data.idx == TableInfo.zhuang && TableInfo.status != GameConfig.GameStatus.WAIT;
-        this.lblZongjifen.string = GameUtils.formatGold(data.wallet);
+        this.lblZongjifen.string = GameUtils.formatGold(data.total);//  GameUtils.formatGold(data.wallet);
         this.zhuaScoreCount.string = data.scores?.credit || 0;
         this.cardCount.string = typeof data.hands == 'number' ? '' + data.hands : '';
 

@@ -32,7 +32,6 @@ export default class MembersItem extends cc.Component {
     _office = [GameConfig.ROLE.OWNER, GameConfig.ROLE.MANAGER, GameConfig.ROLE.PROXY, GameConfig.ROLE.USER]
 
     init(data) {
-        console.log("成员信息---",data)
         this._data = data;
         let { role, lastDate, status, user: {  name, head }, userID, remark = '', inBlack = false  } = data;
         this.Avatar.avatarUrl = head;

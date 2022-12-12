@@ -52,11 +52,11 @@ export default class GameRecordPop extends cc.Component {
     }
 
     onClickCheckReplay() {
-
         let  stringArr=this.editBoxRelayCode.string.split('|');
         let gameType=stringArr[0];
         let recoreUrl=stringArr[1];
 
+        // Connector.get('https://oss.uvuqqxu.cn/records/20221208/QJHZMJ557190KQTB6BWRFSMC1.json', "getJson", (resData) => {
         Connector.get(GameConfig.RecordUrl +recoreUrl, "getJson", (resData) => {
             Cache.replayData = resData;
             console.log('回放数据: ', resData)

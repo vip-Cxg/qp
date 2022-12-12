@@ -35,7 +35,7 @@ cc.Class({
         // http://xy.shukecoffee.com/web/index.html?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
         // http://localhost:7456/build/?token=82a2c0d3-4d77-45e5-9039-9b99062a76ea
 
-        // GameConfig.enableLog = cc.sys.isBrowser;
+        GameConfig.enableLog = cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
         var appid = 'ff51d68e945b4f8e8682e1aab27c990b';

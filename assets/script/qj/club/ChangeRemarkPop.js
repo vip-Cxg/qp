@@ -52,7 +52,7 @@ export default class ChangeRemarkPop extends cc.Component {
             GameUtils.alertTips(message);
             return;
         }
-        Connector.request(GameConfig.ServerEventName.ChangeRemark, { clubID: App.Club.id, remark, userID: this._data.userID }, this.successCallback.bind(this), true)
+        Connector.request(GameConfig.ServerEventName.ChangeRemark, { clubID: App.Club.id, remark, userID: this._data.userID,isLeague:App.Club.isLeague,oglClubID: App.Club.oglID }, this.successCallback.bind(this), true)
     }
 
     successCallback(data) {

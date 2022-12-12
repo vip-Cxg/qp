@@ -579,31 +579,69 @@ poker.checkCard = function (currentCards, length, rules, current) {
             FEIJICardIndex.forEach((e) => {
                 FEIJIList = FEIJIList.concat(hands[e].slice(0, 3));
             });
+            console.log('---0---FEIJIList---', FEIJIList);
             let FEIJICardCount = 0;//带牌数
             /** 规则 三带对 threeWithPair*/
             let MaxFEIJICardCount = rules.threeWithPair ? FEIJICardIndex.length * 2 : Math.min(FEIJICardIndex.length * 2, length - FEIJICardIndex.length * 3);//带牌数
 
+
+            let newDANCard=[];
+            console.log('---0---currentCards---', currentCards);
+
+            currentCards.forEach((card)=>{
+                if(FEIJIList.indexOf(card)==-1)
+                    newDANCard.push(card);
+            })
+            console.log('---0---newDANCard---', newDANCard);
+
+
             if (!rules.threeWithPair) {
-                DANCardIndex.forEach((e) => {
-                    if (FEIJICardCount == MaxFEIJICardCount || FEIJIList.reduce((p, c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
-                    let l = Math.min(MaxFEIJICardCount - FEIJICardCount, hands[e].length);
-                    FEIJIList = FEIJIList.concat(hands[e].slice(0, l))
-                    FEIJICardCount += l;
+
+                newDANCard.forEach((e)=>{
+                    if (FEIJICardCount == MaxFEIJICardCount) return;
+                    // let l = Math.min(MaxFEIJICardCount - FEIJICardCount, hands[e].length);
+                    // console.log('---0---hands[e].slice(0, l)--', l, hands[e].slice(0, l));
+                    FEIJIList = FEIJIList.concat(e)
+                    FEIJICardCount += 1;
+                })
+
+                // console.log('---0---DANCardIndex--', DANCardIndex);
+                // DANCardIndex.forEach((e) => {
+
+                //     console.log('---0---FEIJIList.reduce---', FEIJIList.reduce((p, c) => c % 100 == e ? (p = p + c) : p, 0), hands[e].length, "---" + e);
+                //     if (FEIJICardCount == MaxFEIJICardCount || FEIJIList.reduce((p, c) => c % 100 == e ? (p = p + c) : p, 0) >= hands[e].length) return;
+                //     let l = Math.min(MaxFEIJICardCount - FEIJICardCount, hands[e].length);
+                //     console.log('---0---hands[e].slice(0, l)--', l, hands[e].slice(0, l));
+                //     FEIJIList = FEIJIList.concat(hands[e].slice(0, l))
+                //     FEIJICardCount += l;
+                // https://oss.uvuqqxu.cn/records/QJHZMJ/20221208/QJHZMJ557190KQTB6BWRFSMC1.json
+                // });
+            }else{
+                console.log('---1---FEIJICardIndex---', FEIJICardIndex);
+                console.log('---1---DUICardIndex---', DUICardIndex);
+                console.log('---1---FEIJICardCount---', FEIJICardCount);
+                console.log('---1---FEIJIList---', FEIJIList);
+                DUICardIndex.forEach((e) => {
+                    if (FEIJICardCount == MaxFEIJICardCount) return;
+                    if (FEIJICardIndex.indexOf(e) != -1) return;
+                    if (MaxFEIJICardCount - FEIJICardCount >= hands[e].length) {
+                        FEIJIList = FEIJIList.concat(hands[e]);
+                        FEIJICardCount += hands[e].length;
+                    } else {
+                        let l = hands[e].slice(0, MaxFEIJICardCount - FEIJICardCount);
+                        console.log('---2---l ---', l);
+                        console.log('---2---hands---', hands);
+                        console.log('---2---MaxFEIJICardCount---', MaxFEIJICardCount);
+                        console.log('---2---FEIJICardCount---', FEIJICardCount);
+    
+                        FEIJIList = FEIJIList.concat(l);
+                        FEIJICardCount += l.length;
+                    }
                 });
             }
+            
+            console.log('---asd---FEIJIList---', FEIJIList);
 
-            DUICardIndex.forEach((e) => {
-                if (FEIJICardCount == MaxFEIJICardCount) return;
-                if (FEIJICardIndex.indexOf(e) != -1) return;
-                if (MaxFEIJICardCount - FEIJICardCount >= hands[e].length) {
-                    FEIJIList = FEIJIList.concat(hands[e]);
-                    FEIJICardCount += hands[e].length;
-                } else {
-                    let l = hands[e].slice(0, MaxFEIJICardCount - FEIJICardCount);
-                    FEIJIList = FEIJIList.concat(l);
-                    FEIJICardCount += l.length;
-                }
-            });
             // if (FEIJICardCount != MaxFEIJICardCount) FEIJIList = [];
         }
 

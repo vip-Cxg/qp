@@ -44,6 +44,7 @@ export default class ScoreLog extends cc.Component {
 
     init() {
         this.condition.clubID = App.Club.id;
+        this.condition.oglClubID = App.Club.oglID;
         this.operatorContent.removeAllChildren();
         this.createOperatorItem();
         Connector.request(GameConfig.ServerEventName.ProxiesList, { clubID: App.Club.id, oglClubID: App.Club.oglID }, this.randerProxyList.bind(this));
