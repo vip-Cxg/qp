@@ -515,7 +515,7 @@
 				LastUpgradeCheck = 500;
 				TargetAttributes = {
 					A922753C1517C094001B78AA = {
-						DevelopmentTeam = MD9JZ2AF94;
+						DevelopmentTeam = C435NC6WB9;
 					};
 				};
 			};
@@ -826,7 +826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = MD9JZ2AF94;
+				DEVELOPMENT_TEAM = C435NC6WB9;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -859,7 +859,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqps.ios;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -876,7 +876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = MD9JZ2AF94;
+				DEVELOPMENT_TEAM = C435NC6WB9;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -908,7 +908,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqps.ios;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
