@@ -30,7 +30,6 @@
 		467AF6082321FBED00770112 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF6072321FBED00770112 /* WebKit.framework */; };
 		467AF613232881E400770112 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF612232881E400770112 /* AVKit.framework */; };
 		467AF615232881EB00770112 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467AF614232881EB00770112 /* CoreMedia.framework */; };
-		4DD5E6AB1CDAF6430046171E /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */; };
 		4DD5E6B11CDAF65C0046171E /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */; };
 		502380DC17EBB88200990C9B /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 502380DB17EBB88200990C9B /* libcurl.dylib */; };
 		509D4A8117EBB24E00697056 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4545215156E28EF00887EB5 /* AppDelegate.cpp */; };
@@ -78,26 +77,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4DD0DB551CDAF5F40099AD86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1551A33F158F2AB200E66CFE;
-			remoteInfo = "libcocos2d Mac";
-		};
 		4DD0DB571CDAF5F40099AD86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A07A4D641783777C0073F6A7;
 			remoteInfo = "libcocos2d iOS";
-		};
-		4DD5E6A91CDAF6330046171E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FB34180E9ACB004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1551A33E158F2AB200E66CFE;
-			remoteInfo = "libcocos2d Mac";
 		};
 		4DD5E6AF1CDAF6520046171E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -195,7 +180,6 @@
 				1A37E9DC200DEF190078AF72 /* SystemConfiguration.framework in Frameworks */,
 				1ACA99231F550A20002DE225 /* JavaScriptCore.framework in Frameworks */,
 				1A499EBB1F0CDDC3004E6AEC /* CFNetwork.framework in Frameworks */,
-				4DD5E6AB1CDAF6430046171E /* libcocos2d Mac.a in Frameworks */,
 				FA676C781C71AFAB00E091E3 /* libiconv.dylib in Frameworks */,
 				BAEE4D841AC40C11003BEB0F /* Security.framework in Frameworks */,
 				502380DC17EBB88200990C9B /* libcurl.dylib in Frameworks */,
@@ -275,7 +259,6 @@
 		4DD0DB511CDAF5F40099AD86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */,
 				4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */,
 			);
 			name = Products;
@@ -300,7 +283,6 @@
 				102C25F345D685946B5872B6 /* Pods-xyqp_client-mobile.debug.xcconfig */,
 				AC3AB7BC64EB47712B6F38E8 /* Pods-xyqp_client-mobile.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -421,7 +403,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4DD5E6AA1CDAF6330046171E /* PBXTargetDependency */,
 			);
 			name = "xyqp_client-desktop";
 			productName = xyqp_client;
@@ -455,6 +436,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					A922753C1517C094001B78AA = {
+						DevelopmentTeam = C435NC6WB9;
+					};
+				};
 			};
 			buildConfigurationList = A92275371517C094001B78AA /* Build configuration list for PBXProject "xyqp_client" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -484,13 +470,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4DD0DB561CDAF5F40099AD86 /* libcocos2d Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libcocos2d Mac.a";
-			remoteRef = 4DD0DB551CDAF5F40099AD86 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4DD0DB581CDAF5F40099AD86 /* libcocos2d iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -603,11 +582,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4DD5E6AA1CDAF6330046171E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "libcocos2d Mac";
-			targetProxy = 4DD5E6A91CDAF6330046171E /* PBXContainerItemProxy */;
-		};
 		4DD5E6B01CDAF6520046171E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libcocos2d iOS";
@@ -746,6 +720,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = C435NC6WB9;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -764,6 +739,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.game;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -780,6 +756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = C435NC6WB9;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -797,6 +774,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyqp.game;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
