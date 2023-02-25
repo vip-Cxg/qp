@@ -148,7 +148,7 @@ export default class ClubPop extends cc.Component {
 
                 this.btnPopRule.active = role == GameConfig.ROLE.LEAGUE_OWNER;
 
-                this.btnPopStatistics.active = role == GameConfig.ROLE.LEAGUE_OWNER;
+                this.btnPopStatistics.active = role == GameConfig.ROLE.LEAGUE_OWNER||role==GameConfig.ROLE.OWNER;
                 break;
         }
 

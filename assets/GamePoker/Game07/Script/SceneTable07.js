@@ -138,6 +138,8 @@ export default class SceneTable07 extends BaseGame {
             agora.on('join-channel-success', this.onJoinChannelSuccess, this);
             agora.on('leave-channel', this.onLeaveChannel, this);
             agora.on('user-mute-audio', this.onUserMuteAudio, this);
+            agora.on('error', this.onError, this);
+
         }
 
 
@@ -165,6 +167,7 @@ export default class SceneTable07 extends BaseGame {
         if (agora) {
             agora.off('leave-channel', this.onLeaveChannel, this);
             agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('error', this.onError, this);
             agora.off('user-mute-audio', this.onUserMuteAudio, this);
         }
         this.startAutoBtn.off(cc.Node.EventType.TOUCH_END, this.onStartAuto, this);
@@ -489,7 +492,7 @@ export default class SceneTable07 extends BaseGame {
             })
         }
 
-        this.initVoice();
+        // this.initVoice();
 
         this.setTurn(data);
 
@@ -1175,7 +1178,7 @@ export default class SceneTable07 extends BaseGame {
     }
     /**返回大厅 */
     onClickExit() {
-        if (TableInfo.status == GameConfig.GameStatus.START&&TableInfo.idx>=0) return;
+        if (TableInfo.status == GameConfig.GameStatus.START && TableInfo.idx >= 0) return;
         App.confirmPop("是否退出房间", () => {
             this.onLeaveChannel()
             Connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
@@ -1252,6 +1255,11 @@ export default class SceneTable07 extends BaseGame {
         agora && agora.muteLocalAudioStream(true);
         // agora && agora.adjustPlaybackSignalVolume(100);
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
+    }
+    onError(err, msg) {
+        Cache.alertTip('声网报错!')
+        console.log(`onError --声网 ${err} ${msg}`);
+
     }
     onLeaveChannel() {
         // Cache.alertTip('离开频道')

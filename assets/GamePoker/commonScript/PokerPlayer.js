@@ -132,7 +132,8 @@ export default class PokerPlayer extends cc.Component {
         if (GameUtils.isNullOrEmpty(data.prop))
             return;
 
-        this.voiceContent.active = true;
+        console.log("玩家脚本--",TableInfo.options)
+        this.voiceContent.active = TableInfo.options.gameType=='WSK'//true;
         this.playLight.active = false;
         this.zhuaCard.node.active = false;
 

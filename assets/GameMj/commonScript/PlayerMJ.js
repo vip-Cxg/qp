@@ -106,7 +106,7 @@ export default class ClubProxyItem extends cc.Component {
             return;
 
 
-        this.voiceContent.active = true;
+        // this.voiceContent.active = true;
 
         this.imgHead.avatarUrl = data.prop.head;// TableInfo.idx != data.idx && TableInfo.status == GameConfig.GameStatus.WAIT ? '' : data.prop.head;
         this.imgReady.active = data.ready != null;

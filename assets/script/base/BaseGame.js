@@ -45,7 +45,6 @@ export default class BaseGame extends cc.Component {
         // this.initShare();
         this.initChat();
         // this.initVote();
-        // this.initVoice();
         // this.showPlayerInfo();
         // this.initPlayerInfo();
         // this.initAudioManage();

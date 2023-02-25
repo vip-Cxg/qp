@@ -415,7 +415,7 @@ cc.Class({
         
 
         
-        this.initVoice();
+        // this.initVoice();
 
         // this.handleSeatDownBtn(data);
 

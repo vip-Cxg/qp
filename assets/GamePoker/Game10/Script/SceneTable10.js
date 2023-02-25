@@ -502,6 +502,7 @@ export default class SceneTable10 extends BaseGame {
 
     /**初始化桌子 */
     initTable(data) {
+        console.log('路由信息---initTable', data)
         TableInfo.observers = data.observers;
         let windowNode = cc.find("Canvas")
         TableInfo.zhuang = data.banker;
@@ -523,13 +524,13 @@ export default class SceneTable10 extends BaseGame {
         this.wskGameChat.active = data.options.gameType == GameConfig.GameType.WSK;
 
         //显示游戏 类型 公会
-        
+
         this.lblBase.string = '' + data.options.rules.base;
-        if(data.options.rules.baseCredit){
-            this.lblBaseCredit.node.parent.active=true;
+        if (data.options.rules.baseCredit) {
+            this.lblBaseCredit.node.parent.active = true;
             this.lblBaseCredit.string = '' + data.options.rules.baseCredit;
-        }else{
-            this.lblBaseCredit.node.parent.active=false;
+        } else {
+            this.lblBaseCredit.node.parent.active = false;
         }
         this.lblRoomId.string = '' + data.tableID;
 
@@ -561,7 +562,9 @@ export default class SceneTable10 extends BaseGame {
             })
         }
 
-        this.initVoice();
+        //初始化语音开黑
+        if (data.options.gameType == 'WSK')
+            this.initVoice();
         this.setTurn(data);
 
         this.initPlayers(data);
@@ -628,11 +631,11 @@ export default class SceneTable10 extends BaseGame {
     }
 
     refreshMenuActive() {
-       
+
         this.startAutoBtn.active = TableInfo.options.rules.auto > 0;//TableInfo.idx >= 0;
-        if( TableInfo.options.club.isLeague){
-            this.btnDisband.active = TableInfo.idx >= 0&&TableInfo.options.rules.disband==0;
-        }else{
+        if (TableInfo.options.club.isLeague) {
+            this.btnDisband.active = TableInfo.idx >= 0 && TableInfo.options.rules.disband == 0;
+        } else {
             this.btnDisband.active = TableInfo.idx >= 0;
         }
     }
@@ -717,9 +720,9 @@ export default class SceneTable10 extends BaseGame {
     }
     /**炸弹加分 */
     scoreFly(data) {
-       
+
         data.players.sort((a, b) => a.idx - b.idx);
-       
+
         //出牌区归零
         this.dropCards.forEach((ground, i) => {
             ground.removeAllChildren(true);
@@ -745,7 +748,7 @@ export default class SceneTable10 extends BaseGame {
         let endPos = playPos[TableInfo.realIdx[data.to[0]]];
 
         //分数显示
-        this.players[TableInfo.realIdx[data.to[0]]].showBombScores(TableInfo.realIdx[data.to[0]], data.players[data.to[0]].total,  data.players[data.to[0]].score, () => {
+        this.players[TableInfo.realIdx[data.to[0]]].showBombScores(TableInfo.realIdx[data.to[0]], data.players[data.to[0]].total, data.players[data.to[0]].score, () => {
             for (let i = 0; i < 20; i++) {
                 let nodeCoin = cc.instantiate(this.preCoin);
                 nodeCoin.parent = this.node;

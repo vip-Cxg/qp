@@ -77,17 +77,17 @@ export default class ClubStatisticsPop extends cc.Component {
                 show = [5];
             }
         } else {
-            show = [6, 7, 9, 10];
+            show = App.Club.role == GameConfig.ROLE.OWNER ? [9] : [6, 7, 9, 10];
 
         }
-  
+
 
         this.toggleLeft.forEach((toggle, i) => {
             toggle.node.active = show.includes(Number(i));
         })
         // setTimeout(() => {
-            // console.log("setTimeOut click default",show[0])
-            this.toggleLeft[show[0]].check();
+        // console.log("setTimeOut click default",show[0])
+        this.toggleLeft[show[0]].check();
         // }, 3000)
         // this.toggleLeft.toggleItems.find(toggle => toggle.node.active)?.check();
     }

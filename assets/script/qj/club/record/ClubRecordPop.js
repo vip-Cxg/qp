@@ -64,10 +64,25 @@ export default class ClubStatisticPop extends cc.Component {
             return;
         }
         if (isLeague) {
+            let show = [];//App.Club.role == GameConfig.ROLE.USER ? [1, 5, 7] : (App.Club.role == GameConfig.ROLE.LEAGUE_OWNER ? [4, 1, 5, 6, 7] : [1, 5, 6, 7]);
+
+            switch (App.Club.role) {
+                case GameConfig.ROLE.USER:
+                    show = [1, 5, 7];
+                    break;
+                case GameConfig.ROLE.LEAGUE_OWNER:
+                    show = [4, 1, 5, 6, 7]
+                    break;
+                case GameConfig.ROLE.OWNER: //比赛场
+                    show = [4, 1, 5, 6, 7]
+                    break;
+                default:
+                    show = [1, 5, 6, 7]
+                    break;
+
+            }
 
 
-
-            let show = App.Club.role == GameConfig.ROLE.USER ? [1,  5, 7] : (App.Club.role==GameConfig.ROLE.LEAGUE_OWNER?[4, 1,  5, 6, 7]:[ 1,  5, 6, 7]) ;
             this.toggleLeft.forEach((toggle, i) => {
                 toggle.node.active = show.includes(Number(i));
             })

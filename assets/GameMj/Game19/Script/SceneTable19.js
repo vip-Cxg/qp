@@ -450,7 +450,7 @@ export default class SceneTable19 extends BaseGame {
         // this.players = new Array(4);
         this.players = new Array(TableInfo.options.rules.person);
 
-        this.initVoice();
+        // this.initVoice();
 
         //初始化玩家状态显示
         this.initPlayer(data);

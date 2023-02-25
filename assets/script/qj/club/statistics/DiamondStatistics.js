@@ -75,6 +75,8 @@ export default class DiamondStatistics extends cc.Component {
 
     onClickSearch() {
         let  req={
+            oglClubID :App.Club.oglID,
+            isLeague : App.Club.isLeague,
             date:[this.lblStartDate.string, this.lblEndDate.string],
             clubID:App.Club.id,
         }

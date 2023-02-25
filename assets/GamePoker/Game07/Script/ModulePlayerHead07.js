@@ -91,7 +91,7 @@ cc.Class({
 
         if (utils.isNullOrEmpty(data.prop))
             return;
-        this.voiceContent.active=true;
+        // this.voiceContent.active=true;
         this.playLight.active = false;
         // this.sprBaodan.active = false;
         this.sprStatus.active = data.offline;

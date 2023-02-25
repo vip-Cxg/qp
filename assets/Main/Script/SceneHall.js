@@ -342,12 +342,12 @@ export default class SceneHall extends cc.Component {
     }
 
     onJoinChannelSuccess(channel, uid, elapsed) {
-        // Cache.alertTip('进入频道')
-        // this.joined = true;
-        // agora && agora.muteAllRemoteAudioStreams(false);
-        // agora && agora.muteLocalAudioStream(false);
-        // agora && agora.adjustPlaybackSignalVolume(100);
-        // agora && agora.adjustAudioMixingPlayoutVolume(100);
+        Cache.alertTip('进入频道')
+        this.joined = true;
+        //开启其他人喇叭
+        agora && agora.muteAllRemoteAudioStreams(false);
+        //关掉自己麦克风
+        agora && agora.muteLocalAudioStream(true);
 
     }
     joined = false;
@@ -365,12 +365,14 @@ export default class SceneHall extends cc.Component {
     leaveChannel() {
         // agora && agora.leaveChannel();
     }
+
+ 
     onLeaveChannel() {
         // Cache.alertTip('离开频道')
         // this.joined = false;
     }
     testtt(e) {
-        console.log('first-audio-frame-decode', e)
+        // console.log('first-audio-frame-decode', e)
     }
 
     openServer() {

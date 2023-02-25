@@ -34,7 +34,7 @@ export default class DiamondStatisticsItem extends cc.Component {
         this.lblTurn.string = data.turn;
         this.lblName.string = data.name;
         // this.Avatar.avatarUrl = head;
-        this.lblID.string = data.userID;
+        this.lblID.string = '茶馆ID: '+data.oglClubID;
         this.lblPerson.string = data.person;
     }
   
