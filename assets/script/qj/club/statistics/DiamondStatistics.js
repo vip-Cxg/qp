@@ -82,12 +82,12 @@ export default class DiamondStatistics extends cc.Component {
         }
         this.content.removeAllChildren();
         Connector.request(GameConfig.ServerEventName.DiamondStatistic, req, ({ logs }) => {
-            if(logs.rows.length==0){
+            if(logs.length==0){
                 Cache.alertTip('暂无数据')
                 return;
             } 
             // for( let i=0)
-            logs.rows.forEach(l => {
+            logs.forEach(l => {
                 App.instancePrefab(this.item, l, this.content);
             })
         })

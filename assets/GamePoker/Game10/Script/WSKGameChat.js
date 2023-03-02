@@ -1,4 +1,5 @@
 import Connector from "../../../Main/NetWork/Connector";
+import Cache from "../../../Main/Script/Cache";
 import ROUTE from "../../../Main/Script/ROUTE";
 
 const MASSAGE_TYPE = {
@@ -48,7 +49,15 @@ const { ccclass, property } = cc._decorator
 export default class WSKGameChat extends cc.Component {
 
 
+    lastClickChat=0;
+
     sendChat(e,v) {
+        let nowTime = new Date().getTime();
+        if ((nowTime - this.lastClickChat) < 3000) {
+            Cache.alertTip('点击过于频繁,间隔不能少于3秒')
+            return
+        }
+        this.lastClickChat = nowTime;
         Connector.gameMessage(ROUTE.CS_GAME_CHAT, { messageType: 5, content: parseInt(e.currentTarget.name) });
     }
 

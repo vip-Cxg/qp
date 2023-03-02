@@ -19,6 +19,7 @@ let audioCtrl = require("audio-ctrl");
 let DataBase = require("DataBase");
 const socketCtrl = require("../../Main/NetWork/socket-ctrl");
 var { GameConfig } = require("../GameConfig");
+const Cache = require("../../Main/Script/Cache");
 let posPlayer = [cc.v2(-502, -200), cc.v2(502, 255), cc.v2(-502, 255)];
 let clip_config = [
     ['base_bomb_0', 'base_bomb_1', 'base_bomb_2', 'base_bomb_3', 'base_bomb_4', 'base_bomb_5'],
@@ -27,6 +28,8 @@ let clip_config = [
     ['base_flower_0', 'base_flower_1', 'base_flower_2', 'base_flower_3', 'base_flower_4', 'base_flower_5', 'base_flower_6', 'base_flower_7', 'base_flower_8', 'base_flower_9', 'base_flower_10'],
     ['base_love_0', 'base_love_1', 'base_love_2', 'base_love_3', 'base_love_4', 'base_love_5', 'base_love_6', 'base_love_7', 'base_love_8', 'base_love_9', 'base_love_10', 'base_love_11', 'base_love_12', 'base_love_13']
 ];
+// console.log("五十块语音",data)
+// let sexWSK = sex == 'male' ? 'c1' : 'g_c1';
 
 const WSKMSG_CONFIG = [
     {
@@ -43,23 +46,23 @@ const WSKMSG_CONFIG = [
     },
     {
         desc: '有无需求',
-        audio: 'y'
+        audio: 'youwuxuqiu'
     },
     {
         desc: '有无攻势',
-        audio: 'duizi'
+        audio: 'youwugongshi'
     },
     {
         desc: '好赶不',
-        audio: 'duizi'
+        audio: 'haoganbu'
     },
     {
         desc: '我来搞',
-        audio: 'duizi'
+        audio: 'wolaigao'
     },
     {
         desc: '搞不好',
-        audio: 'duizi'
+        audio: 'gaobuhao'
     }
 ]
 
@@ -179,7 +182,10 @@ cc.Class({
         switch (data.messageType) {
 
             case MASSAGE_TYPE.WSKMSG:
+                let sexWSK = sex == 'male' ? 'c1_' : 'g_c1_';
 
+                let audioStr=sexWSK+WSKMSG_CONFIG[parseInt(data.content)].audio;
+                Cache.playSound(""+audioStr);
 
                 // this.playChatAudio(  'male_chat_' + data.content + '.mp3');
                 let wskMsg = cc.instantiate(this.nodeMsg);

@@ -173,9 +173,9 @@ export default class ClubMembersPop extends cc.Component {
         if (!GameUtils.isNullOrEmpty(data.page))
             this.lblCurrentPage.string = '第 ' + data.page + ' 页';
 
-        if (count){
+        if (count) {
             this.totalPage = (Math.ceil(count / 50)) || 1
-            console.log("this.totalPage",this.totalPage);
+            console.log("this.totalPage", this.totalPage);
 
         }
 
@@ -203,13 +203,13 @@ export default class ClubMembersPop extends cc.Component {
             this.nodeTopBgAllMembers[0].active = true;
         }
         if (rows) {
-            console.log('----', rows.length)
+            console.log('----',prefab, rows.length)
 
             rows.forEach((r, i) => {
                 App.instancePrefab(prefab, { ...r, index: i, pageIndex: this._pageIndex }, scroll.content);
             })
         } else {
-            console.log('----', userList.length)
+            console.log('----', prefab,userList.length)
 
             userList.forEach((r, i) => {
                 App.instancePrefab(prefab, { ...r, index: i, pageIndex: this._pageIndex }, scroll.content);
@@ -221,8 +221,8 @@ export default class ClubMembersPop extends cc.Component {
 
 
     addPage() {
-        console.log("this.currentPage",this.currentPage);
-        console.log("this.totalPage",this.totalPage);
+        console.log("this.currentPage", this.currentPage);
+        console.log("this.totalPage", this.totalPage);
         if (this.currentPage >= this.totalPage) {
             Cache.alertTip('已经是最后一页');
             return;
@@ -232,8 +232,8 @@ export default class ClubMembersPop extends cc.Component {
     }
     reducePage() {
 
-        console.log("this.currentPage",this.currentPage);
-        console.log("this.totalPage",this.totalPage);
+        console.log("this.currentPage", this.currentPage);
+        console.log("this.totalPage", this.totalPage);
         if (this.currentPage == 1) {
             Cache.alertTip('已经是第一页');
             return;
@@ -246,10 +246,10 @@ export default class ClubMembersPop extends cc.Component {
 
     onClickSearch() {
         if (this.editBoxSearch.string == '') {
-            // App.alertTips('请输入查找内容');
+            Cache.alertTip('请输入查找内容');
             return;
         }
-        Connector.request(GameConfig.ServerEventName.UserList, { clubID: App.Club.clubInfo.id, condition: this.editBoxSearch.string, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, this.renderAllItems.bind(this), true);
+        Connector.request(GameConfig.ServerEventName.UserList, { clubID: App.Club.clubInfo.id, search: 1, condition: this.editBoxSearch.string, isLeague: App.Club.isLeague, oglClubID: App.Club.oglID }, this.renderAllItems.bind(this), true);
     }
 
     onClickClose() {

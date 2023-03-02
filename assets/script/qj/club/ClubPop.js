@@ -144,7 +144,8 @@ export default class ClubPop extends cc.Component {
             case 1: //比赛场
                 this.btnPopHome.active = false;
 
-                this.btnSearchTable.active =App.Club.leagueConfig.disband==1&&( role == GameConfig.ROLE.LEAGUE_OWNER||role == GameConfig.ROLE.LEAGUE_MANAGER||role == GameConfig.ROLE.OWNER||role == GameConfig.ROLE.MANAGER);
+                this.btnSearchTable.active =role == GameConfig.ROLE.LEAGUE_OWNER||role == GameConfig.ROLE.LEAGUE_MANAGER;
+                // this.btnSearchTable.active =App.Club.leagueConfig.disband==1&&( role == GameConfig.ROLE.LEAGUE_OWNER||role == GameConfig.ROLE.LEAGUE_MANAGER||role == GameConfig.ROLE.OWNER||role == GameConfig.ROLE.MANAGER);
 
                 this.btnPopRule.active = role == GameConfig.ROLE.LEAGUE_OWNER;
 

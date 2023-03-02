@@ -563,7 +563,7 @@ export default class SceneTable10 extends BaseGame {
         }
 
         //初始化语音开黑
-        if (data.options.gameType == 'WSK')
+        if (data.options.gameType == 'WSK' && data.idx != -1)
             this.initVoice();
         this.setTurn(data);
 
@@ -634,7 +634,7 @@ export default class SceneTable10 extends BaseGame {
 
         this.startAutoBtn.active = TableInfo.options.rules.auto > 0;//TableInfo.idx >= 0;
         if (TableInfo.options.club.isLeague) {
-            this.btnDisband.active = TableInfo.idx >= 0 && TableInfo.options.rules.disband == 0;
+            this.btnDisband.active =false //TableInfo.idx >= 0 && TableInfo.options.rules.disband == 0;
         } else {
             this.btnDisband.active = TableInfo.idx >= 0;
         }

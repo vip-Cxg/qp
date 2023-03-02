@@ -112,6 +112,7 @@ module.exports = {
     /**播放音效 */
     playSound(animName) {
         let url = cc.url.raw('resources/Audio/Common/' + animName + ".mp3");
+        console.log("url----",animName);
         audioCtrl.getInstance().playSFX(url);
     },
     /**显示提示语 */

@@ -35,10 +35,7 @@ export default class SceneHall extends cc.Component {
     @property(cc.Node)
     inviteRedPoint = null
 
-    speed = {
-        default: 100,
-        tips: '广播的速度'
-    }
+    speed = 100
     @property(cc.Node)
     btnScreen = null
 
@@ -173,8 +170,9 @@ export default class SceneHall extends cc.Component {
     }
 
     initNotice() {
+
         if (GameUtils.isNullOrEmpty(GameConfig.GameInfo.gameNotice)) return;
-        this.noticeNode.active = true;
+        // this.noticeNode.active = true;
         this.lblNotice.string = GameConfig.GameInfo.gameNotice;
         setTimeout(() => {
             if (this.lblNotice) {
@@ -185,8 +183,9 @@ export default class SceneHall extends cc.Component {
                 let cp = cc.sequence(ap, bp);
                 let dp = cc.repeatForever(cp);
                 this.lblNotice.node.runAction(dp);
+
             }
-        }, 100)
+        }, 1000)
     }
 
     initBGM() {
@@ -366,7 +365,7 @@ export default class SceneHall extends cc.Component {
         // agora && agora.leaveChannel();
     }
 
- 
+
     onLeaveChannel() {
         // Cache.alertTip('离开频道')
         // this.joined = false;

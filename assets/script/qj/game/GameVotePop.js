@@ -71,8 +71,8 @@ export default class GameVotePop extends cc.Component {
         }, 1);
         this.waitTips.active = data.data[TableInfo.idx] != 'wait'
         this.voteTips.active = data.data[TableInfo.idx] == 'wait';
-        this.btnRefuse.active = data.data[TableInfo.idx] == 'wait';
-        this.btnAgree.active = data.data[TableInfo.idx] == 'wait';
+        this.btnRefuse.active = false;// data.data[TableInfo.idx] == 'wait';
+        this.btnAgree.active = false;// data.data[TableInfo.idx] == 'wait';
 
         data.data.forEach((status, i) => {
             this.sprStatus[i].spriteFrame = this.statusSf[DESC_VOTE[status]];

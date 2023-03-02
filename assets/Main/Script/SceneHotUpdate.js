@@ -697,7 +697,7 @@ cc.Class({
                 GameConfig.DownloadUrl = data.data.download;
                 GameConfig.RoomConfig = data.data.gameConfig;
                 for (let key in data.data) {
-                    GameConfig.GameInfo[key] = data[key];
+                    GameConfig.GameInfo[key] = data.data[key];
 
                 }
             }

@@ -16,6 +16,8 @@ export default class MembersLeagueItem extends cc.Component {
     @property(cc.Label)
     lblScore = null
     @property(cc.Label)
+    lblClubId = null
+    @property(cc.Label)
     lblName = null
     @property(cc.Label)
     lblID = null
@@ -67,6 +69,9 @@ export default class MembersLeagueItem extends cc.Component {
         }
         this.lblScore.string = App.transformScore(score);
         this.lblID.string = `ID:${userID}`;
+
+        if(data.clubInfo&&data.clubInfo.id)
+        this.lblClubId.string='茶馆ID: '+data.clubInfo.id;
         this.lblStatus.string = lastDate;
         this.avatar.avatarUrl = head;
         this.sprOffice.spriteFrame = this.sprFrameOffice[this._office.indexOf(role)];
