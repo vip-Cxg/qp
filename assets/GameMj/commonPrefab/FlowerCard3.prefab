@@ -14,7 +14,7 @@
   {
     "__type__": "cc.Node",
     "_name": "FlowerCard3",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": null,
     "_children": [
       {
@@ -52,8 +52,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 45.39,
-      "height": 34.265
+      "width": 72.6,
+      "height": 54.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -71,8 +71,8 @@
         0,
         0,
         1,
-        -1.6,
-        1.6,
+        -1,
+        1,
         1
       ]
     },
@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 130,
-      "height": 56
+      "width": 48.1,
+      "height": 20.72
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -128,16 +128,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0.811,
-        6.502,
+        1.719,
+        10.265,
         0,
         0,
         0,
         0,
         1,
-        -0.208,
-        0.208,
-        0.76
+        -1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -172,7 +172,7 @@
       "__uuid__": "1c30aa22-c7f0-4c70-9842-74b16f4d9218"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -237,16 +237,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -7.905,
-        2.927,
+        -15.022,
+        1.157,
         0,
         0,
         0,
         0.7313537016191705,
         0.6819983600624985,
-        -0.325,
-        0.325,
-        0.638
+        -0.32,
+        0.32,
+        0.628
       ]
     },
     "_eulerAngles": {
@@ -344,16 +344,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -7.905,
-        2.927,
+        -15.022,
+        1.157,
         0,
         0,
         0,
         0.7313537016191705,
         0.6819983600624985,
-        -0.325,
-        0.325,
-        0.638
+        -0.32,
+        0.32,
+        0.628
       ]
     },
     "_eulerAngles": {
@@ -439,8 +439,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 127.2,
-      "height": 97.5
+      "width": 75.4,
+      "height": 56.7
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -451,16 +451,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -1.1,
-        0,
+        -1.8,
+        0.3,
         0,
         0,
         0,
         0,
         1,
-        -0.37,
-        0.37,
-        0.796
+        -1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {

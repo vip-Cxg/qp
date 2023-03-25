@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 101
+      "width": 30.432,
+      "height": 32.017
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -135,9 +135,9 @@
         0,
         0,
         1,
-        0.317,
-        0.317,
-        0.446
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -172,7 +172,7 @@
       "__uuid__": "64330e99-af5b-43e4-91f9-0eceecbd8749"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -291,7 +291,7 @@
     "_animationName": "idle",
     "_animationQueue": [],
     "_headAniInfo": null,
-    "_playTimes": 0,
+    "_playTimes": 1,
     "_isAniComplete": true,
     "_N$skeletonData": {
       "__uuid__": "1eb2ca45-89d7-4b07-98f5-6a08124fe048"
