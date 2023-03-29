@@ -258,7 +258,7 @@
       "__uuid__": "dec6bd0a-8c1e-4366-a38d-58926e419a89"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -821,7 +821,7 @@
       "__uuid__": "dec6bd0a-8c1e-4366-a38d-58926e419a89"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -1384,7 +1384,7 @@
       "__uuid__": "dec6bd0a-8c1e-4366-a38d-58926e419a89"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -1947,7 +1947,7 @@
       "__uuid__": "dec6bd0a-8c1e-4366-a38d-58926e419a89"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

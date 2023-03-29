@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 29.184,
-      "height": 28.576
+      "width": 96,
+      "height": 94
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -135,9 +135,9 @@
         0,
         0,
         1,
-        1,
-        1,
-        1
+        0.317,
+        0.317,
+        0.317
       ]
     },
     "_eulerAngles": {
@@ -172,7 +172,7 @@
       "__uuid__": "e59f9e73-a2e3-4d99-9c36-7f10b1a2f72a"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
