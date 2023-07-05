@@ -47,6 +47,7 @@ export default class QuickCreatePop extends cc.Component {
 
     init(data) {
         let rooms = App.Club.rooms
+        console.log("---",rooms)
         let isLeague = App.Club.isLeague;
         if (isLeague > 0) {
             this.selectionPay.children.forEach(n => {

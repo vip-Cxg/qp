@@ -50,7 +50,7 @@ export default class SceneHall extends cc.Component {
 
     init() {
 
-        agora && agora.leaveChannel();
+        // agora && agora.leaveChannel();
         // GameConfig.IsConnecting = false;
         this.initBGM(); //大厅音乐初始化
         this.initNotice(); // 大厅信息初始化
@@ -341,12 +341,12 @@ export default class SceneHall extends cc.Component {
     }
 
     onJoinChannelSuccess(channel, uid, elapsed) {
-        Cache.alertTip('进入频道')
-        this.joined = true;
-        //开启其他人喇叭
-        agora && agora.muteAllRemoteAudioStreams(false);
-        //关掉自己麦克风
-        agora && agora.muteLocalAudioStream(true);
+        // Cache.alertTip('进入频道')
+        // this.joined = true;
+        // //开启其他人喇叭
+        // agora && agora.muteAllRemoteAudioStreams(false);
+        // //关掉自己麦克风
+        // agora && agora.muteLocalAudioStream(true);
 
     }
     joined = false;

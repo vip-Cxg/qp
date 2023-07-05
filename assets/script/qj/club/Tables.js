@@ -76,6 +76,7 @@ export default class Tables extends cc.Component {
                     person: 4,
                     gameType: 'QJHH',
                     rules: { base: 0, turn: 0, title: '潜江晃晃', color: 0 },
+                    specialTable:0,
                     tableID: 0,
                     round: 0
                 },
@@ -85,6 +86,7 @@ export default class Tables extends cc.Component {
                     person: 4,
                     gameType: 'QJHZMJ',
                     rules: { base: 0, turn: 0, title: '潜江红中麻将', color: 1 },
+                    specialTable:0,
                     tableID: 0,
                     round: 0
                 },
@@ -94,6 +96,7 @@ export default class Tables extends cc.Component {
                     person: 4,
                     gameType: 'WSK',
                     rules: { base: 0, turn: 0, title: '五十K', color: 2 },
+                    specialTable:0,
                     tableID: 0,
                     round: 0
                 },
@@ -103,6 +106,7 @@ export default class Tables extends cc.Component {
                     person: 4,
                     gameType: 'WSKBD',
                     rules: { base: 0, turn: 0, title: '五十K必打', color: 3 },
+                    specialTable:0,
                     tableID: 0,
                     round: 0
                 },
@@ -112,12 +116,40 @@ export default class Tables extends cc.Component {
                     person: 3,
                     gameType: 'PDK',
                     rules: { base: 0, turn: 0, title: '跑得快', color: 4 },
+                    specialTable:0,
                     tableID: 0,
                     round: 0
                 },
             ]
+            let b=[];
+            let gameColor={
+                'WSKBD':3,
+                'WSK':2,
+                'QJHZMJ':1,
+                'QJHH':0,
+                'PDK':4,
+            }
+            console.log("  App.Club.rooms",  App.Club.rooms)
+            App.Club.rooms.forEach((item) => {
+                let itemTable={
+                    players: [],
+                    status: 'WAIT',
+                    person: item.gameType=='PDK'?3:4,
+                    gameType: item.gameType,
+                    roomID:item.roomID,
+                    rules: { base: item.rules.base, turn: item.rules.turn, title: item.name , color: gameColor[item.gameType],baseCredit:item.rules.baseCredit },
+                    tableID: 0,
+                    clubID:item.clubID,
+                    specialTable:1,
+                    isLeague:item.isLeague,
+                    round: 0
+                }
+                b.unshift(itemTable);
+            });
+            console.log("  b",  b)
+           
             // tables.unshift(a);
-            tables=a.concat(tables)
+            tables=a.concat(b).concat(tables)
             for (let table of tables) {
                 let  item=cc.instantiate(this.tableItem);
                 item.getComponent('TableItem').init(table);

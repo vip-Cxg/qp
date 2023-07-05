@@ -89,6 +89,7 @@ export default class ClubMembersPop extends cc.Component {
 
     onClickAddMember() {
         App.pop(GameConfig.pop.InputPop, [(userID) => {
+            // oglClubID: App.Club.oglID
             Connector.request(GameConfig.ServerEventName.Invite, { userID, clubID: App.Club.id }, (data) => {
                 this.render();
             });

@@ -80,7 +80,7 @@ export default class ClubProxyItem extends cc.Component {
             cc.v2(75, 0),
             cc.v2(75, 0)
         ]
-        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        // this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
         this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
 
 
@@ -334,14 +334,14 @@ export default class ClubProxyItem extends cc.Component {
         if (this.playData.prop && this.playData.prop.pid == App.Player.id) {
             this.muteLocal = !this.muteLocal;
             this.updateMute();
-            agora && agora.muteLocalAudioStream(this.muteLocal);
+            // agora && agora.muteLocalAudioStream(this.muteLocal);
         }
     }
     changAllRemoteAudio() {
         if (this.playData.prop && this.playData.prop.pid == App.Player.id) {
             this.muteRemote = !this.muteRemote;
             this.updateMute();
-            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+            // agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
         }
     }
 

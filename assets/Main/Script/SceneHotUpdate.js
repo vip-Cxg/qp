@@ -38,8 +38,8 @@ cc.Class({
         GameConfig.enableLog = cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
-        var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
-        agora && agora.init(appid);
+        // var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
+        // agora && agora.init(appid);
         window.__errorHandler = (errorMessage, file, line, message)=> {
             let exception = {};
             exception.errorMessage = errorMessage;

@@ -180,11 +180,11 @@ cc.Class({
         })
         // this.ruleBtn.on(cc.Node.EventType.TOUCH_CANCEL, this.hideRuleNode, this);
         // this.ruleBtn.on(cc.Node.EventType.TOUCH_END, this.hideRuleNode, this);
-        if (agora) {
-            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
-            agora.on('leave-channel', this.onLeaveChannel, this);
-            agora.on('user-mute-audio', this.onUserMuteAudio, this);
-        }
+        // if (agora) {
+        //     agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+        //     agora.on('leave-channel', this.onLeaveChannel, this);
+        //     agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        // }
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_SHOW_SAME_CARD, this.showSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_RESET_SAME_CARD, this.resetSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_CHECK_HU, this.handleCheckHu, this)
@@ -202,11 +202,11 @@ cc.Class({
         App.EventManager.removeEventListener(GameConfig.GameEventNames.HNMJ_GAME_SUMMARY, this.roundReset, this)
         App.EventManager.removeEventListener(GameConfig.GameEventNames.MJ_GAME_NEXT, this.sendReady, this)
    
-        if (agora) {
-            agora.off('leave-channel', this.onLeaveChannel, this);
-            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
-            agora.off('user-mute-audio', this.onUserMuteAudio, this);
-        }
+        // if (agora) {
+        //     agora.off('leave-channel', this.onLeaveChannel, this);
+        //     agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+        //     agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        // }
     },
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -1911,11 +1911,11 @@ cc.Class({
         App.pop(GameConfig.pop.GameVotePop, voteData);
     },
     onJoinChannelSuccess(channel, uid, elapsed) {
-        this.joined = true;
-        //开启其他人喇叭
-        agora && agora.muteAllRemoteAudioStreams(false);
+        // this.joined = true;
+        // //开启其他人喇叭
+        // agora && agora.muteAllRemoteAudioStreams(false);
         //关掉自己麦克风
-        agora && agora.muteLocalAudioStream(true);
+        // agora && agora.muteLocalAudioStream(true);
         // agora && agora.adjustPlaybackSignalVolume(100);
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     },

@@ -19,7 +19,7 @@ export default class PokerSummaryFour extends cc.Component {
 
 
         try {
-            agora && agora.leaveChannel();
+            // agora && agora.leaveChannel();
         } catch (error) {
 
         }
