@@ -74,7 +74,7 @@ cc.Class({
             cc.v2(0, 120)
         ]
 
-        // this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
         this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
         
         console.log("位置--", TableInfo.realIdx, playPos[TableInfo.realIdx[data.idx]])
@@ -91,7 +91,7 @@ cc.Class({
 
         if (utils.isNullOrEmpty(data.prop))
             return;
-        // this.voiceContent.active=true;
+        this.voiceContent.active=true;
         this.playLight.active = false;
         // this.sprBaodan.active = false;
         this.sprStatus.active = data.offline;
@@ -264,7 +264,7 @@ cc.Class({
         if(this.playerData.prop&&this.playerData.prop.pid==App.Player.id){
             this.muteLocal = !this.muteLocal;
             this.updateMute();
-            // agora && agora.muteLocalAudioStream(this.muteLocal);
+            agora && agora.muteLocalAudioStream(this.muteLocal);
         }
     },
     changAllRemoteAudio() {
@@ -272,7 +272,7 @@ cc.Class({
 
             this.muteRemote = !this.muteRemote;
             this.updateMute();
-            // agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
         }
     },
 

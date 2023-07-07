@@ -140,6 +140,9 @@ export default class SceneTable10 extends BaseGame {
     @property(cc.Node)
     wskGameChat = null;
 
+    @property(cc.Node)
+    btnChat = null;
+
     players = [];
     hands = [];
     _delayTime = 0;
@@ -173,11 +176,11 @@ export default class SceneTable10 extends BaseGame {
     }
     /**添加监听事件 */
     addEvents() {
-        // if (agora) {
-        //     agora.on('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.on('leave-channel', this.onLeaveChannel, this);
-        //     agora.on('user-mute-audio', this.onUserMuteAudio, this);
-        // }
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
         this.ruleBtn.on(cc.Node.EventType.TOUCH_END, this.showRuleNode, this);
 
         this.node.on(cc.Node.EventType.TOUCH_START, () => {
@@ -206,11 +209,11 @@ export default class SceneTable10 extends BaseGame {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.PDK_CONTINUE_GAME, this.normalReady, this);
 
         // this.node.off(GameConfig.GameEventNames.PDK_BACK_HALL, this.backHall, this);
-        // if (agora) {
-        //     agora.off('leave-channel', this.onLeaveChannel, this);
-        //     agora.off('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.off('user-mute-audio', this.onUserMuteAudio, this);
-        // }
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
     }
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -517,6 +520,7 @@ export default class SceneTable10 extends BaseGame {
 
         //要不起按钮显示
         this.btnPass.active = data.options.gameType == GameConfig.GameType.WSK;
+        this.btnChat.active = data.options.gameType == GameConfig.GameType.WSK;
         //初始化逻辑规则
         this.calc = new Calc(data.options.rules, data.options.gameType);
         this.layerHandCards.logic = this.calc;
@@ -1527,11 +1531,11 @@ export default class SceneTable10 extends BaseGame {
 
     }
     onJoinChannelSuccess(channel, uid, elapsed) {
-        // this.joined = true;
+        this.joined = true;
         //开启其他人喇叭
-        // agora && agora.muteAllRemoteAudioStreams(false);
+        agora && agora.muteAllRemoteAudioStreams(false);
         //关掉自己麦克风
-        // agora && agora.muteLocalAudioStream(true);
+        agora && agora.muteLocalAudioStream(true);
         // agora && agora.adjustPlaybackSignalVolume(100);
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     }

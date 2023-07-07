@@ -25,7 +25,7 @@ export default class PokerSummary extends cc.Component {
     renderUI(data) {
 
         try {
-            // agora && agora.leaveChannel();
+            agora && agora.leaveChannel();
 
         } catch (error) {
 

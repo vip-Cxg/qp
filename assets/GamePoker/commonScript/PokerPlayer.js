@@ -122,7 +122,7 @@ export default class PokerPlayer extends cc.Component {
             cc.v2(107, 40)
         ]
 
-        // this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
+        this.voiceContent.position = voicePos[TableInfo.realIdx[data.idx]];
         this.allRemoteSprite.node.active = TableInfo.realIdx[data.idx] == 0;
 
         this.cardContainer.active = TableInfo.options?.rules.showRemainingCards;
@@ -133,7 +133,7 @@ export default class PokerPlayer extends cc.Component {
             return;
 
         console.log("玩家脚本--",TableInfo.options)
-        // this.voiceContent.active = TableInfo.options.gameType=='WSK'//true;
+        this.voiceContent.active = TableInfo.options.gameType=='WSK'//true;
         this.playLight.active = false;
         this.zhuaCard.node.active = false;
 
@@ -370,14 +370,14 @@ export default class PokerPlayer extends cc.Component {
         if (this.playerData.prop && this.playerData.prop.pid == App.Player.id) {
             this.muteLocal = !this.muteLocal;
             this.updateMute();
-            // agora && agora.muteLocalAudioStream(this.muteLocal);
+            agora && agora.muteLocalAudioStream(this.muteLocal);
         }
     }
     changAllRemoteAudio() {
         if (this.playerData.prop && this.playerData.prop.pid == App.Player.id) {
             this.muteRemote = !this.muteRemote;
             this.updateMute();
-            // agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
+            agora && agora.muteAllRemoteAudioStreams(this.muteRemote)
         }
     }
 

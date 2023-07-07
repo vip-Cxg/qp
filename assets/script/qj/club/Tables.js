@@ -134,7 +134,7 @@ export default class Tables extends cc.Component {
                 let itemTable={
                     players: [],
                     status: 'WAIT',
-                    person: item.gameType=='PDK'?3:4,
+                    person: item.person,
                     gameType: item.gameType,
                     roomID:item.roomID,
                     rules: { base: item.rules.base, turn: item.rules.turn, title: item.name , color: gameColor[item.gameType],baseCredit:item.rules.baseCredit },

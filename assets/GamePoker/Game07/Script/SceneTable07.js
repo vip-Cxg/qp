@@ -134,13 +134,13 @@ export default class SceneTable07 extends BaseGame {
     }
     /**添加监听事件 */
     addEvents() {
-        // if (agora) {
-        //     agora.on('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.on('leave-channel', this.onLeaveChannel, this);
-        //     agora.on('user-mute-audio', this.onUserMuteAudio, this);
-        //     agora.on('error', this.onError, this);
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+            agora.on('error', this.onError, this);
 
-        // }
+        }
 
 
 
@@ -164,12 +164,12 @@ export default class SceneTable07 extends BaseGame {
     }
     /**移除监听事件 */
     removeEvents() {
-        // if (agora) {
-        //     agora.off('leave-channel', this.onLeaveChannel, this);
-        //     agora.off('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.off('error', this.onError, this);
-        //     agora.off('user-mute-audio', this.onUserMuteAudio, this);
-        // }
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('error', this.onError, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
         this.startAutoBtn.off(cc.Node.EventType.TOUCH_END, this.onStartAuto, this);
         this.cancelAutoBtn.off(cc.Node.EventType.TOUCH_END, this.onCancelAuto, this);
         this.exitBtn.off(cc.Node.EventType.TOUCH_END, this.onClickExit, this);
@@ -1249,11 +1249,11 @@ export default class SceneTable07 extends BaseGame {
 
     onJoinChannelSuccess(channel, uid, elapsed) {
         Cache.alertTip('进入频道')
-        // this.joined = true;
+        this.joined = true;
         //开启其他人喇叭
-        // agora && agora.muteAllRemoteAudioStreams(false);
+        agora && agora.muteAllRemoteAudioStreams(false);
         //关掉自己麦克风
-        // agora && agora.muteLocalAudioStream(true);
+        agora && agora.muteLocalAudioStream(true);
         // agora && agora.adjustPlaybackSignalVolume(100);
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     }
@@ -1264,7 +1264,7 @@ export default class SceneTable07 extends BaseGame {
     }
     onLeaveChannel() {
         // Cache.alertTip('离开频道')
-        // this.joined = false;
+        this.joined = false;
     }
     onUserMuteAudio(uid, muted) {
         let audioIndex = -1;

@@ -50,7 +50,7 @@ export default class SceneHall extends cc.Component {
 
     init() {
 
-        // agora && agora.leaveChannel();
+        agora && agora.leaveChannel();
         // GameConfig.IsConnecting = false;
         this.initBGM(); //大厅音乐初始化
         this.initNotice(); // 大厅信息初始化

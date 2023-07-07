@@ -218,11 +218,11 @@ export default class SceneTable19 extends BaseGame {
             this.bgTing.active = false;
         })
 
-        // if (agora) {
-        //     agora.on('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.on('leave-channel', this.onLeaveChannel, this);
-        //     agora.on('user-mute-audio', this.onUserMuteAudio, this);
-        // }
+        if (agora) {
+            agora.on('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.on('leave-channel', this.onLeaveChannel, this);
+            agora.on('user-mute-audio', this.onUserMuteAudio, this);
+        }
 
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_SHOW_SAME_CARD, this.showSameCard, this);
         App.EventManager.addEventListener(GameConfig.GameEventNames.HNMJ_RESET_SAME_CARD, this.resetSameCard, this);
@@ -242,11 +242,11 @@ export default class SceneTable19 extends BaseGame {
         App.EventManager.removeEventListener(GameConfig.GameEventNames.MJ_GAME_NEXT, this.sendReady, this)
 
         // this.node.off(GameConfig.GameEventNames.PDK_BACK_HALL, this.backHall, this);
-        // if (agora) {
-        //     agora.off('leave-channel', this.onLeaveChannel, this);
-        //     agora.off('join-channel-success', this.onJoinChannelSuccess, this);
-        //     agora.off('user-mute-audio', this.onUserMuteAudio, this);
-        // }
+        if (agora) {
+            agora.off('leave-channel', this.onLeaveChannel, this);
+            agora.off('join-channel-success', this.onJoinChannelSuccess, this);
+            agora.off('user-mute-audio', this.onUserMuteAudio, this);
+        }
     }
     initChatContent() {
         this.node.on('chatAlready', () => {
@@ -1860,11 +1860,11 @@ export default class SceneTable19 extends BaseGame {
     }
 
     onJoinChannelSuccess(channel, uid, elapsed) {
-        // this.joined = true;
+        this.joined = true;
         //开启其他人喇叭
-        // agora && agora.muteAllRemoteAudioStreams(false);
+        agora && agora.muteAllRemoteAudioStreams(false);
         //关掉自己麦克风
-        // agora && agora.muteLocalAudioStream(true);
+        agora && agora.muteLocalAudioStream(true);
         // agora && agora.adjustPlaybackSignalVolume(100);
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     }

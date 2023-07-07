@@ -15,6 +15,7 @@ cc.Class({
     properties: {
         userId: cc.Label,
         userName: cc.Label,
+        emoNode:cc.Node,
         avatar: require('../../script/ui/common/Avatar'),
         closeBtn: cc.Node,
         lastTime: 0
@@ -33,7 +34,7 @@ cc.Class({
     },
 
     init(data) {
-
+        this.emoNode.active= TableInfo.options.gameType == GameConfig.GameType.WSK;
         // this.node.parent = cc.find('Canvas');
         this.idx = data;
         this.userId.string = !utils.isNullOrEmpty(TableInfo.options) && TableInfo.options.gameType == GameConfig.GameType.XHZD && TableInfo.options.mode != 'CUSTOM' ? "" : TableInfo.players[data].prop.pid;
