@@ -71,7 +71,7 @@ public class AppActivity extends Cocos2dxActivity implements AMapLocationListene
     private static final int PERMISSION_CODE_SAVEIMAGE = 0x16;
 
     //新增代码
-    public static String wx_appid = "wx1f66a2276a8c673e";//"wx064c4712c743554c";
+    public static String wx_appid = "wxe541cb7aa9c963cd";//"wx1f66a2276a8c673e";//"wx064c4712c743554c";
     public static IWXAPI wx_api;
 
     private static final String TAG = "XYQP";

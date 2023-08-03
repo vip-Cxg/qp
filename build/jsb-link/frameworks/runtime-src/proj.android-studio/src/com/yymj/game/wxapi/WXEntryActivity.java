@@ -1,4 +1,4 @@
-package com.cyqp.game.wxapi;
+package com.yymj.game.wxapi;
 
 import android.app.Activity;
 import android.os.Bundle;

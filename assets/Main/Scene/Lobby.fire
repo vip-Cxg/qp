@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        420.0223208354528,
+        421.75437164302167,
         0,
         0,
         0,
@@ -4819,7 +4819,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1a65e7c6-9910-41c5-979d-648f68c99369"
+      "__uuid__": "3a2d7f62-5757-48ab-b90e-6caa84f0b612"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -5111,10 +5111,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "247cb817-d9a6-466c-841f-a0d89476e5cb"
+      "__uuid__": "2de2720e-6c5b-4dfe-b11a-10c19d20366d"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

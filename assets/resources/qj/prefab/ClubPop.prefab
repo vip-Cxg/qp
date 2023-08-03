@@ -8659,7 +8659,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f1c5e5e3-c1e0-4d96-8f26-34f9e26570f1"
+      "__uuid__": "8d33b270-3a09-4a49-8c73-13b101c23735"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -8759,10 +8759,10 @@
       "__id__": 26
     },
     "sprChaGuan": {
-      "__uuid__": "f1c5e5e3-c1e0-4d96-8f26-34f9e26570f1"
+      "__uuid__": "8d33b270-3a09-4a49-8c73-13b101c23735"
     },
     "sprMatch": {
-      "__uuid__": "c4954e72-7655-4d7d-b9c6-c72932bed441"
+      "__uuid__": "8d33b270-3a09-4a49-8c73-13b101c23735"
     },
     "_id": ""
   },

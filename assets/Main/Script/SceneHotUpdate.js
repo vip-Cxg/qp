@@ -255,10 +255,10 @@ cc.Class({
 
     /**热更新失败 修改热更新地址 */
     handleUpdateFail(newUrl) {
-        if (GameConfig.IsDebug || cc.sys.isBrowser) {
+        // if (GameConfig.IsDebug || cc.sys.isBrowser) {
             this.onUpdateProgress('')
             return;
-        }
+        // }
         var url = this.manifestUrl.nativeUrl;
         if (cc.loader.md5Pipe) {
             url = cc.loader.md5Pipe.transformURL(url);
