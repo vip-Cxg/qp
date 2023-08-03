@@ -6,9 +6,8 @@ let Native = require("../Script/native-extend"); // require('native-extend');
 let _social = Native.Social;
 let DataBase = require("../Script/DataBase") //require("DataBase");
 const connector = require("../NetWork/Connector");
-// const JSEncrypt = require('./jsencrypt');
 
-const JSEncrypt = require("./jsencrypt");
+const JSEncrypt = require("./jsencrypt"); 
 const { SelectLink } = require("./SelectLink");
 const { App } = require("../../script/ui/hall/data/App");
 cc.Class({
@@ -38,7 +37,7 @@ cc.Class({
         GameConfig.enableLog = cc.sys.isBrowser;
         cc.gameConfig = GameConfig;
         cc.debug.setDisplayStats(false)
-        var appid = 'ff51d68e945b4f8e8682e1aab27c990b';
+        var appid = 'ae4e2637b8d04f819b9776876d0548b1';//'ff51d68e945b4f8e8682e1aab27c990b';
         agora && agora.init(appid);
         window.__errorHandler = (errorMessage, file, line, message)=> {
             let exception = {};

@@ -76,8 +76,8 @@ export class SelectLink {
         console.log("选择url---1-",this._apiSelected)
         this._apiSelected = true;
         clearTimeout(this.serverFailed); 
-        // url ='http://192.168.10.19:8000/';////'http://192.168.10.10:8000/';//'http://192.168.10.10:8000/';
-        url = 'http://8.134.137.113:8000/';// 'http://120.27.209.239:8000/';//'http://121.40.34.183:8000/';//
+        // url ='http://192.168.10.7:8000/';////'http://192.168.10.10:8000/';//'http://192.168.10.10:8000/';
+        url = 'http://114.132.55.75:8000/';//'http://8.134.137.113:8000/';// 'http://120.27.209.239:8000/';//'http://121.40.34.183:8000/';//
         Connector.logicUrl = url;//url;//xyhldqp.com   "http://resource.qyhnmj.com/hnupdate/"//xyhldqp.com
         Http.API_URL = url;
 

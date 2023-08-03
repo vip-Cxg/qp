@@ -80,6 +80,7 @@ export default class TableItem extends cc.Component {
         /** color 桌子颜色 0-蓝色 1-绿色 2-紫色 3-红色 */
 
         let { players, status, person, gameType, rules: { base, turn, title = '潜江晃晃', color = 0, baseCredit }, tableID, round, createdAt } = data;
+    
         this._sprTable.spriteFrame = this.spriteFrameTable[(person - 2) * 4 + color];
 
         if (tableID == 0&&data.specialTable==0) {

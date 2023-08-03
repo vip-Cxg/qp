@@ -62,10 +62,11 @@ export default class LeagueMemberStatistics extends cc.Component {
     }
 
     onClickSearch() {
+        console.log("dadada",this.data)
         this.data.condition = this.editBoxCondition.string;
         this.data.date = [this.lblStartDate.string, this.lblEndDate.string];
         this.data.clubID = App.Club.id;
-        if (this.data.low.length == 0) {
+        if (this.data.low?.length == 0) {
             App.alertTips('请输入最低分');
             return;
         }

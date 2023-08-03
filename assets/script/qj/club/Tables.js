@@ -127,7 +127,7 @@ export default class Tables extends cc.Component {
                 'WSK':2,
                 'QJHZMJ':1,
                 'QJHH':0,
-                'PDK':4,
+                'PDK':0,
             }
             console.log("  App.Club.rooms",  App.Club.rooms)
             App.Club.rooms.forEach((item) => {
@@ -146,10 +146,11 @@ export default class Tables extends cc.Component {
                 }
                 b.unshift(itemTable);
             });
-            console.log("  b",  b)
            
             // tables.unshift(a);
             tables=a.concat(b).concat(tables)
+            // console.log("tables", tables)
+
             for (let table of tables) {
                 let  item=cc.instantiate(this.tableItem);
                 item.getComponent('TableItem').init(table);
