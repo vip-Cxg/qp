@@ -1258,7 +1258,7 @@ export default class SceneTable07 extends BaseGame {
         // agora && agora.adjustAudioMixingPlayoutVolume(100);
     }
     onError(err, msg) {
-        Cache.alertTip('声网报错!')
+        // Cache.alertTip('声网报错!')
         console.log(`onError --声网 ${err} ${msg}`);
 
     }

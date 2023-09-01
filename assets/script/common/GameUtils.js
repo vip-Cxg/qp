@@ -420,8 +420,8 @@ export default class GameUtils {
      * @param  {Number} gold    点数
      * @param  {Number} precision 精度
      */
-    static formatGold(gold, precision, limit) {
-        return (parseFloat(gold) / 100).toFixed(2);
+    static formatGold(gold, precision=2, limit) {
+        return (parseFloat(gold) / 100).toFixed(precision);
         // let goldNum = Math.abs(parseInt(gold)),
         //     transMin = limit || 100000,
         //     transBase = gold >= 100000000 ? 100000000 : 10000,

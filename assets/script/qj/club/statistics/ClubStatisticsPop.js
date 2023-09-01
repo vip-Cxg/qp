@@ -77,7 +77,7 @@ export default class ClubStatisticsPop extends cc.Component {
                 show = [5];
             }
         } else {
-            show = App.Club.role == GameConfig.ROLE.OWNER ? [9] : [6, 7, 9, 10];
+            show = App.Club.role == GameConfig.ROLE.OWNER ? [9] : [6, 9, 10];
 
         }
 

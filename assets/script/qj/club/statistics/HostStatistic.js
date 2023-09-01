@@ -5,7 +5,7 @@ import { GameConfig } from "../../../../GameBase/GameConfig";
 import GameUtils from "../../../common/GameUtils";
 import moment from '../../other/moment';
 @ccclass
-export default class HostStatistics extends cc.Component {
+export default class HostStatistic extends cc.Component {
     @property(cc.Node)
     nodeOption = null
 
