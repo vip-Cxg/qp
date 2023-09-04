@@ -97,7 +97,7 @@ static UIImagePickerController *imagePickerController;
         selector:@selector(statusBarOrientationChanged:)
         name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
-    if([WXApi registerApp:@"wx1f66a2276a8c673e"]){
+    if([WXApi registerApp:@"wxe541cb7aa9c963cd"]){
         NSLog(@"WXApi 初始化成功");
     }else{
         NSLog(@"WXApi 初始化失败");
