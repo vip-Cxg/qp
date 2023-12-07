@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        594.9594523999094,
+        422.6203970468061,
         0,
         0,
         0,
@@ -10584,9 +10584,11 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 5
+    },
     "component": "",
-    "_componentId": "ca4b0/bxAVLdpdiHSriuAKN",
+    "_componentId": "c247bgkvDNDiJ3L2poqsmAA",
     "handler": "onStartAuto",
     "customEventData": ""
   },
@@ -11306,9 +11308,11 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 5
+    },
     "component": "",
-    "_componentId": "ca4b0/bxAVLdpdiHSriuAKN",
+    "_componentId": "c247bgkvDNDiJ3L2poqsmAA",
     "handler": "onClickExit",
     "customEventData": ""
   },
@@ -12630,13 +12634,11 @@
       "__id__": 5
     },
     "_enabled": true,
-    "voiceCtrlButton": {
-      "__id__": 209
-    },
     "lblPhoneTime": {
       "__id__": 282
     },
     "dtCount": 0,
+    "joined": false,
     "nodeDeck": {
       "__id__": 50
     },

@@ -80,6 +80,7 @@ cc.Class({
     },
     /**初始化玩家信息 */
     init(data, record) {
+        console.log("玩家信息",data)
         this.playerData = data;
         if (data == null || utils.isNullOrEmpty(data.prop))
             return;

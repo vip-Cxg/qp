@@ -32,42 +32,47 @@ cc.Class({
         }
     },
     init(data, isReplay = false) {
+      
+        this.isReplay = isReplay;
+
         // [
         //     {
+        //         "id": 58984366,
         //         "idx": 0,
-        //         "scores": {
-        //             "base": 44,
-        //             "ti": 0,
-        //             "pao": 0,
-        //             "win": 1,
-        //             "lose": 0,
-        //             "plus": 0,
-        //             "turn": 44,
-        //             "total": 400,
-        //             "wallet": 398,
-        //             "shuffle": 0,
-        //             "fee": 2
-        //         },
-        //         "wallet": 6962
-        //     },
-        //     {
-        //         "idx": 1,
         //         "scores": {
         //             "base": 0,
         //             "ti": 0,
-        //             "pao": 0,
+        //             "pao": 1,
         //             "win": 0,
-        //             "lose": 0,
+        //             "lose": 2,
         //             "plus": 0,
-        //             "turn": 0,
-        //             "total": -400,
-        //             "wallet": -400,
+        //             "turn": -42,
+        //             "fee": 0,
+        //             "total": null,
+        //             "wallet": 0,
         //             "shuffle": 0
         //         },
-        //         "wallet": 16935
+        //         "wallet": null
+        //     },
+        //     {
+        //         "id": 79215166,
+        //         "idx": 1,
+        //         "scores": {
+        //             "base": 22,
+        //             "ti": 0,
+        //             "pao": 1,
+        //             "win": 3,
+        //             "lose": 0,
+        //             "plus": 0,
+        //             "turn": 64,
+        //             "fee": 0,
+        //             "total": null,
+        //             "wallet": 0,
+        //             "shuffle": 0
+        //         },
+        //         "wallet": null
         //     }
         // ]
-        this.isReplay = isReplay;
 
         if (isReplay)
             this.hideBtn()

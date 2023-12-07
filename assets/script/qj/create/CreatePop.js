@@ -237,6 +237,13 @@ export default class CreatePop extends cc.Component {
         cc.sys.localStorage.setItem(`CREATE:CACHE:${gameType}`, JSON.stringify(rules));
         cc.sys.localStorage.setItem(`CREATE:CACHE:lASTGAME`, gameType);
         // cc.log(rules, gameType);
+        console.log('加入游戏',  gameType, rules )
+        //TODO
+        rules={
+            poker:3
+        };
+        gameType='XHZD';//'LDZP';
+        // return
         Connector.request(GameConfig.ServerEventName.JoinClubGame, { club: { clubID: 0, isLeague: -1, roomID: -1 }, gameType, rules  });
     }
 

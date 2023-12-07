@@ -70,6 +70,7 @@ let _social = Native.Social;
 const utils = require("../../../Main/Script/utils");
 let VoiceCtrl = require("voice-ctrl");
  var { GameConfig } = require("../../../GameBase/GameConfig");
+const { App } = require("../../../script/ui/hall/data/App");
 const STATUS = {
     /**等待其他玩家加入 */
     WAIT: "WAIT",
@@ -413,12 +414,34 @@ cc.Class({
         TableInfo.config = customConfig;
 
 
+        // {
+        //     "club": {
+        //         "clubID": 0,
+        //         "isLeague": -1,
+        //         "roomID": -1,
+        //         "fee": {},
+        //         "ownerID": 0,
+        //         "mode": 0,
+        //         "oglClubID": 0
+        //     },
+        //     "tableID": "368711",
+        //     "gameID": "WMJ4QQ3FKP5M",
+        //     "rules": {
+        //         "person": 2,
+        //         "base": 2,
+        //         "disband": false,
+        //         "autoDisband": false
+        //     },
+        //     "gameType": "LDZP",
+        //     "shuffle": 200
+        // }
+
 
         //显示游戏 类型 公会
         this.lblGameType.string = GameConfig.GameName[data.options.gameType];
 
         //设置玩家座位位置方位
-        if (TableInfo.options.person == 3) {
+        if (TableInfo.options.rules.person == 3) {
             this.realIdx = [0, 0, 0];
             this.realIdx[idx] = 0;
             this.realIdx[(idx + 1) % 3] = 1;
@@ -438,9 +461,9 @@ cc.Class({
                 player.removePlayer();
             })
         }
-        this.players = new Array(TableInfo.options.person);
+        this.players = new Array(TableInfo.options.rules.person);
         //生成玩家信息
-        for (let i = 0; i < TableInfo.options.person; i++) {
+        for (let i = 0; i < TableInfo.options.rules.person; i++) {
             let nodePlayer = cc.instantiate(this.player);
             nodePlayer.parent = this.bg;
             //设置玩家位置
@@ -448,7 +471,6 @@ cc.Class({
             nodePlayer.position = palyerPos[i];
             nodePlayer.zIndex = 1;
             this.players[i] = nodePlayer.getComponent('ModulePlayer08');
-
         }
 
         //初始化玩家数据
@@ -459,6 +481,7 @@ cc.Class({
     },
     /**初始化玩家显示信息 */
     playerInit(data) {
+
         data.forEach((player, i) => {
             if (player == null)
                 return;
@@ -473,8 +496,8 @@ cc.Class({
     },
     /**初始化桌子信息 */
     initTableMsg(data) {
-        this.lblBase.string = "底分: " + utils.formatGold(data.options.base);
-        this.lblNiao.string = "打鸟: " + utils.formatGold(data.options.base * 20);
+        this.lblBase.string = "底分: " + utils.formatGold(data.options.rules.base);
+        this.lblNiao.string = "打鸟: " + utils.formatGold(data.options.rules.base * 20);
         this.lblTurn.string = data.turn == 0 ? "" : data.turn + '局';// + TableInfo.config.turn;
         this.lblRoomId.string = '房间号: ' + data.tableID;
         this.lblDeck.string = '';
@@ -915,7 +938,7 @@ cc.Class({
     },
 
     qihu() {
-        Cache.showConfirm('是否弃胡？', () => {
+        App.confirmPop('是否弃胡？', () => {
             connector.gameMessage(ROUTE.CS_PLAY_CARD, -1);
             this.btnQihu.active = false;
         })
@@ -1039,6 +1062,7 @@ cc.Class({
 
                 break;
             case GameConfig.GameStatus.START:
+
                 this.normalReadyBtn.active = false;
                 this.birdReadyBtn.active = false;
                 data.players.forEach(player => {
@@ -1118,6 +1142,15 @@ cc.Class({
                 break;
             case GameConfig.GameStatus.SUMMARY:
                 this.nodeDeck.position = cc.v2(0, 30);
+
+                this.normalReadyBtn.active = false;
+                this.birdReadyBtn.active = false;
+                data.players.forEach(player => {
+                    if (player.idx == TableInfo.idx && !player.next) {
+                        this.continueBtn.active = true;
+                    }
+                })
+
 
                 break;
         }
@@ -1507,7 +1540,7 @@ cc.Class({
     },
 
     emitVote() {
-        Cache.showConfirm('是否解散游戏', () => {
+        App.confirmPop('是否解散游戏', () => {
             connector.gameMessage(ROUTE.CS_GAME_VOTE, { agree: true });
 
         })
@@ -1515,7 +1548,7 @@ cc.Class({
 
     emitLeave() {
         if (TableInfo.idx == 0) {
-            Cache.showConfirm('解散游戏不扣房卡，是否解散游戏', () => {
+            App.confirmPop('解散游戏不扣房卡，是否解散游戏', () => {
                 connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
 
             })
@@ -1576,7 +1609,7 @@ cc.Class({
             case '0':
                 if (this.quest[2].length > 0) {
                     //cc.log('进入弃胡判定');
-                    Cache.showConfirm('您确定放弃胡牌?', () => {
+                    App.confirmPop('您确定放弃胡牌?', () => {
                         this.showQuestChi();
                     });
                 } else
@@ -1585,7 +1618,7 @@ cc.Class({
             case '1':
                 if (this.quest[2].length > 0) {
                     //cc.log('进入弃胡判定');
-                    Cache.showConfirm('您确定放弃胡牌?', () => {
+                    App.confirmPop('您确定放弃胡牌?', () => {
                         connector.gameMessage(ROUTE.CS_ANSWER, { serialID: TableInfo.serialID, answer: this.quest[1][0].idx, card: TableInfo.currentCard });
                         this.layoutQuest.active = false;
                     });
@@ -1607,7 +1640,7 @@ cc.Class({
                     //cc.log(this.quest[2].length);
                     if (this.quest[2].length > 0) {
                         //cc.log('进入弃胡判定');
-                        Cache.showConfirm('您确定放弃胡牌?', () => {
+                        App.confirmPop('您确定放弃胡牌?', () => {
                             connector.gameMessage(ROUTE.CS_ANSWER, { serialID: TableInfo.serialID, answer: -1, card: TableInfo.currentCard });
                             this.layoutQuest.active = false;
                         });
@@ -1834,18 +1867,24 @@ cc.Class({
     },
     /**离开游戏 */
     onClickExit() {
-        
+        console.log('12312',TableInfo.status,this.onExitting)
         if (TableInfo.status == GameConfig.GameStatus.START) return;
         if (this.onExitting) return;
         this.onExitting = true;
-
-        Cache.showConfirm("是否退出游戏", () => {
+        App.confirmPop("是否解散房间", () => {
             connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
             GameConfig.ShowTablePop = true;
             this.onExitting = false;
-        }, () => {
+        },() => {
             this.onExitting = false;
         });
+        // App.confirmPop("是否退出游戏", () => {
+        //     connector.gameMessage(ROUTE.CS_PLAYER_LEAVE, {});
+        //     GameConfig.ShowTablePop = true;
+        //     this.onExitting = false;
+        // }, () => {
+        //     this.onExitting = false;
+        // });
 
     },
     //检查听牌
@@ -2010,7 +2049,7 @@ cc.Class({
 
         if (this.giveUpHuing) return;
         this.giveUpHuing = true;
-        Cache.showConfirm('是否弃胡？', () => {
+        App.confirmPop('是否弃胡？', () => {
             connector.gameMessage(ROUTE.CS_PLAY_CARD, -1);
             this.giveUpHuing = false;
         }, () => {
@@ -2023,7 +2062,7 @@ cc.Class({
         
         if (this.quickFinished) return;
         this.quickFinished = true;
-        Cache.showConfirm('是否结束本局游戏？', () => {
+        App.confirmPop('是否结束本局游戏？', () => {
             connector.gameMessage(ROUTE.CS_DISBAND, 'allow');
             this.quickFinished = false;
 

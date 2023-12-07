@@ -11,6 +11,7 @@ let VoiceCtrl = require("voice-ctrl");
 let Cache = require("../../../Main/Script/Cache");
  var { GameConfig } = require("../../../GameBase/GameConfig");
 const TableInfo = require("../../../Main/Script/TableInfo");
+const { App } = require("../../../script/ui/hall/data/App");
 
 let posHead = [
     cc.v2(-514, -240),
@@ -268,7 +269,7 @@ cc.Class({
     initTable(data) {
         //显示游戏 类型 公会
         this.lblGameType.string = GameConfig.GameName[data.options.gameType];
-        this.lblBase.string = "底分: " + utils.formatGold(data.options.base);
+        this.lblBase.string = "底分: " + utils.formatGold(data.options.rules.base);
 
 
         data.turn = data.turn ? data.turn : 0;
@@ -732,7 +733,7 @@ cc.Class({
     acBao(event, data) {
         let num = parseInt(data);
         if (num == 0) {
-            Cache.showConfirm("是否包庄", () => {
+            App.confirmPop("是否包庄", () => {
                 this.nodeBao.active = false;
                 connector.gameMessage(ROUTE.CS_CALL, { event: 'CALL', call: true });
             })
@@ -1382,7 +1383,7 @@ cc.Class({
         if (this.onExitting) return;
         if (TableInfo.status == GameConfig.GameStatus.START) return;
         this.onExitting = true;
-        Cache.showConfirm("是否退出房间", () => {
+        App.confirmPop("是否退出房间", () => {
 
             GameConfig.ShowTablePop = true;
             this.onExitting = false;

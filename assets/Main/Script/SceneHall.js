@@ -152,6 +152,10 @@ export default class SceneHall extends cc.Component {
         // App.EventManager.removeEventListener(GameConfig.GameEventNames.JUDGE_TIPS, this.judgeTips, this);
     }
 
+    onTest(){
+        
+    }
+
     /** 邀请函 */
     onClickInvitationCard() {
         App.pop(GameConfig.pop.InvitationCard);

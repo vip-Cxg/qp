@@ -127,7 +127,7 @@ cc.Class({
             this.cutCard.node.active = false;
         }
         //两人 隐藏
-        if (TableInfo.options.person == 2) {
+        if (TableInfo.options.rules.person == 2) {
             this.playerItem.active = false;
             this.drawPlayerItem.active = false;
         }
